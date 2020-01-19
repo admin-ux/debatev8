@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".c2_rate_judge">
+
+    <TextView
+        android:id="@+id/topicheader"
+        android:layout_width="151dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="130dp"
+        android:text="Topic Header"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.07999998" />
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="186dp"
+        android:layout_height="43dp"
+        android:layout_marginHorizontal="130dp"
+        android:text="Submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar2"
+        app:layout_constraintVertical_bias="0.341" />
+
+    <TextView
+        android:id="@+id/b2leadpoint"
+        android:layout_width="151dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="130dp"
+        android:text="User 1 Lead Point"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topicheader"
+        app:layout_constraintVertical_bias="0.116" />
+
+    <SeekBar
+        android:id="@+id/seekBar1"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="321dp"
+        android:layout_height="14dp"
+        android:max="10"
+        android:progress="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/b2leadpoint"
+        app:layout_constraintVertical_bias="0.138" />
+
+    <TextView
+        android:id="@+id/a2responsepoint"
+        android:layout_width="176dp"
+        android:layout_height="23dp"
+        android:layout_marginHorizontal="130dp"
+        android:text="User 2 Response Point"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.553"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar1"
+        app:layout_constraintVertical_bias="0.097" />
+
+    <SeekBar
+        android:id="@+id/seekBar2"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="322dp"
+        android:layout_height="16dp"
+        android:max="10"
+        android:progress="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/a2responsepoint"
+        app:layout_constraintVertical_bias="0.138" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

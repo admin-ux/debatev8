@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <Button
+        android:id="@+id/todaystopicButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Todays Topic"
+        android:layout_marginHorizontal="130dp"
+        android:layout_marginTop="80dp" />
+
+    <Button
+        android:id="@+id/popularButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Most Popular"
+        android:layout_marginHorizontal="130dp"
+        android:layout_marginTop="80dp" />
+
+    <Button
+        android:id="@+id/favouritesButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Favourites"
+        android:layout_marginHorizontal="130dp"
+        android:layout_marginTop="80dp" />
+
+
+</LinearLayout>

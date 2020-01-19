@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.debatev8">
+
+  <uses-permission android:name="android.permission.INTERNET" />
+
+  <application
+      android:allowBackup="true"
+      android:icon="@mipmap/ic_launcher"
+      android:label="Debate"
+      android:roundIcon="@mipmap/ic_launcher_round"
+      android:supportsRtl="true"
+      android:theme="@style/AppTheme">
+
+    <activity android:name=".register">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+
+    <activity android:name=".login" />
+
+    <activity android:name=".choice_home" />
+    <activity android:name=".match_finding" android:noHistory="true" />
+    <activity android:name=".choice_debate" />
+    <activity android:name=".topic_vote" android:noHistory="true"/>
+    <activity android:name=".a1_lead_debate" />
+    <activity android:name=".a1_topicheaderpreview_debate" />
+    <activity android:name=".a1_responsepreview_debate" />
+    <activity android:name=".b1_close_debate" />
+    <activity android:name=".b2_lead_debate" />
+    <activity android:name=".a2_close_debate" />
+    <activity android:name=".a3_lead_debate" />
+    <activity android:name=".b3_close_debate" />
+    <activity android:name=".rating_opponent_ab_debate" />
+    <activity android:name=".repeat_return_debate" />
+
+    <activity android:name=".searching_completed_matches"/>
+    <activity android:name=".c1_rate_judge" />
+    <activity android:name=".c2_rate_judge" />
+    <activity android:name=".c3_rate_judge" />
+    <activity android:name=".return_repeat_judge" />
+
+    <activity android:name=".choice_leaderboards" />
+    <activity android:name=".judge_leaderboards" />
+  </application>
+
+</manifest>
