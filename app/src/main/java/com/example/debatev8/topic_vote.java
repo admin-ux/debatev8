@@ -41,6 +41,7 @@ public class topic_vote extends AppCompatActivity {
     int lenOfArray;
     String gameID;
     String name;
+    game currentGame;
     boolean timer1Ended=false;
     boolean firstloop=true;
     Boolean firstPlayer;
@@ -61,7 +62,7 @@ public class topic_vote extends AppCompatActivity {
         final DatabaseReference realtimeUserProfile =databaseUsers.child(userid);
         DatabaseReference realtimeUserGameID =databaseUsers.child(userid).child("GameID");
         //TODO make sure this works gets right value and is allowed to be declared final
-        final game currentGame = (game) getIntent().getSerializableExtra("newGame");
+        currentGame = (game) getIntent().getSerializableExtra("newGame");
         Log.i("aaaaaaaaaaaaaaaaaaa", currentGame.getGameID());
 
         //Checking what player number the user is for readability of code
@@ -98,6 +99,7 @@ public class topic_vote extends AppCompatActivity {
 
                     }
                     realtimeUserCurrentGame=databaseCurrentGames.child(gameID);
+                    currentGame.setGameID(gameID);
 
                     //2A) PLAYER VOTES//START//
                     //Topic1 vote
@@ -178,6 +180,7 @@ public class topic_vote extends AppCompatActivity {
                                 //3A) VOTES ARE POSTED//START//
                                 if (firstloop)
                                 {
+                                    Log.i("zzzzzzzzzzzzzzzzzzz", VotesCastList);
                                     realtimeUserCurrentGame.child("player2Topics").setValue(VotesCastList);
                                     firstloop=false;
                                 }
@@ -205,7 +208,7 @@ public class topic_vote extends AppCompatActivity {
                                                 myTimerReQuery.cancel();
                                                 myTimerReQuery.purge();
                                                 //TODO Add getActivity.b1_close_debate()
-                                                openB1_close_debate();
+                                                openB1_topicheaderpreview_debate();
                                             }
 
                                         }
@@ -336,12 +339,13 @@ public class topic_vote extends AppCompatActivity {
                                     }
                                     Log.i("pppppppppppppppppppppp", dataSnapshot.toString());
                                     if (!player2ID.equals("0")) {
-                                        //TODO Do player 1 calculation before timer quit
+
                                         myTimerReQuery.cancel();
                                         myTimerReQuery.purge();
                                         //TODO Add getActivity.a1_lead_debate()
                                         openA1_lead_debate();
                                     }
+
 
                                 }
 
@@ -374,10 +378,16 @@ public class topic_vote extends AppCompatActivity {
     }
     public void openA1_lead_debate(){
         Intent intent = new Intent(this, a1_lead_debate.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("currentGame",currentGame);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
-    public void openB1_close_debate(){
-        Intent intent = new Intent(this, b1_close_debate.class);
+    public void openB1_topicheaderpreview_debate(){
+        Intent intent = new Intent(this, b1_topicheaderpreview_debate.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("currentGame",currentGame);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 

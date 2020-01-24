@@ -345,14 +345,6 @@ public class match_finding extends AppCompatActivity {
     public void onBackPressed() {
 
     }
-    public void openA1_lead_debate(){
-        Intent intent = new Intent(this, a1_lead_debate.class);
-        startActivity(intent);
-    }
-    public void openB1_close_debate(){
-        Intent intent = new Intent(this, b1_close_debate.class);
-        startActivity(intent);
-    }
 
     public void opentopic_vote(){
         Intent intent = new Intent(this, topic_vote.class);

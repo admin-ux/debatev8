@@ -10,7 +10,7 @@
         android:layout_marginHorizontal="150dp"
         android:layout_marginTop="100dp"
         android:text="Players Response"
-        android:textSize="25" />
+        android:textSize="25sp" />
 
     <TextView
         android:id="@+id/resp_from_b1"

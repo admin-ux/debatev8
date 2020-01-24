@@ -34,13 +34,14 @@ public class a1_topicheaderpreview_debate extends AppCompatActivity {
 
 
 
-    String arg_a1;
+    String b1_close;
+    String header2;
 
     EditText arg_a1Input;
-    TextView TopicTitle;
-    TextView TopicHeader1;
 
-    Button submitB;
+    TextView TopicHeader2;
+
+
 
     int timeriterations=0;
 
@@ -66,6 +67,71 @@ public class a1_topicheaderpreview_debate extends AppCompatActivity {
 
         //Calculate Topic//Start//
 
+
+
+
+
+
+
+        TopicHeader2 = (TextView) findViewById(R.id.topicheader);
+        TopicHeader2.setText(currentGame.getStages().getStage2().getTopicHeader());
+
+
+
+
+
+        final Timer myArgTimer = new Timer();
+        TimerTask untilArgMade = new TimerTask() {
+            @Override
+            public void run()
+            {
+
+                databaseCurrentGames.child(currentGame.getGameID()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        for (DataSnapshot topicInfo : dataSnapshot.getChildren())
+                        {
+                            Log.i("rrrrrrrrrrrrrrrrrrrrr", "GOT HERE");
+
+                            b1_close = "";
+
+                            Object b1c= dataSnapshot.child("stages").child("stage1").child("resp").getValue();
+                            if (b1c!=null)
+                            {
+                                b1_close = b1c.toString();
+                                if (!b1_close.equals("0")) {
+                                    Log.i("qqqqqqqqqqqqqqqqqqqq", b1_close);
+                                    currentGame.getStages().getStage1().setResp(b1_close);
+                                    myArgTimer.cancel();
+                                    myArgTimer.purge();
+                                    openA1_responsepreview_debate();
+                                }
+
+                            }
+                        }
+
+
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+
+
+
+
+
+            }
+        };//Every Second
+        myArgTimer.schedule(untilArgMade, 0, 3000);
+
+                //No timer immediately sent to waiting screen with pre view of next topic header
     }
 
 
@@ -76,8 +142,9 @@ public class a1_topicheaderpreview_debate extends AppCompatActivity {
 
 
 
-    public void openA2_close_debate(){
-        Intent intent = new Intent(this, a2_close_debate.class);
+
+    public void openA1_responsepreview_debate(){
+        Intent intent = new Intent(this, a1_responsepreview_debate.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("currentGame",currentGame);
         intent.putExtras(bundle);

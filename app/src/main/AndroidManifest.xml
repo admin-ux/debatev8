@@ -29,6 +29,7 @@
     <activity android:name=".a1_lead_debate" />
     <activity android:name=".a1_topicheaderpreview_debate" />
     <activity android:name=".a1_responsepreview_debate" />
+    <activity android:name=".b1_topicheaderpreview_debate" />
     <activity android:name=".b1_close_debate" />
     <activity android:name=".b2_lead_debate" />
     <activity android:name=".a2_close_debate" />

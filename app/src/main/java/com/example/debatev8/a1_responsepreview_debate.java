@@ -33,11 +33,11 @@ public class a1_responsepreview_debate extends AppCompatActivity {
     //2 Waits for "b"
 
 
+    String b1_resp;
+    String b2_open;
 
-    String arg_a1;
 
-    EditText arg_a1Input;
-    TextView TopicTitle;
+    TextView B1_Close;
     TextView TopicHeader1;
 
     Button submitB;
@@ -66,6 +66,67 @@ public class a1_responsepreview_debate extends AppCompatActivity {
 
 
 
+
+
+
+
+
+        currentGame.getStages().getStage1().getResp();
+
+
+        B1_Close = (TextView) findViewById(R.id.resp_from_b1);
+        B1_Close.setText(currentGame.getStages().getStage1().getResp());
+
+
+        final Timer myArgTimer = new Timer();
+        TimerTask untilArgMade = new TimerTask() {
+            @Override
+            public void run()
+            {
+
+
+                databaseCurrentGames.child(currentGame.getGameID()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        for (DataSnapshot topicInfo : dataSnapshot.getChildren())
+                        {
+                            Log.i("rrrrrrrrrrrrrrrrrrrrr", "GOT HERE");
+
+                            b2_open = "";
+
+                            Object b2o= dataSnapshot.child("stages").child("stage2").child("arg").getValue();
+                            if (b2o!=null)
+                            {
+                                b2_open = b2o.toString();
+                                if (!b2_open.equals("0")) {
+                                    currentGame.getStages().getStage2().setArg(b2_open);
+                                    myArgTimer.cancel();
+                                    myArgTimer.purge();
+                                    openA2_close_debate();
+                                }
+
+                            }
+                        }
+
+
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+            }
+        };//Every Second
+        myArgTimer.schedule(untilArgMade, 0, 3000);
+
+        //No timer immediately sent to waiting screen with pre view of next topic header
+
+        //Retrieve Topic//End//
 
     }
 
