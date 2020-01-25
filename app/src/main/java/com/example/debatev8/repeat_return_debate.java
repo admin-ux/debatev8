@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 //Database: Saves User/ Finds User individual ID
 //1 a) Initial -> Stores User Class Object In database
@@ -24,7 +26,11 @@ public class repeat_return_debate extends AppCompatActivity {
     private Button quitButton;
 
 
-
+    DatabaseReference databaseRoot = FirebaseDatabase.getInstance().getReference();//***
+    DatabaseReference databaseUsers = databaseRoot.child("UsersList");//***
+    FirebaseUser fireUser = FirebaseAuth.getInstance().getCurrentUser();
+    final String userid = fireUser.getUid();
+    final DatabaseReference currentPlayer =databaseUsers.child(userid);
 
 
 
@@ -33,14 +39,18 @@ public class repeat_return_debate extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_choice);
+        setContentView(R.layout.debate_return_repeat);
+
+
+        currentPlayer.child("GameID").setValue("0");
+        currentPlayer.child("inGame").setValue(0);
+
+
         debateAgainButton = (Button) findViewById(R.id.debateAgain);
         debateAgainButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openDebatechoice();
-
-
             }
 
         });
@@ -49,7 +59,6 @@ public class repeat_return_debate extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 quitChoice();
-
             }
         });
 
@@ -57,8 +66,6 @@ public class repeat_return_debate extends AppCompatActivity {
     //May change this to not allow choice of debate and use algorithm instead
     public void openDebatechoice(){
         Intent intent = new Intent(this, match_finding.class);
-
-
         startActivity(intent);
     }
     //opens judge wait screen

@@ -236,7 +236,7 @@ public class b1_topicheaderpreview_debate extends AppCompatActivity {
                 //databaseCurrentGames.child(currentGame.getGameID()).child("stages").setValue(currentGame.getStages());
 
 
-                Log.i("jjjjjjjjjjjjjjjjjjjjj", "Here?");
+                Log.i("jjjjjjjTTjjjjjjjjj", currentGame.getStages().getTopicTitle());
 
                 TopicHeader1= (TextView) findViewById(R.id.topicheader);
                 TopicHeader1.setText(currentGame.getStages().getStage1().getTopicHeader());

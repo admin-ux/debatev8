@@ -28,15 +28,14 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class b2_responsepreview_debate extends AppCompatActivity {
+public class a3_waitinglastresp_debate extends AppCompatActivity {
     //1 Data is saved to Current Games gamed id
     //2 Waits for "b"
 
 
-    String a3_open;
-    TextView A2_Close;
 
-    Button submitB;
+    String b3_close;
+
 
     game currentGame;
 
@@ -50,7 +49,7 @@ public class b2_responsepreview_debate extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.debate_responsepreview_b2);
+        setContentView(R.layout.debate_waitinglastresp_a3);
 
 
         FirebaseUser fireUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -61,23 +60,11 @@ public class b2_responsepreview_debate extends AppCompatActivity {
 
 
 
-
-
-
-
-        currentGame.getStages().getStage2().getResp();
-
-
-        A2_Close = (TextView) findViewById(R.id.resp_from_a2);
-        A2_Close.setText(currentGame.getStages().getStage2().getResp());
-
-
         final Timer myArgTimer = new Timer();
         TimerTask untilArgMade = new TimerTask() {
             @Override
             public void run()
             {
-
 
                 databaseCurrentGames.child(currentGame.getGameID()).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -87,25 +74,22 @@ public class b2_responsepreview_debate extends AppCompatActivity {
                         {
                             Log.i("rrrrrrrrrrrrrrrrrrrrr", "GOT HERE");
 
-                            a3_open = "";
+                            b3_close = "";
 
-                            Object a3o= dataSnapshot.child("stages").child("stage3").child("arg").getValue();
-                            if (a3o!=null)
+                            Object b3c= dataSnapshot.child("stages").child("stage3").child("resp").getValue();
+                            if (b3c!=null)
                             {
-                                a3_open = a3o.toString();
-                                if (!a3_open.equals("0")) {
-                                    currentGame.getStages().getStage3().setArg(a3_open);
+                                b3_close = b3c.toString();
+                                if (!b3_close.equals("0")) {
+                                    Log.i("qqqqqqqqqqqqqqqqqqqq", b3_close);
+                                    currentGame.getStages().getStage3().setResp(b3_close);
                                     myArgTimer.cancel();
                                     myArgTimer.purge();
-                                    openB3_close_debate();
+                                    openA3_responsepreview_debate();
                                 }
 
                             }
                         }
-
-
-
-
                     }
 
                     @Override
@@ -114,14 +98,16 @@ public class b2_responsepreview_debate extends AppCompatActivity {
                     }
                 });
 
+
+
+
+
+
             }
         };//Every Second
         myArgTimer.schedule(untilArgMade, 0, 3000);
 
         //No timer immediately sent to waiting screen with pre view of next topic header
-
-        //Retrieve Topic//End//
-
     }
 
 
@@ -132,8 +118,9 @@ public class b2_responsepreview_debate extends AppCompatActivity {
 
 
 
-    public void openB3_close_debate(){
-        Intent intent = new Intent(this, b3_close_debate.class);
+
+    public void openA3_responsepreview_debate(){
+        Intent intent = new Intent(this, a3_responsepreview_debate.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("currentGame",currentGame);
         intent.putExtras(bundle);

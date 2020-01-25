@@ -36,6 +36,8 @@
     <activity android:name=".b2_responsepreview_debate" />
     <activity android:name=".a2_close_debate" />
     <activity android:name=".a3_lead_debate" />
+    <activity android:name=".a3_waitinglastresp_debate" />
+    <activity android:name=".a3_responsepreview_debate" />
     <activity android:name=".b3_close_debate" />
     <activity android:name=".rating_opponent_ab_debate" />
     <activity android:name=".repeat_return_debate" />

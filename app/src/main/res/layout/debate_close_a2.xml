@@ -2,7 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    <TextView
+        android:id="@+id/topictitle"
+        android:layout_width="115dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="60dp"
+        android:layout_marginTop="25dp"
+        android:text="Topic Title" />
     <TextView
         android:id="@+id/topicheader"
         android:layout_width="151dp"

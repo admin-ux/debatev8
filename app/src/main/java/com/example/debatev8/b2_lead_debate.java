@@ -76,6 +76,8 @@ public class b2_lead_debate extends AppCompatActivity {
                 TopicHeader2= (TextView) findViewById(R.id.topicheader);
                 TopicHeader2.setText(currentGame.getStages().getStage2().getTopicHeader());
 
+                Log.i("pppppppppppppppp", currentGame.getStages().getTopicTitle());
+
                 TopicTitle= (TextView) findViewById(R.id.topictitle);
                 TopicTitle.setText(currentGame.getStages().getTopicTitle());
 
@@ -97,6 +99,8 @@ public class b2_lead_debate extends AppCompatActivity {
                                 displayText(arg_b2);
 
                                 currentGame.getStages().getStage2().setArg(arg_b2);
+                                //Log.i("fffffffffffffffffff", databaseCurrentGames.child(currentGame.getGameID()).child("stages").child("stage2").child("arg").toString());
+                                //Log.i("*****************", currentGame.getStages().getStage2().getArg());
                                 databaseCurrentGames.child(currentGame.getGameID()).child("stages").child("stage2").child("arg").setValue(currentGame.getStages().getStage2().getArg());
                                 myArgTimer.cancel();
                                 myArgTimer.purge();
@@ -108,7 +112,8 @@ public class b2_lead_debate extends AppCompatActivity {
                         {
                             myArgTimer.cancel();
                             myArgTimer.purge();
-                            currentGame.getStages().getStage1().setArg("I could not think of an argument");
+                            currentGame.getStages().getStage2().setArg("I could not think of an argument");
+                            //Log.i("gggggggggggggggggggggg", currentGame.getGameID());
                             databaseCurrentGames.child(currentGame.getGameID()).child("stages").child("stage2").child("arg").setValue(currentGame.getStages().getStage2().getArg());
                             openB2_topicheaderpreview_debate();
                         }

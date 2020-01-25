@@ -100,7 +100,7 @@ public class a3_lead_debate extends AppCompatActivity {
                         databaseCurrentGames.child(currentGame.getGameID()).child("stages").child("stage3").child("arg").setValue(currentGame.getStages().getStage3().getArg());
                         myArgTimer.cancel();
                         myArgTimer.purge();
-                        OpenRepeat_return_debate();
+                        OpenA3_waitinglastresp_debate();
 
                     }
                 });
@@ -110,7 +110,7 @@ public class a3_lead_debate extends AppCompatActivity {
                     myArgTimer.purge();
                     currentGame.getStages().getStage3().setArg("I could not think of an argument");
                     databaseCurrentGames.child(currentGame.getGameID()).child("stages").child("stage3").child("arg").setValue(currentGame.getStages().getStage3().getArg());
-                    OpenRepeat_return_debate();
+                    OpenA3_waitinglastresp_debate();
                 }
             }
         };//Every Second
@@ -129,8 +129,8 @@ public class a3_lead_debate extends AppCompatActivity {
         Toast.makeText(a3_lead_debate.this, text, Toast.LENGTH_LONG).show();
 
     }
-    public void OpenRepeat_return_debate(){
-        Intent intent = new Intent(this, repeat_return_debate.class);
+    public void OpenA3_waitinglastresp_debate(){
+        Intent intent = new Intent(this, a3_waitinglastresp_debate.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("currentGame",currentGame);
         intent.putExtras(bundle);
