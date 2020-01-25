@@ -28,14 +28,15 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class a1_topicheaderpreview_debate extends AppCompatActivity {
+public class b2_responsepreview_debate extends AppCompatActivity {
     //1 Data is saved to Current Games gamed id
     //2 Waits for "b"
 
 
+    String a3_open;
+    TextView A2_Close;
 
-    String b1_close;
-    TextView TopicHeader2;
+    Button submitB;
 
     game currentGame;
 
@@ -49,7 +50,7 @@ public class a1_topicheaderpreview_debate extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.debate_topicheaderpreview_a1);
+        setContentView(R.layout.debate_responsepreview_a1);
 
 
         FirebaseUser fireUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -57,7 +58,6 @@ public class a1_topicheaderpreview_debate extends AppCompatActivity {
         DatabaseReference realtimeUserProfile =databaseUsers.child(userid);
         currentGame = (game) getIntent().getSerializableExtra("currentGame");
 
-        //Calculate Topic//Start//
 
 
 
@@ -65,11 +65,11 @@ public class a1_topicheaderpreview_debate extends AppCompatActivity {
 
 
 
-        TopicHeader2 = (TextView) findViewById(R.id.topicheader);
-        TopicHeader2.setText(currentGame.getStages().getStage2().getTopicHeader());
+        currentGame.getStages().getStage2().getResp();
 
 
-
+        A2_Close = (TextView) findViewById(R.id.resp_from_a2);
+        A2_Close.setText(currentGame.getStages().getStage2().getResp());
 
 
         final Timer myArgTimer = new Timer();
@@ -77,6 +77,7 @@ public class a1_topicheaderpreview_debate extends AppCompatActivity {
             @Override
             public void run()
             {
+
 
                 databaseCurrentGames.child(currentGame.getGameID()).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -86,18 +87,17 @@ public class a1_topicheaderpreview_debate extends AppCompatActivity {
                         {
                             Log.i("rrrrrrrrrrrrrrrrrrrrr", "GOT HERE");
 
-                            b1_close = "";
+                            a3_open = "";
 
-                            Object b1c= dataSnapshot.child("stages").child("stage1").child("resp").getValue();
-                            if (b1c!=null)
+                            Object a3o= dataSnapshot.child("stages").child("stage3").child("arg").getValue();
+                            if (a3o!=null)
                             {
-                                b1_close = b1c.toString();
-                                if (!b1_close.equals("0")) {
-                                    Log.i("qqqqqqqqqqqqqqqqqqqq", b1_close);
-                                    currentGame.getStages().getStage1().setResp(b1_close);
+                                a3_open = a3o.toString();
+                                if (!a3_open.equals("0")) {
+                                    currentGame.getStages().getStage3().setArg(a3_open);
                                     myArgTimer.cancel();
                                     myArgTimer.purge();
-                                    openA1_responsepreview_debate();
+                                    openB3_close_debate();
                                 }
 
                             }
@@ -114,16 +114,14 @@ public class a1_topicheaderpreview_debate extends AppCompatActivity {
                     }
                 });
 
-
-
-
-
-
             }
         };//Every Second
         myArgTimer.schedule(untilArgMade, 0, 3000);
 
-                //No timer immediately sent to waiting screen with pre view of next topic header
+        //No timer immediately sent to waiting screen with pre view of next topic header
+
+        //Retrieve Topic//End//
+
     }
 
 
@@ -134,9 +132,8 @@ public class a1_topicheaderpreview_debate extends AppCompatActivity {
 
 
 
-
-    public void openA1_responsepreview_debate(){
-        Intent intent = new Intent(this, a1_responsepreview_debate.class);
+    public void openB3_close_debate(){
+        Intent intent = new Intent(this, b3_close_debate.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("currentGame",currentGame);
         intent.putExtras(bundle);

@@ -33,16 +33,11 @@ public class a1_responsepreview_debate extends AppCompatActivity {
     //2 Waits for "b"
 
 
-    String b1_resp;
+
     String b2_open;
-
-
     TextView B1_Close;
-    TextView TopicHeader1;
 
     Button submitB;
-
-    int timeriterations=0;
 
     game currentGame;
 

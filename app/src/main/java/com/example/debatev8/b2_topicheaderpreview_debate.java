@@ -28,21 +28,14 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class a3_lead_debate extends AppCompatActivity {
+public class b2_topicheaderpreview_debate extends AppCompatActivity {
     //1 Data is saved to Current Games gamed id
     //2 Waits for "b"
 
 
 
-    String arg_a3;
-
-    EditText arg_a3Input;
-    TextView TopicTitle;
+    String a2_close;
     TextView TopicHeader3;
-
-    Button submitB;
-
-    int timeriterations=0;
 
     game currentGame;
 
@@ -56,65 +49,67 @@ public class a3_lead_debate extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.debate_lead_a3);
+        setContentView(R.layout.debate_topicheaderpreview_b2);
 
 
         FirebaseUser fireUser = FirebaseAuth.getInstance().getCurrentUser();
         final String userid = fireUser.getUid();
         DatabaseReference realtimeUserProfile =databaseUsers.child(userid);
         currentGame = (game) getIntent().getSerializableExtra("currentGame");
-        Log.i("bbbbbbbbbbbbbbbbbbbb", currentGame.toString());
-        Log.i("ccccccccccccccccccc", currentGame.getPlayer1Topics());
-        Log.i("ddddddddddddddddddd", currentGame.getPlayer2Topics());
-        Log.i("eeeeeeeeeeeeeeeeeee", currentGame.getGameID());
 
         //Calculate Topic//Start//
 
 
-        arg_a3Input = (EditText) findViewById(R.id.arg_a3);
-
-        TopicHeader3= (TextView) findViewById(R.id.topicheader);
+        TopicHeader3 = (TextView) findViewById(R.id.topicheader);
         TopicHeader3.setText(currentGame.getStages().getStage3().getTopicHeader());
 
-        TopicTitle= (TextView) findViewById(R.id.topictitle);
-        TopicTitle.setText(currentGame.getStages().getTopicTitle());
-
-        submitB = (Button) findViewById(R.id.submitButton);
 
         final Timer myArgTimer = new Timer();
         TimerTask untilArgMade = new TimerTask() {
             @Override
             public void run()
             {
-                timeriterations++;
-//
-                submitB.setOnClickListener(new View.OnClickListener() {
+
+                databaseCurrentGames.child(currentGame.getGameID()).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onClick(View v) {
-                        arg_a3 = arg_a3Input.getText().toString();
-                        currentGame.getStages().getStage3().setArg(arg_a3);
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                        displayText(arg_a3);
+                        for (DataSnapshot topicInfo : dataSnapshot.getChildren())
+                        {
+                            Log.i("rrrrrrrrrrrrrrrrrrrrr", "GOT HERE");
 
-                        currentGame.getStages().getStage3().setArg(arg_a3);
-                        databaseCurrentGames.child(currentGame.getGameID()).child("stages").child("stage3").child("arg").setValue(currentGame.getStages().getStage3().getArg());
-                        myArgTimer.cancel();
-                        myArgTimer.purge();
-                        OpenRepeat_return_debate();
+                            a2_close = "";
+
+                            Object a2c= dataSnapshot.child("stages").child("stage2").child("resp").getValue();
+                            if (a2c!=null)
+                            {
+                                a2_close = a2c.toString();
+                                if (!a2_close.equals("0")) {
+                                    Log.i("qqqqqqqqqqqqqqqqqqqq", a2_close);
+                                    currentGame.getStages().getStage2().setResp(a2_close);
+                                    myArgTimer.cancel();
+                                    myArgTimer.purge();
+                                    openB2_responsepreview_debate();
+                                }
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
                     }
                 });
-                if (timeriterations>1)
-                {
-                    myArgTimer.cancel();
-                    myArgTimer.purge();
-                    currentGame.getStages().getStage3().setArg("I could not think of an argument");
-                    databaseCurrentGames.child(currentGame.getGameID()).child("stages").child("stage3").child("arg").setValue(currentGame.getStages().getStage3().getArg());
-                    OpenRepeat_return_debate();
-                }
+
+
+
+
+
+
             }
         };//Every Second
-        myArgTimer.schedule(untilArgMade, 0, 15000000);
+        myArgTimer.schedule(untilArgMade, 0, 3000);
 
         //No timer immediately sent to waiting screen with pre view of next topic header
     }
@@ -125,12 +120,11 @@ public class a3_lead_debate extends AppCompatActivity {
 
 
 
-    private void displayText(String text){
-        Toast.makeText(a3_lead_debate.this, text, Toast.LENGTH_LONG).show();
 
-    }
-    public void OpenRepeat_return_debate(){
-        Intent intent = new Intent(this, repeat_return_debate.class);
+
+
+    public void openB2_responsepreview_debate(){
+        Intent intent = new Intent(this, b2_responsepreview_debate.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("currentGame",currentGame);
         intent.putExtras(bundle);
