@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.games.Game;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -20,8 +21,8 @@ import com.google.firebase.auth.FirebaseUser;
 //
 public class return_repeat_judge extends AppCompatActivity {
 
-    private Button judgeAgainButton;
-    private Button quitButton;
+    Button judgeAgainButton;
+    Button quitButton;
 
 
 
@@ -33,7 +34,12 @@ public class return_repeat_judge extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_choice);
+        setContentView(R.layout.judge_repeat_return);
+
+
+
+
+
         judgeAgainButton = (Button) findViewById(R.id.judgeAgain);
         judgeAgainButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -13,6 +13,15 @@ import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.games.Games;
+import com.google.android.gms.games.LeaderboardsClient;
+import com.google.android.gms.games.Games;
+import com.google.android.gms.games.Player;
+import com.google.android.gms.games.PlayersClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -21,6 +30,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class login extends AppCompatActivity {
+
+//    // Client used to sign in with Google APIs
+//    private GoogleSignInClient mGoogleSignInClient;
+//
+//    // Client variables
+//    private LeaderboardsClient mLeaderboardsClient;
+//    private PlayersClient mPlayersClient;
+
 
     EditText mEmail, mPassword;
     Button mLoginBtn;
@@ -33,7 +50,9 @@ public class login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+//
+//        mGoogleSignInClient = GoogleSignIn.getClient(this,
+//                new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN).build());
 
         mEmail = findViewById(R.id.emailAddress);
         mPassword = findViewById(R.id.password);

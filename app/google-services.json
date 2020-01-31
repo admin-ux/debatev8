@@ -15,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "92664854926-qcol6gj8r6809d49l2hponq9rm62vbt9.apps.googleusercontent.com",
+          "client_id": "92664854926-6gmtqelqv8io6ui35mgapt8vr2j2ikoj.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.debatev8",
-            "certificate_hash": "801325333786b91333be9afa5d7c6f6ce0d2794e"
+            "certificate_hash": "89094980a6b64cf07ab1fc880eb52d38cde36509"
           }
         },
         {
