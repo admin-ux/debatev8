@@ -87,10 +87,10 @@ public class google_signin3_yt_easylearn extends AppCompatActivity {
     }
 
     private void signIn(){
-        GoogleSignInClient signInClient = GoogleSignIn.getClient(this,
-                GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN);
+//        GoogleSignInClient signInClient = GoogleSignIn.getClient(this,
+//                GoogleSignInOptions.DEFAULT_SIGN_IN);
 
-        Intent signInIntent = signInClient.getSignInIntent();
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
