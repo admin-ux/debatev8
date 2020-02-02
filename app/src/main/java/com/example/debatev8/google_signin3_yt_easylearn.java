@@ -30,16 +30,21 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.PlayGamesAuthProvider;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import java.net.URI;
 
 public class google_signin3_yt_easylearn extends AppCompatActivity {
     private SignInButton signInButton;
     private GoogleSignInClient mGoogleSignInClient;
+    private GoogleSignInAccount mGoogleSignInAccount;
     private  String TAG = "MainActivity";
     private FirebaseAuth mAuth;
-    private Button btnSignOut;
+    private Button btnSignOut, showLeaderBoard;
     private int RC_SIGN_IN = 1;
     private Games games;
+    private LeaderboardsClient leaderboardsClient;
+    private FirebaseAnalytics mFirebaseAnalytics;
+    private GoogleSignInAccount acc;
 
 
     @Override
@@ -49,6 +54,7 @@ public class google_signin3_yt_easylearn extends AppCompatActivity {
 
         signInButton = findViewById(R.id.signInGoogle);
         mAuth = FirebaseAuth.getInstance();
+        showLeaderBoard = findViewById(R.id.showLeaderBoard);
         btnSignOut = findViewById(R.id.signOutGoogle);
 //
         GoogleSignInOptions gso = new GoogleSignInOptions
@@ -67,14 +73,35 @@ public class google_signin3_yt_easylearn extends AppCompatActivity {
 //                .requestServerAuthCode(getString(R.string.default_web_client_id))
 //                .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-//        games.getLeaderboardsClient(this,mGoogleSignInClient);
+
+//        Bundle bundle = new Bundle();
+//        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.LOGIN, bundle);
+
+
+//        leaderboardsClient.getLeaderboardsClient(this,gso);
+//        leaderboardsClient.getAllLeaderboardsIntent();
+
 
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 signIn();
+
             }
         });
+        showLeaderBoard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showLeaderboard();
+//                Bundle bundle = new Bundle();
+//                bundle.putLong(FirebaseAnalytics.Param.SCORE, score);
+//                bundle.putString("leaderboard_id", getString(R.string.leaderboard_id));
+//                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.POST_SCORE, bundle);
+//                mFirebaseAnalytics.getFirebaseInstanceId().
+
+            }
+        });
+
 
         btnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,12 +135,14 @@ public class google_signin3_yt_easylearn extends AppCompatActivity {
 
             GoogleSignInAccount acc = completedTask.getResult(ApiException.class);
             Toast.makeText(google_signin3_yt_easylearn.this,"Signed In Successfully",Toast.LENGTH_SHORT).show();
+
             FirebaseGoogleAuth(acc);
-//            if (GoogleSignIn.getLastSignedInAccount(this)!=null) {
-//                LeaderboardsClient leaderboardsClient = Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this));
+//            if (acc !=null) {
+//                //Games games1 = new Games();
+//                Games.getLeaderboardsClient(this,acc);
 //                //leaderboardsClient.
 //            }
-            //showLeaderboard();
+
 
 
 
@@ -168,14 +197,22 @@ public class google_signin3_yt_easylearn extends AppCompatActivity {
     private static final int RC_LEADERBOARD_UI = 9004;
 
     private void showLeaderboard() {
-        Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this))
-                .getLeaderboardIntent(getString(R.string.leaderboard_id))
-                .addOnSuccessListener(new OnSuccessListener<Intent>() {
-                    @Override
-                    public void onSuccess(Intent intent) {
-                        startActivityForResult(intent, RC_LEADERBOARD_UI);
-                    }
-                });
+        //GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
+
+        if (acc != null) {
+            Log.i("bbbbbbbbbbbbbbbbbbbbb", "Not Null");
+            Games.getLeaderboardsClient(this, acc)
+                    .getLeaderboardIntent(getString(R.string.leaderboard_id))
+                    .addOnSuccessListener(new OnSuccessListener<Intent>() {
+                        @Override
+                        public void onSuccess(Intent intent) {
+                            startActivityForResult(intent, RC_LEADERBOARD_UI);
+                        }
+                    });
+        }
+        else{
+            Log.i("eeeeeeeeeeeeeee", "Is Null");
+        }
     }
 }
 
