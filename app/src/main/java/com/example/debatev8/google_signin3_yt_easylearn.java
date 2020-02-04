@@ -48,7 +48,8 @@ public class google_signin3_yt_easylearn extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signin_google);
 
@@ -59,8 +60,10 @@ public class google_signin3_yt_easylearn extends AppCompatActivity {
 //
         GoogleSignInOptions gso = new GoogleSignInOptions
                 .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestScopes(Games.SCOPE_GAMES_LITE)
                 .requestIdToken(getString(R.string.default_web_client_id))
 //                .requestServerAuthCode(getString(R.string.default_web_client_id))
+
                 .requestEmail()
                 .build();
 //        GoogleSignInOptions gso = new GoogleSignInOptions
@@ -89,18 +92,18 @@ public class google_signin3_yt_easylearn extends AppCompatActivity {
 
             }
         });
-        showLeaderBoard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showLeaderboard();
-//                Bundle bundle = new Bundle();
-//                bundle.putLong(FirebaseAnalytics.Param.SCORE, score);
-//                bundle.putString("leaderboard_id", getString(R.string.leaderboard_id));
-//                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.POST_SCORE, bundle);
-//                mFirebaseAnalytics.getFirebaseInstanceId().
-
-            }
-        });
+//        showLeaderBoard.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                showLeaderboard();
+////                Bundle bundle = new Bundle();
+////                bundle.putLong(FirebaseAnalytics.Param.SCORE, score);
+////                bundle.putString("leaderboard_id", getString(R.string.leaderboard_id));
+////                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.POST_SCORE, bundle);
+////                mFirebaseAnalytics.getFirebaseInstanceId().
+//
+//            }
+//        });
 
 
         btnSignOut.setOnClickListener(new View.OnClickListener() {
@@ -111,6 +114,8 @@ public class google_signin3_yt_easylearn extends AppCompatActivity {
                 btnSignOut.setVisibility(View.INVISIBLE);
             }
         });
+
+
     }
 
     private void signIn(){
@@ -137,12 +142,6 @@ public class google_signin3_yt_easylearn extends AppCompatActivity {
             Toast.makeText(google_signin3_yt_easylearn.this,"Signed In Successfully",Toast.LENGTH_SHORT).show();
 
             FirebaseGoogleAuth(acc);
-//            if (acc !=null) {
-//                //Games games1 = new Games();
-//                Games.getLeaderboardsClient(this,acc);
-//                //leaderboardsClient.
-//            }
-
 
 
 
@@ -167,6 +166,8 @@ public class google_signin3_yt_easylearn extends AppCompatActivity {
                         Toast.makeText(google_signin3_yt_easylearn.this, "Successful", Toast.LENGTH_SHORT).show();
                         FirebaseUser user = mAuth.getCurrentUser();
                         updateUI(user);
+                        //Starts next screen
+                        openChoice_home();
                     } else {
                         Toast.makeText(google_signin3_yt_easylearn.this, "Failed", Toast.LENGTH_SHORT).show();
                         updateUI(null);
@@ -194,26 +195,11 @@ public class google_signin3_yt_easylearn extends AppCompatActivity {
         }
 
     }
-    private static final int RC_LEADERBOARD_UI = 9004;
 
-    private void showLeaderboard() {
-        //GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
-
-        if (acc != null) {
-            Log.i("bbbbbbbbbbbbbbbbbbbbb", "Not Null");
-            Games.getLeaderboardsClient(this, acc)
-                    .getLeaderboardIntent(getString(R.string.leaderboard_id))
-                    .addOnSuccessListener(new OnSuccessListener<Intent>() {
-                        @Override
-                        public void onSuccess(Intent intent) {
-                            startActivityForResult(intent, RC_LEADERBOARD_UI);
-                        }
-                    });
-        }
-        else{
-            Log.i("eeeeeeeeeeeeeee", "Is Null");
-        }
-    }
+public void openChoice_home(){
+    Intent intent = new Intent(this, choice_home.class);
+    startActivity(intent);
+}
 }
 
 

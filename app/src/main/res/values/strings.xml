@@ -4,5 +4,7 @@
     <string
         name="string_name"
         >text_string</string>
-    <string name="leaderboard_id" translatable="false">CgkIjvOFmtkCEAIQAQ</string>
+    <string name="debateleaderboard_id" translatable="false">CgkIjvOFmtkCEAIQAQ</string>
+    <string name="judgeleaderboard_id" translatable="false">CgkIjvOFmtkCEAIQAg</string>
+    <string name="app_id" translatable="false">92664854926</string>
 </resources>

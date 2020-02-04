@@ -89,18 +89,18 @@ public class google_signin extends AppCompatActivity {
 
             }
         });
-        showLeaderBoard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showLeaderboard();
-//                Bundle bundle = new Bundle();
-//                bundle.putLong(FirebaseAnalytics.Param.SCORE, score);
-//                bundle.putString("leaderboard_id", getString(R.string.leaderboard_id));
-//                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.POST_SCORE, bundle);
-//                mFirebaseAnalytics.getFirebaseInstanceId().
-
-            }
-        });
+//        showLeaderBoard.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                showLeaderboard();
+////                Bundle bundle = new Bundle();
+////                bundle.putLong(FirebaseAnalytics.Param.SCORE, score);
+////                bundle.putString("leaderboard_id", getString(R.string.leaderboard_id));
+////                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.POST_SCORE, bundle);
+////                mFirebaseAnalytics.getFirebaseInstanceId().
+//
+//            }
+//        });
 
 
         btnSignOut.setOnClickListener(new View.OnClickListener() {
@@ -232,21 +232,21 @@ public class google_signin extends AppCompatActivity {
         //}
 
     }
-    private static final int RC_LEADERBOARD_UI = 9004;
-
-    private void showLeaderboard() {
-        GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
-        if (acc2 != null) {
-            Games.getLeaderboardsClient(this, acc2)
-                    .getLeaderboardIntent(getString(R.string.leaderboard_id))
-                    .addOnSuccessListener(new OnSuccessListener<Intent>() {
-                        @Override
-                        public void onSuccess(Intent intent) {
-                            startActivityForResult(intent, RC_LEADERBOARD_UI);
-                        }
-                    });
-        }
-    }
+//    private static final int RC_LEADERBOARD_UI = 9004;
+//
+//    private void showLeaderboard() {
+//        GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
+//        if (acc2 != null) {
+//            Games.getLeaderboardsClient(this, acc2)
+//                    .getLeaderboardIntent(getString(R.string.leaderboard_id))
+//                    .addOnSuccessListener(new OnSuccessListener<Intent>() {
+//                        @Override
+//                        public void onSuccess(Intent intent) {
+//                            startActivityForResult(intent, RC_LEADERBOARD_UI);
+//                        }
+//                    });
+//        }
+//    }
 }
 
 
