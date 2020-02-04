@@ -31,6 +31,7 @@ public class choice_leaderboards extends AppCompatActivity {
 
     Button debateLeaderBoard;
     Button judgeLeaderBoard;
+    Button quit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +60,17 @@ public class choice_leaderboards extends AppCompatActivity {
 
             }
         });
+        quit = (Button) findViewById(R.id.quit);
+        quit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openChoice_home();
+
+            }
+        });
+
     }
+
     private void displayText(String text){
         Toast.makeText(choice_leaderboards.this, text, Toast.LENGTH_LONG).show();
 
@@ -102,5 +113,8 @@ public class choice_leaderboards extends AppCompatActivity {
             Log.i("eeeeeeeeeeeeeee", "Is Null");
         }
     }
-
+    public void openChoice_home(){
+        Intent intent = new Intent(this, choice_home.class);
+        startActivity(intent);
+    }
 }

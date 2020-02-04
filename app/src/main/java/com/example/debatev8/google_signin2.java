@@ -55,7 +55,7 @@ public class google_signin2 extends AppCompatActivity {
 
         signInButton = findViewById(R.id.signInGoogle);
         mAuth = FirebaseAuth.getInstance();
-        showLeaderBoard = findViewById(R.id.showLeaderBoard);
+        //showLeaderBoard = findViewById(R.id.showLeaderBoard);
         btnSignOut = findViewById(R.id.signOutGoogle);
 //
         GoogleSignInOptions gso = new GoogleSignInOptions

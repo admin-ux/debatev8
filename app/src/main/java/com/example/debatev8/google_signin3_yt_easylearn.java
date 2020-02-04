@@ -55,7 +55,7 @@ public class google_signin3_yt_easylearn extends AppCompatActivity {
 
         signInButton = findViewById(R.id.signInGoogle);
         mAuth = FirebaseAuth.getInstance();
-        showLeaderBoard = findViewById(R.id.showLeaderBoard);
+       // showLeaderBoard = findViewById(R.id.showLeaderBoard);
         btnSignOut = findViewById(R.id.signOutGoogle);
 //
         GoogleSignInOptions gso = new GoogleSignInOptions
@@ -196,10 +196,10 @@ public class google_signin3_yt_easylearn extends AppCompatActivity {
 
     }
 
-public void openChoice_home(){
-    Intent intent = new Intent(this, choice_home.class);
-    startActivity(intent);
-}
+    public void openChoice_home(){
+        Intent intent = new Intent(this, choice_home.class);
+        startActivity(intent);
+    }
 }
 
 

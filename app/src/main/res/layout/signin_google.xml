@@ -19,14 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="130dp"
         android:layout_marginTop="150dp"/>
-    <Button
-        android:id="@+id/showLeaderBoard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Show LeaderBoard"
-        android:layout_marginHorizontal="130dp"
-        android:layout_marginTop="150dp"
-        />
+
     <Button
         android:id="@+id/signOutGoogle"
         android:layout_width="wrap_content"
