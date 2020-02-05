@@ -39,7 +39,7 @@ public class match_finding extends AppCompatActivity {
     DatabaseReference databasePlayersWaiting = databaseRoot.child("PlayerWaitingList");
     DatabaseReference databaseCurrentGames = databaseRoot.child("CurrentGames");
 
-    game newGame = new game("0", false, false, null, "0", "0", null, "0", "0");
+    game newGame = new game("0", false, false,false, null, "0", "0", null, "0", "0");
     int playerCurrentPosition;
     String newplayerID;
     Long newPlayerCurrentPosition;
@@ -152,7 +152,8 @@ public class match_finding extends AppCompatActivity {
 
                                                         Log.i("yyyyyyyyyyyyyy", "Not In Use");
                                                         //Good choice
-                                                        if (newplayerID.compareTo(userid) != 0  && !inUse && newplayerID != null) {//&& newplayerID != null may be a problem
+                                                        if (newplayerID.compareTo(userid) != 0  && !inUse && newplayerID != null)
+                                                        {//&& newplayerID != null may be a problem
                                                             Log.i("gggggggggggggggg", "Good Choice");
                                                             //##################################
                                                             //Conditions from above need to be read through and adjusted
@@ -230,6 +231,7 @@ public class match_finding extends AppCompatActivity {
 
 
                                                     }
+
                                                     else
                                                     {
 

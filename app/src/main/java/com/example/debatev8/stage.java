@@ -8,15 +8,17 @@ public class stage implements Serializable{
     private String TopicHeader;
     private String Arg;
     private String Resp;
-    private int JudgeScore;
+    private int JudgeScoreA;
+    private int JudgeScoreR;
 
     public stage() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
-    public stage(String arg, String resp, int judgescore, String topicheader ) {
+    public stage(String arg, String resp, int judgeScoreA,int judgeScoreR, String topicheader ) {
         Arg = arg;
         Resp = resp;
-        JudgeScore = judgescore;
+        JudgeScoreA = judgeScoreA;
+        JudgeScoreR= judgeScoreR;
         TopicHeader = topicheader;
 
     }
@@ -37,12 +39,19 @@ public class stage implements Serializable{
         Resp = resp;
     }
 
-    public int getJudgeScore() {
-        return JudgeScore;
+    public int getJudgeScoreA() {
+        return JudgeScoreA;
     }
 
-    public void setJudgeScore(int judgeScore) {
-        JudgeScore = judgeScore;
+    public void setJudgeScoreA(int judgeScoreA) {
+        JudgeScoreA = judgeScoreA;
+    }
+    public int getJudgeScoreR() {
+        return JudgeScoreR;
+    }
+
+    public void setJudgeScoreR(int judgeScoreR) {
+        JudgeScoreR = judgeScoreR;
     }
 
     public String getTopicHeader() {

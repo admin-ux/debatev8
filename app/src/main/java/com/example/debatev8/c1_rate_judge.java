@@ -6,38 +6,71 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Toast;
 import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class c1_rate_judge extends AppCompatActivity {
 
     SeekBar seekbar1,seekbar2;
     TextView Arga1, Respb1;
-
+    Boolean ValueChanged1=Boolean.FALSE;
+    Boolean ValueChanged2=Boolean.FALSE;
+    Integer JudgeA=0;
+    Integer JudgeR=0;
     Button submitB;
 
 
+    DatabaseReference databaseRoot = FirebaseDatabase.getInstance().getReference();//***
+    DatabaseReference databaseUsers = databaseRoot.child("UsersList");//***
+    DatabaseReference databaseTopics = databaseRoot.child("Topics");
+    DatabaseReference databaseCurrentGames = databaseRoot.child("CurrentGames");
 
+    game gameBeingJudged;
 
-
-
+    int timeriterations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.judge_rate_c1);
 
+        submitB = (Button) findViewById(R.id.submitButton);
+        submitB.setVisibility(View.GONE);
+
+
+        FirebaseUser fireUser = FirebaseAuth.getInstance().getCurrentUser();
+        final String userid = fireUser.getUid();
+        DatabaseReference realtimeUserProfile =databaseUsers.child(userid);
+        gameBeingJudged = (game) getIntent().getSerializableExtra("gameBeingJudged");
+        Log.i("bbbbbbbbbbbbbbbbbbbb", gameBeingJudged.toString());
+        Log.i("ccccccccccccccccccc", gameBeingJudged.getPlayer1Topics());
+        Log.i("ddddddddddddddddddd", gameBeingJudged.getPlayer2Topics());
+
 
         seekbar1 = (SeekBar) findViewById(R.id.seekBar1);
+        //final TextView seekbar1Value = (TextView)findViewById(R.id.seekbarvalue);
         seekbar2 = (SeekBar) findViewById(R.id.seekBar2);
         //Value of Arg/ Resp changed by database
         Arga1 = (TextView) findViewById(R.id.a1leadpoint);
-        Respb1 = (TextView) findViewById(R.id.b1responsepoint);
+        Arga1.setText(gameBeingJudged.getStages().getStage1().getArg());
 
-        submitB = (Button) findViewById(R.id.submitButton);
+        Respb1 = (TextView) findViewById(R.id.b1responsepoint);
+        Respb1.setText(gameBeingJudged.getStages().getStage1().getResp());
+
+
         submitB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,11 +78,86 @@ public class c1_rate_judge extends AppCompatActivity {
                 openC2Rate();
             }
         });
+
+        seekbar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                ValueChanged1=Boolean.TRUE;
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                if (ValueChanged1 && ValueChanged2){
+                    submitB.setVisibility(View.VISIBLE);}
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+        seekbar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                ValueChanged2=Boolean.TRUE;
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                if (ValueChanged1 && ValueChanged2){
+                submitB.setVisibility(View.VISIBLE);}
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        final Timer myArgTimer = new Timer();
+        TimerTask untilArgMade = new TimerTask() {
+            @Override
+            public void run()
+            {
+                timeriterations++;
+//
+                submitB.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        JudgeA = seekbar1.getProgress();
+                        JudgeR = seekbar2.getProgress();
+                        gameBeingJudged.getStages().getStage1().setJudgeScoreA(JudgeA);
+                        gameBeingJudged.getStages().getStage1().setJudgeScoreR(JudgeR);
+                        myArgTimer.cancel();
+                        myArgTimer.purge();
+                        openC2Rate();
+
+                    }
+                });
+                if (timeriterations>1)
+                {
+                    myArgTimer.cancel();
+                    myArgTimer.purge();
+                    //currentGame.getStages().getStage2().setArg("I could not think of an argument");
+                    //Log.i("gggggggggggggggggggggg", currentGame.getGameID());
+                    //databaseCurrentGames.child(currentGame.getGameID()).child("stages").child("stage2").child("arg").setValue(currentGame.getStages().getStage2().getArg());
+                    openC2Rate();
+                }
+            }
+        };//Every Second
+        myArgTimer.schedule(untilArgMade, 0, 20000000);
+
+        //No timer immediately sent to waiting screen with pre view of next topic header
     }
+
+
 
     public void openC2Rate(){
         Intent intent = new Intent(this, c2_rate_judge.class);
-        startActivity(intent);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("gameBeingJudged",gameBeingJudged);
+        intent.putExtras(bundle);
+        startActivity(intent);;
     }
 
 

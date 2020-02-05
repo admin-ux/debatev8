@@ -9,6 +9,7 @@ public class game implements Serializable{
     private String GameID;
     private boolean GameFull = false;
     private boolean BeenJudged = false;
+    private  boolean GameFinished = false;
     private debate_stages Stages;
     private String Player1;
     private String Player2;
@@ -19,10 +20,11 @@ public class game implements Serializable{
     public game() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
-    public game(String gameID, boolean gameFull, boolean beenJudged, debate_stages stages, String player1, String player2, topic topicChosen, String player1Topics, String player2Topics) {
+    public game(String gameID, boolean gameFull, boolean beenJudged, boolean gameFinished, debate_stages stages, String player1, String player2, topic topicChosen, String player1Topics, String player2Topics) {
         GameID = gameID;
         GameFull = gameFull;
         BeenJudged = beenJudged;
+        GameFinished = gameFinished;
         Stages = stages;
         Player1 = player1;
         Player2 = player2;
@@ -54,6 +56,14 @@ public class game implements Serializable{
 
     public void setBeenJudged(boolean beenJudged) {
         BeenJudged = beenJudged;
+    }
+
+    public boolean isGameFinished() {
+        return GameFinished;
+    }
+
+    public void setGameFinished(boolean gameFinished) {
+        GameFinished = gameFinished;
     }
 
     public debate_stages getStages() {

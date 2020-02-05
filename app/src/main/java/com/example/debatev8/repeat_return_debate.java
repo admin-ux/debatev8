@@ -46,6 +46,7 @@ public class repeat_return_debate extends AppCompatActivity {
         currentPlayer.child("inGame").setValue(0);
 
 
+
         debateAgainButton = (Button) findViewById(R.id.debateAgain);
         debateAgainButton.setOnClickListener(new View.OnClickListener() {
             @Override

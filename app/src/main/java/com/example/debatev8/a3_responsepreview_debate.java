@@ -75,7 +75,7 @@ public class a3_responsepreview_debate extends AppCompatActivity {
         submitB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                databaseCurrentGames.child(currentGame.getGameID()).child("gameFinished").setValue(true);
                 openRepeat_return_debate();
 
             }
