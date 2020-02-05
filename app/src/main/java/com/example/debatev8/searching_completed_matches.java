@@ -43,36 +43,44 @@ public class searching_completed_matches extends AppCompatActivity {
                 finishedGame.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for (DataSnapshot userInPlayersWaiting : dataSnapshot.getChildren()) {
+                        for (DataSnapshot gameInfo : dataSnapshot.getChildren()) {
                             game currentGame = dataSnapshot.getValue(game.class);
                             //beenJudged = (Boolean) userInPlayersWaiting.child("beenJudged").getValue();
+
+                            Log.i("YYYYYYYYYYYYYYYYYYYYYY", gameInfo.toString());
+                            Log.i("YYYYYYYYYYYYYYYYYYYYYY", gameInfo.getKey());
+                            Log.i("WWWWWWWWWWWWWWWWWWWWWW", gameInfo.child("stages").toString());
+                            Log.i("WWWWWWWWWWWWWWWWWWWWWW", gameInfo.child("stages").child("stage1").toString());
+                            Log.i("WWWWWWWWWWWWWWWWWWWWWW", gameInfo.child("stages").child("stage1").child("arg").getValue().toString());
                             if (currentGame!=null) {
                                 beenJudged = currentGame.isBeenJudged();
                                 Log.i("rrrrrrrrrrrrrrrrrrrrr", beenJudged.toString());
                             }
 
+                            for (DataSnapshot deeperSnapshot : dataSnapshot.getChildren())
+                            {
+                                Log.i("ZZZZZZZZZZZZZZZZZZZZ", deeperSnapshot.toString());
+                                Log.i("ZZZZZZZZZZZZZZZZZZZZ", deeperSnapshot.getKey());
+                            }
+
+
                             if (!beenJudged && currentGame!=null) {
                                 Log.i("QQQQQQQQQQQQQQQQQQQQQQ", dataSnapshot.toString());
-                                //FirebaseDatabase.getInstance().getReference().child("CurrentGames").child(currentGame.getGameID()).child("beenJudged").setValue("true");
+
+                                String gameID = "";
+                                Object gid=gameInfo.child("gameID").getValue();
+                                if (gid!=null)
+                                {
+                                    gameID=gid.toString();
+                                    if(!gameID.equals("")) {
+
+                                        FirebaseDatabase.getInstance().getReference().child("CurrentGames").child(gameID).child("beenJudged").setValue("true");
+                                    }
+                                }
 
                                 //Values to be used if beingJudged==false
                                 Log.i("rrrrrrrrrrrrrrrrrrrrr", "GOT HERE");
-//                                String player1ID = currentGame.getPlayer1();
-//                                String player2ID =currentGame.getPlayer2();
 //
-//
-//                                String TopicTitle = currentGame.getStages().getTopicTitle();
-//                                String TopicHeader1 = currentGame.getStages().getStage1().getTopicHeader();
-//                                String TopicHeader2 = currentGame.getStages().getStage2().getTopicHeader();
-//                                String TopicHeader3 = currentGame.getStages().getStage3().getTopicHeader();
-//
-//                                String a1_Arg = currentGame.getStages().getStage1().getArg();
-//                                String a2_Resp = currentGame.getStages().getStage1().getResp();
-//                                String a3_Arg = currentGame.getStages().getStage2().getArg();
-//                                String b1_Resp = currentGame.getStages().getStage2().getResp();
-//                                String b2_Arg = currentGame.getStages().getStage3().getArg();
-//                                String b3_Resp = currentGame.getStages().getStage3().getResp();
-
                                 String player1ID = "";
                                 String player2ID = "";
 
@@ -89,20 +97,21 @@ public class searching_completed_matches extends AppCompatActivity {
                                 String b2_Arg = "";
                                 String b3_Resp = "";
 
-                                Object p1 = dataSnapshot.child("player1").getValue();
-                                Object p2 = dataSnapshot.child("player2").getValue();
+                                Object p1 = gameInfo.child("player1").getValue();
+                                Object p2 = gameInfo.child("player2").getValue();
 
-                                Object tt = dataSnapshot.child("stages").child("topicTitle").getValue();
-                                Object th1 = dataSnapshot.child("stages").child("stage1").child("topicHeader").getValue();
-                                Object th2 = dataSnapshot.child("stages").child("stage2").child("topicHeader").getValue();
-                                Object th3 = dataSnapshot.child("stages").child("stage3").child("topicHeader").getValue();
+                                Object tt = gameInfo.child("stages").child("topicTitle").getValue();
+                                Object th1 = gameInfo.child("stages").child("stage1").child("topicHeader").getValue();
+                                Object th2 = gameInfo.child("stages").child("stage2").child("topicHeader").getValue();
+                                Object th3 = gameInfo.child("stages").child("stage3").child("topicHeader").getValue();
 
-                                Object a1a = dataSnapshot.child("stages").child("stage1").child("arg").getValue();
-                                Object a2r = dataSnapshot.child("stages").child("stage2").child("resp").getValue();
-                                Object a3a = dataSnapshot.child("stages").child("stage3").child("arg").getValue();
-                                Object b1r = dataSnapshot.child("stages").child("stage1").child("resp").getValue();
-                                Object b2a = dataSnapshot.child("stages").child("stage2").child("arg").getValue();
-                                Object b3r = dataSnapshot.child("stages").child("stage3").child("resp").getValue();
+
+                                Object a1a = gameInfo.child("stages").child("stage1").child("arg").getValue();
+                                Object a2r = gameInfo.child("stages").child("stage2").child("resp").getValue();
+                                Object a3a = gameInfo.child("stages").child("stage3").child("arg").getValue();
+                                Object b1r = gameInfo.child("stages").child("stage1").child("resp").getValue();
+                                Object b2a = gameInfo.child("stages").child("stage2").child("arg").getValue();
+                                Object b3r = gameInfo.child("stages").child("stage3").child("resp").getValue();
 
                                 if (tt != null && th1 != null && th2 != null && th3 != null && p1 != null && p2 != null && a1a != null && a2r != null && a3a != null && b1r != null && b2a != null && b3r != null) {
                                     Log.i("ssssssssssssssssssssss", tt.toString());

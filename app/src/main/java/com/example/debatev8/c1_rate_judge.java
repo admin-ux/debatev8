@@ -25,7 +25,7 @@ import java.util.TimerTask;
 public class c1_rate_judge extends AppCompatActivity {
 
     SeekBar seekbar1,seekbar2;
-    TextView Arga1, Respb1;
+    TextView Arga1, Respb1, TopicHeader1, TopicTitle;
     Boolean ValueChanged1=Boolean.FALSE;
     Boolean ValueChanged2=Boolean.FALSE;
     Integer JudgeA=0;
@@ -59,6 +59,11 @@ public class c1_rate_judge extends AppCompatActivity {
         Log.i("ccccccccccccccccccc", gameBeingJudged.getPlayer1Topics());
         Log.i("ddddddddddddddddddd", gameBeingJudged.getPlayer2Topics());
 
+        TopicHeader1= (TextView) findViewById(R.id.topicheader);
+        TopicHeader1.setText(gameBeingJudged.getStages().getStage1().getTopicHeader());
+
+        TopicTitle= (TextView) findViewById(R.id.topictitle);
+        TopicTitle.setText(gameBeingJudged.getStages().getTopicTitle());
 
         seekbar1 = (SeekBar) findViewById(R.id.seekBar1);
         //final TextView seekbar1Value = (TextView)findViewById(R.id.seekbarvalue);
@@ -83,6 +88,8 @@ public class c1_rate_judge extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 ValueChanged1=Boolean.TRUE;
+                if ( ValueChanged2){
+                    submitB.setVisibility(View.VISIBLE);}
             }
 
             @Override
@@ -93,6 +100,8 @@ public class c1_rate_judge extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
+                if (ValueChanged1 && ValueChanged2){
+                    submitB.setVisibility(View.VISIBLE);}
 
             }
         });
@@ -100,6 +109,8 @@ public class c1_rate_judge extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 ValueChanged2=Boolean.TRUE;
+                if (ValueChanged1){
+                    submitB.setVisibility(View.VISIBLE);}
             }
 
             @Override
@@ -110,7 +121,8 @@ public class c1_rate_judge extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
+                if (ValueChanged1 && ValueChanged2){
+                    submitB.setVisibility(View.VISIBLE);}
             }
         });
 

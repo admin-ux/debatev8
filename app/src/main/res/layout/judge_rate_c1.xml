@@ -7,6 +7,19 @@
     tools:context=".c1_rate_judge">
 
     <TextView
+        android:id="@+id/topictitle"
+        android:layout_width="115dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="60dp"
+        android:text="Topic Title"
+        app:layout_constraintBottom_toTopOf="@+id/topicheader"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.421" />
+
+    <TextView
         android:id="@+id/topicheader"
         android:layout_width="151dp"
         android:layout_height="wrap_content"
