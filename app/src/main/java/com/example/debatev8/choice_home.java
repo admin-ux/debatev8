@@ -2,6 +2,7 @@
 //as arg_a1 as a string -> ready to be submitted to database
 package com.example.debatev8;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -13,6 +14,9 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 //Database: Saves User/ Finds User individual ID
 //1 a) Initial -> Stores User Class Object In database
@@ -28,12 +32,13 @@ public class choice_home extends AppCompatActivity {
 
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_choice);
+
+
+
         debateButton = (Button) findViewById(R.id.debatestreamButton);
         debateButton.setOnClickListener(new View.OnClickListener() {
             @Override

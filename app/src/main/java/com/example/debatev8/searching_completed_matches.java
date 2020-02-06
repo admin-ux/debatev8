@@ -19,7 +19,7 @@ import java.util.TimerTask;
 public class searching_completed_matches extends AppCompatActivity {
 
     Boolean beenJudged;
-    game gameBeingJudged= new game("0", false, false,false, null, "0", "0", null, "0", "0");
+    game gameBeingJudged= new game("0", false, false,false, null, "0", "0", null, "0", "0",0,0,0,0,0);
 
 
     @Override

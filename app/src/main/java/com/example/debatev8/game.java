@@ -17,10 +17,16 @@ public class game implements Serializable{
     private String Player1Topics;
     private String Player2Topics;
 
+    private Integer TotalScore;
+    private Integer Wins;
+    private Integer A_avg;
+    private Integer R_avg;
+    private Integer NumGamesPlayed;
+
     public game() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
-    public game(String gameID, boolean gameFull, boolean beenJudged, boolean gameFinished, debate_stages stages, String player1, String player2, topic topicChosen, String player1Topics, String player2Topics) {
+    public game(String gameID, boolean gameFull, boolean beenJudged, boolean gameFinished, debate_stages stages, String player1, String player2, topic topicChosen, String player1Topics, String player2Topics, Integer totalScore, Integer wins, Integer a_avg, Integer r_avg, Integer numGamesPlayed) {
         GameID = gameID;
         GameFull = gameFull;
         BeenJudged = beenJudged;
@@ -31,6 +37,11 @@ public class game implements Serializable{
         TopicChosen = topicChosen;
         Player1Topics = player1Topics;
         Player2Topics = player2Topics;
+        TotalScore = totalScore;
+        Wins = wins;
+        A_avg = a_avg;
+        R_avg = r_avg;
+        NumGamesPlayed = numGamesPlayed;
     }
 
 
@@ -117,4 +128,51 @@ public class game implements Serializable{
         Player2Topics = player2topics;
     }
 
+    public topic getTopicChosen() {
+        return TopicChosen;
+    }
+
+    public void setTopicChosen(topic topicChosen) {
+        TopicChosen = topicChosen;
+    }
+
+    public Integer getTotalScore() {
+        return TotalScore;
+    }
+
+    public void setTotalScore(Integer totalScore) {
+        TotalScore = totalScore;
+    }
+
+    public Integer getWins() {
+        return Wins;
+    }
+
+    public void setWins(Integer wins) {
+        Wins = wins;
+    }
+
+    public Integer getA_avg() {
+        return A_avg;
+    }
+
+    public void setA_avg(Integer a_avg) {
+        A_avg = a_avg;
+    }
+
+    public Integer getR_avg() {
+        return R_avg;
+    }
+
+    public void setR_avg(Integer r_avg) {
+        R_avg = r_avg;
+    }
+
+    public Integer getNumGamesPlayed() {
+        return NumGamesPlayed;
+    }
+
+    public void setNumGamesPlayed(Integer numGamesPlayed) {
+        NumGamesPlayed = numGamesPlayed;
+    }
 }

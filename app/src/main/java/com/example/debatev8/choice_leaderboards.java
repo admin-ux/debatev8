@@ -2,6 +2,7 @@
 //as arg_a1 as a string -> ready to be submitted to database
 package com.example.debatev8;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -18,9 +19,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ValueEventListener;
 
 public class choice_leaderboards extends AppCompatActivity {
     //1 Data is saved to Current Games gamed id
@@ -32,6 +36,9 @@ public class choice_leaderboards extends AppCompatActivity {
     Button debateLeaderBoard;
     Button judgeLeaderBoard;
     Button quit;
+
+
+    int totalScore,wins,A_avg,R_avg,numGamesPlayed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +75,46 @@ public class choice_leaderboards extends AppCompatActivity {
 
             }
         });
+
+        databaseUsers.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot gameInfo : dataSnapshot.getChildren()) {
+                    Object ngp = gameInfo.child("numGamesPlayed").getValue();
+                    Object w = gameInfo.child("wins").getValue();
+                    Object ts = gameInfo.child("totalScore").getValue();
+                    Object aa = gameInfo.child("a_avg").getValue();
+                    Object ra = gameInfo.child("r_avg").getValue();
+
+
+
+
+                    if (ngp!=null&&w!=null&&ts!=null&&aa!=null&&ra!=null)
+                    {
+
+                        totalScore = (Integer) ngp;
+                        wins = (Integer) w;
+                        A_avg = (Integer) ts;
+                        R_avg = (Integer) aa;
+                        numGamesPlayed = (Integer) ra;
+
+                        postDebateWins();
+                        postDebateTotalScore();
+                        postDebateR_avg();
+                        postDebateA_avg();
+                    }
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
     }
 
@@ -116,5 +163,45 @@ public class choice_leaderboards extends AppCompatActivity {
     public void openChoice_home(){
         Intent intent = new Intent(this, choice_home.class);
         startActivity(intent);
+    }
+    private void postDebateTotalScore ()
+    {
+        GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
+        if (acc2 != null) {
+            Games.getLeaderboardsClient(this, acc2)
+                    .submitScore(getString(R.string.debateleaderboard_id), totalScore);
+
+
+        }
+    }
+    private void postDebateWins ()
+    {
+        GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
+        if (acc2 != null) {
+            Games.getLeaderboardsClient(this, acc2)
+                    .submitScore(getString(R.string.debateleaderboard_id), wins);
+
+
+        }
+    }
+    private void postDebateA_avg ()
+    {
+        GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
+        if (acc2 != null) {
+            Games.getLeaderboardsClient(this, acc2)
+                    .submitScore(getString(R.string.debateleaderboard_id), A_avg);
+
+
+        }
+    }
+    private void postDebateR_avg ()
+    {
+        GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
+        if (acc2 != null) {
+            Games.getLeaderboardsClient(this, acc2)
+                    .submitScore(getString(R.string.debateleaderboard_id), R_avg);
+
+
+        }
     }
 }
