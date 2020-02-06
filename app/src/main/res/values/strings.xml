@@ -4,7 +4,11 @@
     <string
         name="string_name"
         >text_string</string>
-    <string name="debateleaderboard_id" translatable="false">CgkIjvOFmtkCEAIQAQ</string>
+    <string name="debate_leaderboard_total_score_id" translatable="false">CgkIjvOFmtkCEAIQBw</string>
+    <string name="debate_leaderboard_wins_id" translatable="false">CgkIjvOFmtkCEAIQBA</string>
+    <string name="debate_leaderboard_argument_average_id" translatable="false">CgkIjvOFmtkCEAIQBQ</string>
+    <string name="debate_leaderboard_respond_average_id" translatable="false">CgkIjvOFmtkCEAIQBg</string>
+
     <string name="judgeleaderboard_id" translatable="false">CgkIjvOFmtkCEAIQAg</string>
     <string name="app_id" translatable="false">92664854926</string>
 </resources>

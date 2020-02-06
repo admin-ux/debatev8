@@ -53,6 +53,7 @@
     <activity android:name=".return_repeat_judge" />
 
     <activity android:name=".choice_leaderboards" />
+    <activity android:name=".debate_leaderboards" />
     <activity android:name=".judge_leaderboards" />
   </application>
 

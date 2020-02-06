@@ -52,11 +52,11 @@ public class choice_leaderboards extends AppCompatActivity {
         DatabaseReference realtimeUserProfile =databaseUsers.child(userid);
 
         //*Display All Users Debate Scores*//
-        debateLeaderBoard = (Button) findViewById(R.id.debateLeaderBoard);
+        debateLeaderBoard = (Button) findViewById(R.id.debateLeaderBoardChoices);
         debateLeaderBoard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDebateLeaderboard();
+                openDebate_Leaderboards();
 
             }
         });
@@ -134,24 +134,12 @@ public class choice_leaderboards extends AppCompatActivity {
     }
 
     private static final int RC_LEADERBOARD_UI = 9004;
-    private void showDebateLeaderboard() {
-        //GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
-        GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
-        if (acc2 != null) {
-            Log.i("bbbbbbbbbbbbbbbbbbbbb", "Not Null");
-            Games.getLeaderboardsClient(this, acc2)
-                    .getLeaderboardIntent(getString(R.string.debateleaderboard_id))
-                    .addOnSuccessListener(new OnSuccessListener<Intent>() {
-                        @Override
-                        public void onSuccess(Intent intent) {
-                            startActivityForResult(intent, RC_LEADERBOARD_UI);
-                        }
-                    });
-        }
-        else{
-            Log.i("eeeeeeeeeeeeeee", "Is Null");
-        }
+
+    public void openDebate_Leaderboards(){
+        Intent intent = new Intent(this, debate_leaderboards.class);
+        startActivity(intent);
     }
+
     private void showJudgeLeaderboard() {
         //GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
         GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
@@ -179,7 +167,7 @@ public class choice_leaderboards extends AppCompatActivity {
         GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
         if (acc2 != null) {
             Games.getLeaderboardsClient(this, acc2)
-                    .submitScore(getString(R.string.debateleaderboard_id), totalScore);
+                    .submitScore(getString(R.string.debate_leaderboard_total_score_id), totalScore);
 
 
         }
@@ -189,7 +177,7 @@ public class choice_leaderboards extends AppCompatActivity {
         GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
         if (acc2 != null) {
             Games.getLeaderboardsClient(this, acc2)
-                    .submitScore(getString(R.string.debateleaderboard_id), wins);
+                    .submitScore(getString(R.string.debate_leaderboard_wins_id), wins);
 
 
         }
@@ -199,7 +187,7 @@ public class choice_leaderboards extends AppCompatActivity {
         GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
         if (acc2 != null) {
             Games.getLeaderboardsClient(this, acc2)
-                    .submitScore(getString(R.string.debateleaderboard_id), A_avg);
+                    .submitScore(getString(R.string.debate_leaderboard_argument_average_id), A_avg);
 
 
         }
@@ -209,7 +197,7 @@ public class choice_leaderboards extends AppCompatActivity {
         GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
         if (acc2 != null) {
             Games.getLeaderboardsClient(this, acc2)
-                    .submitScore(getString(R.string.debateleaderboard_id), R_avg);
+                    .submitScore(getString(R.string.debate_leaderboard_respond_average_id), R_avg);
 
 
         }
