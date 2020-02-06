@@ -88,6 +88,9 @@ public class c2_rate_judge extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 ValueChanged1=Boolean.TRUE;
+                if (ValueChanged2){
+                    submitB.setVisibility(View.VISIBLE);}
+
             }
 
             @Override
@@ -98,6 +101,8 @@ public class c2_rate_judge extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
+                if (ValueChanged1 && ValueChanged2){
+                    submitB.setVisibility(View.VISIBLE);}
 
             }
         });
@@ -105,6 +110,8 @@ public class c2_rate_judge extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 ValueChanged2=Boolean.TRUE;
+                if (ValueChanged1){
+                    submitB.setVisibility(View.VISIBLE);}
             }
 
             @Override
@@ -115,7 +122,8 @@ public class c2_rate_judge extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
+                if (ValueChanged1 && ValueChanged2){
+                    submitB.setVisibility(View.VISIBLE);}
             }
         });
 

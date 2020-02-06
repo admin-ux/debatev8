@@ -37,6 +37,7 @@ public class choice_leaderboards extends AppCompatActivity {
     Button judgeLeaderBoard;
     Button quit;
 
+    int iterations =0;
 
     int totalScore,wins,A_avg,R_avg,numGamesPlayed;
 
@@ -79,30 +80,39 @@ public class choice_leaderboards extends AppCompatActivity {
         databaseUsers.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
+                Log.i("222222222222222222222", "in addListenerForSingleEvent");
                 for (DataSnapshot gameInfo : dataSnapshot.getChildren()) {
-                    Object ngp = gameInfo.child("numGamesPlayed").getValue();
-                    Object w = gameInfo.child("wins").getValue();
-                    Object ts = gameInfo.child("totalScore").getValue();
-                    Object aa = gameInfo.child("a_avg").getValue();
-                    Object ra = gameInfo.child("r_avg").getValue();
+                    Log.i("3333333333333333333", "datasnapshot");
+
+                    Object ngp = dataSnapshot.child("numGamesPlayed").getValue();
+                    Object w = dataSnapshot.child("wins").getValue();
+                    Object ts = dataSnapshot.child("totalScore").getValue();
+                    Object aa = dataSnapshot.child("a_avg").getValue();
+                    Object ra = dataSnapshot.child("r_rvg").getValue();
 
 
 
 
-                    if (ngp!=null&&w!=null&&ts!=null&&aa!=null&&ra!=null)
+                    if (iterations==0&&ngp!=null&&w!=null&&ts!=null&&aa!=null&&ra!=null)
                     {
+                        iterations=1;
+                        Log.i("4444444444444444444", "!null");
+                        totalScore = (int) (long) ts;
+                        wins = (int) (long) w;
+                        A_avg = (int) (long) aa;
 
-                        totalScore = (Integer) ngp;
-                        wins = (Integer) w;
-                        A_avg = (Integer) ts;
-                        R_avg = (Integer) aa;
-                        numGamesPlayed = (Integer) ra;
+                        R_avg = (int) (long) ra;
+                        numGamesPlayed = (int) (long) ngp;
+//                        totalScore = (Integer) ngp;
+//                        wins = (Integer) w;
+//                        A_avg = (Integer) ts;
+//                        R_avg = (Integer) aa;
+//                        numGamesPlayed = (Integer) ra;
 
-                        postDebateWins();
+                        //postDebateWins();
                         postDebateTotalScore();
-                        postDebateR_avg();
-                        postDebateA_avg();
+                        //postDebateR_avg();
+                        //postDebateA_avg();
                     }
 
 
