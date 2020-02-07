@@ -11,7 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.EditText;
-import android.widget.Toast;
+//import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -87,12 +87,6 @@ public class register extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
 
-
-
-                            Toast.makeText(register.this, "User Created", Toast.LENGTH_SHORT).show();
-
-
-
                             //Starts this class if correctly signed in
                             FirebaseUser fireUser = FirebaseAuth.getInstance().getCurrentUser();
                             String userid = fireUser.getUid();//***
@@ -111,7 +105,6 @@ public class register extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(),choice_home.class));
 
                         }else {
-                            Toast.makeText(register.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE);
                         }
 

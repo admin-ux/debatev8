@@ -8,12 +8,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
+//import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+//import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -63,10 +63,6 @@ public class b2_lead_debate extends AppCompatActivity {
         final String userid = fireUser.getUid();
         DatabaseReference realtimeUserProfile =databaseUsers.child(userid);
         currentGame = (game) getIntent().getSerializableExtra("currentGame");
-        Log.i("bbbbbbbbbbbbbbbbbbbb", currentGame.toString());
-        Log.i("ccccccccccccccccccc", currentGame.getPlayer1Topics());
-        Log.i("ddddddddddddddddddd", currentGame.getPlayer2Topics());
-        Log.i("eeeeeeeeeeeeeeeeeee", currentGame.getGameID());
 
         //Calculate Topic//Start//
 
@@ -76,7 +72,6 @@ public class b2_lead_debate extends AppCompatActivity {
                 TopicHeader2= (TextView) findViewById(R.id.topicheader);
                 TopicHeader2.setText(currentGame.getStages().getStage2().getTopicHeader());
 
-                Log.i("pppppppppppppppp", currentGame.getStages().getTopicTitle());
 
                 TopicTitle= (TextView) findViewById(R.id.topictitle);
                 TopicTitle.setText(currentGame.getStages().getTopicTitle());
@@ -96,7 +91,7 @@ public class b2_lead_debate extends AppCompatActivity {
                                 arg_b2 = arg_b2Input.getText().toString();
                                 currentGame.getStages().getStage2().setArg(arg_b2);
 
-                                displayText(arg_b2);
+
 
                                 currentGame.getStages().getStage2().setArg(arg_b2);
                                 //Log.i("fffffffffffffffffff", databaseCurrentGames.child(currentGame.getGameID()).child("stages").child("stage2").child("arg").toString());
@@ -130,10 +125,6 @@ public class b2_lead_debate extends AppCompatActivity {
 
 
 
-    private void displayText(String text){
-        Toast.makeText(b2_lead_debate.this, text, Toast.LENGTH_LONG).show();
-
-    }
     public void openB2_topicheaderpreview_debate(){
         Intent intent = new Intent(this, b2_topicheaderpreview_debate.class);
         Bundle bundle = new Bundle();

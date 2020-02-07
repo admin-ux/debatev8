@@ -8,11 +8,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
+//import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+//import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -80,9 +80,8 @@ public class choice_leaderboards extends AppCompatActivity {
         databaseUsers.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.i("222222222222222222222", "in addListenerForSingleEvent");
+
                 for (DataSnapshot gameInfo : dataSnapshot.getChildren()) {
-                    Log.i("3333333333333333333", "datasnapshot");
 
                     Object ngp = dataSnapshot.child("numGamesPlayed").getValue();
                     Object w = dataSnapshot.child("wins").getValue();
@@ -96,7 +95,7 @@ public class choice_leaderboards extends AppCompatActivity {
                     if (iterations==0&&ngp!=null&&w!=null&&ts!=null&&aa!=null&&ra!=null)
                     {
                         iterations=1;
-                        Log.i("4444444444444444444", "!null");
+
                         totalScore = (int) (long) ts;
                         wins = (int) (long) w;
                         A_avg = (int) (long) aa;
@@ -128,10 +127,7 @@ public class choice_leaderboards extends AppCompatActivity {
 
     }
 
-    private void displayText(String text){
-        Toast.makeText(choice_leaderboards.this, text, Toast.LENGTH_LONG).show();
 
-    }
 
     private static final int RC_LEADERBOARD_UI = 9004;
 
@@ -144,7 +140,7 @@ public class choice_leaderboards extends AppCompatActivity {
         //GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
         GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
         if (acc2 != null) {
-            Log.i("bbbbbbbbbbbbbbbbbbbbb", "Not Null");
+
             Games.getLeaderboardsClient(this, acc2)
                     .getLeaderboardIntent(getString(R.string.judgeleaderboard_id))
                     .addOnSuccessListener(new OnSuccessListener<Intent>() {
@@ -154,9 +150,7 @@ public class choice_leaderboards extends AppCompatActivity {
                         }
                     });
         }
-        else{
-            Log.i("eeeeeeeeeeeeeee", "Is Null");
-        }
+
     }
     public void openChoice_home(){
         Intent intent = new Intent(this, choice_home.class);

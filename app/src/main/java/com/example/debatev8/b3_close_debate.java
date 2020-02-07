@@ -8,12 +8,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
+//import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+//import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -62,14 +62,6 @@ public class b3_close_debate extends AppCompatActivity {
         final String userid = fireUser.getUid();
         DatabaseReference realtimeUserProfile =databaseUsers.child(userid);
         currentGame = (game) getIntent().getSerializableExtra("currentGame");
-        Log.i("bbbbbbbbbbbbbbbbbbbb", currentGame.toString());
-        Log.i("ccccccccccccccccccc", currentGame.getPlayer1Topics());
-        Log.i("ddddddddddddddddddd", currentGame.getPlayer2Topics());
-        Log.i("eeeeeeeeeeeeeeeeeee", currentGame.getGameID());
-
-
-
-
 
         resp_b3Input = (EditText) findViewById(R.id.resp_b3);
 
@@ -97,8 +89,6 @@ public class b3_close_debate extends AppCompatActivity {
                         resp_b3 = resp_b3Input.getText().toString();
                         currentGame.getStages().getStage3().setArg(resp_b3);
 
-                        displayText(resp_b3);
-
                         currentGame.getStages().getStage3().setResp(resp_b3);
                         databaseCurrentGames.child(currentGame.getGameID()).child("stages").child("stage3").child("resp").setValue(currentGame.getStages().getStage3().getResp());
                         myArgTimer.cancel();
@@ -123,13 +113,6 @@ public class b3_close_debate extends AppCompatActivity {
     }
 
 
-
-
-
-    private void displayText(String text){
-        Toast.makeText(b3_close_debate.this, text, Toast.LENGTH_LONG).show();
-
-    }
     public void openReturn_repeat_debate(){
         Intent intent = new Intent(this, repeat_return_debate.class);
         Bundle bundle = new Bundle();

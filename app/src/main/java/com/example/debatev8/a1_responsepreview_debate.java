@@ -86,7 +86,7 @@ public class a1_responsepreview_debate extends AppCompatActivity {
 
                         for (DataSnapshot topicInfo : dataSnapshot.getChildren())
                         {
-                            Log.i("rrrrrrrrrrrrrrrrrrrrr", "GOT HERE");
+                            //Log.i("rrrrrrrrrrrrrrrrrrrrr", "GOT HERE");
 
                             b2_open = "";
 

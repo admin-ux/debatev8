@@ -2,18 +2,18 @@
 //as arg_a1 as a string -> ready to be submitted to database
 package com.example.debatev8;
 
-import androidx.annotation.NonNull;
+//import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
+//import android.text.TextUtils;
+//import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+//import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -64,10 +64,7 @@ public class a2_close_debate extends AppCompatActivity {
         final String userid = fireUser.getUid();
         DatabaseReference realtimeUserProfile =databaseUsers.child(userid);
         currentGame = (game) getIntent().getSerializableExtra("currentGame");
-        Log.i("bbbbbbbbbbbbbbbbbbbb", currentGame.toString());
-        Log.i("ccccccccccccccccccc", currentGame.getPlayer1Topics());
-        Log.i("ddddddddddddddddddd", currentGame.getPlayer2Topics());
-        Log.i("eeeeeeeeeeeeeeeeeee", currentGame.getGameID());
+//
 
 
 
@@ -99,7 +96,7 @@ public class a2_close_debate extends AppCompatActivity {
                         resp_a2 = resp_a2Input.getText().toString();
                         currentGame.getStages().getStage2().setArg(resp_a2);
 
-                        displayText(resp_a2);
+                        //displayText(resp_a2);
 
                         currentGame.getStages().getStage2().setResp(resp_a2);
                         databaseCurrentGames.child(currentGame.getGameID()).child("stages").child("stage2").child("resp").setValue(currentGame.getStages().getStage2().getResp());
@@ -128,10 +125,10 @@ public class a2_close_debate extends AppCompatActivity {
 
 
 
-    private void displayText(String text){
-        Toast.makeText(a2_close_debate.this, text, Toast.LENGTH_LONG).show();
-
-    }
+//    private void displayText(String text){
+//        Toast.makeText(a2_close_debate.this, text, Toast.LENGTH_LONG).show();
+//
+//    }
     public void openA3_lead_debate(){
         Intent intent = new Intent(this, a3_lead_debate.class);
         Bundle bundle = new Bundle();

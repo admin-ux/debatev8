@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+//import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -71,16 +71,15 @@ public class return_repeat_judge extends AppCompatActivity {
 
 
         gameBeingJudged = (game) getIntent().getSerializableExtra("gameBeingJudged");
-        Log.i("++++++++++++++++++++", "Return_Repeat_Judge1");
-        Log.i("++++++++++++++++++++", gameBeingJudged.getPlayer1());
+
 
         //Reading 5 of 10 VAR from Player1
        databaseUsers.child(gameBeingJudged.getPlayer1()).addListenerForSingleValueEvent(new ValueEventListener() {
            @Override
            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-               Log.i("++++++++++++++++++++", "Return_Repeat_Judge1.5");
+
                for (DataSnapshot gameInfo : dataSnapshot.getChildren()) {
-                   Log.i("++++++++++++++++++++", "Return_Repeat_Judge1.6");
+
                    Object ngp = dataSnapshot.child("numGamesPlayed").getValue();
                    Object w = dataSnapshot.child("wins").getValue();
                    Object ts = dataSnapshot.child("totalScore").getValue();
@@ -88,30 +87,25 @@ public class return_repeat_judge extends AppCompatActivity {
                    Object ra = dataSnapshot.child("r_rvg").getValue();
 
                    if (ngp!=null){
-                       Log.i("++++++++++++++++++++", "Return_Repeat_Judge1.6.1");
+
                    }
                    if(w!=null){
-                       Log.i("++++++++++++++++++++", "Return_Repeat_Judge1.6.2");
+
                    }
                    if (aa!=null){
-                       Log.i("++++++++++++++++++++", "Return_Repeat_Judge1.6.3");
+
                    }
                    if (ra!=null){
-                       Log.i("++++++++++++++++++++", "Return_Repeat_Judge1.6.4");
+
                    }
                    if (ts!=null){
-                       Log.i("++++++++++++++++++++", "Return_Repeat_Judge1.6.5");
+
                    }
 
-                   Log.i("++++++++++++++++++++", "Return_Repeat_Judge1.7");
-                   Log.i("++++++++++++++++++++", gameInfo.toString());
-                   Log.i("++++++++++++++++++++", dataSnapshot.toString());
-                   Log.i("++++++++++++++++++++", dataSnapshot.child("wins").toString());
                    //wins1=dataSnapshot.child("wins").getValue();
                    if (iterations1==0&&ngp!=null&&w!=null&&ts!=null&&aa!=null&&ra!=null)
                    {
                        iterations1++;
-                       Log.i("++++++++++++++++++++", "Return_Repeat_Judge1.8");
                        totalScore1 = 0;
                        wins1 = 0;
                        A_avg1 = 0;
@@ -123,8 +117,6 @@ public class return_repeat_judge extends AppCompatActivity {
                        A_avg1 = (int) (long) aa;
                        R_avg1 = (int) (long) ra;
                        numGamesPlayed1 = (int) (long) ngp;
-                       Log.i("++++++++++++++++++++", "Return_Repeat_Judge2");
-
 
                        //************Player 2
                        databaseUsers.child(gameBeingJudged.getPlayer2()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -155,7 +147,6 @@ public class return_repeat_judge extends AppCompatActivity {
 
                                        R_avg2 = (int) (long) ra;
                                        numGamesPlayed2 = (int) (long) ngp;
-                                       Log.i("++++++++++++++++++++", "Return_Repeat_Judge3");
 
                                        //*************************Calculations for Score
                                        final Timer myTimerReQuery = new Timer();
@@ -165,7 +156,6 @@ public class return_repeat_judge extends AppCompatActivity {
                                            @Override
                                            public void run()
                                            {
-                                               Log.i("++++++++++++++++++++", "Return_Repeat_Judge4");
 
                                                 if (iterations>0)
                                                 {
@@ -176,8 +166,6 @@ public class return_repeat_judge extends AppCompatActivity {
                                                if (iterations==0&&totalScore1!=-100000000&&wins1!=-100000000&&A_avg1!=-100000000&&R_avg1!=-100000000&&numGamesPlayed1!=-100000000&&totalScore2!=-100000000&&wins2!=-100000000&&A_avg2!=-100000000&&R_avg2!=-100000000&&numGamesPlayed2!=-100000000) {
                                                    iterations++;
                                                    String a = "" + iterations;
-                                                   Log.i("===================", a);
-                                                   Log.i("++++++++++++++++++++", "Return_Repeat_Judge5");
                                                    //***Scoring
                                                    int aTotal = gameBeingJudged.getStages().getStage1().getJudgeScoreA() + gameBeingJudged.getStages().getStage2().getJudgeScoreR() + gameBeingJudged.getStages().getStage3().getJudgeScoreA();
                                                    int bTotal = gameBeingJudged.getStages().getStage1().getJudgeScoreR() + gameBeingJudged.getStages().getStage2().getJudgeScoreA() + gameBeingJudged.getStages().getStage3().getJudgeScoreR();
@@ -217,17 +205,9 @@ public class return_repeat_judge extends AppCompatActivity {
                                                    numGamesPlayed1++;
                                                    numGamesPlayed2++;
                                                    A_avg1 = ((A_avg1 * (numGamesPlayed1 - 1)) + a_A_avg) / numGamesPlayed1;
-                                                   String b = "" + A_avg1;
-                                                   Log.i("A_avg1", b);
                                                    R_avg1 = ((R_avg1 * (numGamesPlayed1 - 1)) + a_R_avg) / numGamesPlayed1;
-                                                   String c = "" + R_avg1;
-                                                   Log.i("R_avg1", c);
                                                    A_avg2 = ((A_avg2 * (numGamesPlayed2 - 1)) + b_A_avg) / numGamesPlayed2;
-                                                   String d = "" + A_avg2;
-                                                   Log.i("A_avg2", d);
                                                    R_avg2 = ((R_avg2 * (numGamesPlayed2 - 1)) + b_R_avg) / numGamesPlayed2;
-                                                   String e = "" + R_avg2;
-                                                   Log.i("R_avg2", e);
                                                    //*
                                                    //**Winner Determined
                                                    int subTotalScore1 = 0;
@@ -248,7 +228,6 @@ public class return_repeat_judge extends AppCompatActivity {
                                                            }
                                                            totalScore1 = totalScore1 + subTotalScore1;
                                                            totalScore2 = totalScore2 + subTotalScore2;
-                                                           Log.i("++++++++++++++++++++", "Player1 Win Outright");
                                                            //Player1 Update
                                                            databaseUsers.child(gameBeingJudged.getPlayer1()).child("wins").setValue(wins1);
                                                            databaseUsers.child(gameBeingJudged.getPlayer1()).child("a_avg").setValue(A_avg1);
@@ -278,7 +257,7 @@ public class return_repeat_judge extends AppCompatActivity {
                                                            totalScore1 = totalScore1 + subTotalScore1;
                                                            totalScore2 = totalScore2 + subTotalScore2;
 
-                                                           Log.i("++++++++++++++++++++", "Player2 Win Outright");
+
                                                            //Player1 Update
                                                            databaseUsers.child(gameBeingJudged.getPlayer1()).child("wins").setValue(wins1);
                                                            databaseUsers.child(gameBeingJudged.getPlayer1()).child("a_avg").setValue(A_avg1);
@@ -286,22 +265,12 @@ public class return_repeat_judge extends AppCompatActivity {
                                                            databaseUsers.child(gameBeingJudged.getPlayer1()).child("numGamesPlayed").setValue(numGamesPlayed1);
                                                            databaseUsers.child(gameBeingJudged.getPlayer1()).child("totalScore").setValue(totalScore1);
                                                            //Player2 Update
-                                                           Log.i("++++++++++++++++++++", gameBeingJudged.getPlayer2().toString());
+
                                                            databaseUsers.child(gameBeingJudged.getPlayer2()).child("wins").setValue(wins2);
-                                                           String f = "" + wins2;
-                                                           Log.i("wins2", f);
                                                            databaseUsers.child(gameBeingJudged.getPlayer2()).child("a_avg").setValue(A_avg2);
-                                                           String g = "" + A_avg2;
-                                                           Log.i("A_avg2", g);
                                                            databaseUsers.child(gameBeingJudged.getPlayer2()).child("r_rvg").setValue(R_avg2);
-                                                           String h = "" + R_avg2;
-                                                           Log.i("R_avg2", h);
                                                            databaseUsers.child(gameBeingJudged.getPlayer2()).child("numGamesPlayed").setValue(numGamesPlayed2);
-                                                           String i = "" + numGamesPlayed2;
-                                                           Log.i("numGamesPlayed2", i);
                                                            databaseUsers.child(gameBeingJudged.getPlayer2()).child("totalScore").setValue(totalScore2);
-                                                           String j = "" + totalScore2;
-                                                           Log.i("totalScore2",j);
                                                        }
                                                    } else {
                                                        if (aTotal != bTotal) {
@@ -320,7 +289,6 @@ public class return_repeat_judge extends AppCompatActivity {
                                                                }
                                                                totalScore1 = totalScore1 + subTotalScore1;
                                                                totalScore2 = totalScore2 + subTotalScore2;
-                                                               Log.i("++++++++++++++++++++", "Player1 Win Partial");
 
                                                                //Player1 Update
                                                                databaseUsers.child(gameBeingJudged.getPlayer1()).child("wins").setValue(wins1);
@@ -350,7 +318,6 @@ public class return_repeat_judge extends AppCompatActivity {
                                                                }
                                                                totalScore1 = totalScore1 + subTotalScore1;
                                                                totalScore2 = totalScore2 + subTotalScore2;
-                                                               Log.i("++++++++++++++++++++", "Player2 Win Partial");
                                                                //Player1 Update
                                                                databaseUsers.child(gameBeingJudged.getPlayer1()).child("wins").setValue(wins1);
                                                                databaseUsers.child(gameBeingJudged.getPlayer1()).child("a_avg").setValue(A_avg1);
@@ -371,7 +338,6 @@ public class return_repeat_judge extends AppCompatActivity {
                                                        }
                                                    }
                                                    //*
-                                                   Log.i("++++++++++++++++++++", "Return_Repeat_Judge6");
 
                                                }
                                                else
@@ -392,14 +358,7 @@ public class return_repeat_judge extends AppCompatActivity {
 
                            }
                        });
-
-
-
                    }
-
-
-
-
 
                }
            }

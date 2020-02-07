@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
+//import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -72,7 +72,7 @@ public class a3_waitinglastresp_debate extends AppCompatActivity {
 
                         for (DataSnapshot topicInfo : dataSnapshot.getChildren())
                         {
-                            Log.i("rrrrrrrrrrrrrrrrrrrrr", "GOT HERE");
+
 
                             b3_close = "";
 
@@ -81,7 +81,7 @@ public class a3_waitinglastresp_debate extends AppCompatActivity {
                             {
                                 b3_close = b3c.toString();
                                 if (!b3_close.equals("0")) {
-                                    Log.i("qqqqqqqqqqqqqqqqqqqq", b3_close);
+
                                     currentGame.getStages().getStage3().setResp(b3_close);
                                     myArgTimer.cancel();
                                     myArgTimer.purge();

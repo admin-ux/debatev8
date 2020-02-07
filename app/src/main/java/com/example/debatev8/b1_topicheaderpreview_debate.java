@@ -8,12 +8,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
+//import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+//import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -58,10 +58,7 @@ public class b1_topicheaderpreview_debate extends AppCompatActivity {
         final String userid = fireUser.getUid();
         DatabaseReference realtimeUserProfile =databaseUsers.child(userid);
         currentGame = (game) getIntent().getSerializableExtra("currentGame");
-        Log.i("bbbbbbbbbbbbbbbbbbbb", currentGame.toString());
-        Log.i("ccccccccccccccccccc", currentGame.getPlayer1Topics());
-        Log.i("ddddddddddddddddddd", currentGame.getPlayer2Topics());
-        Log.i("eeeeeeeeeeeeeeeeeee", currentGame.getGameID());
+
 
         //Calculate Topic//Start//
 
@@ -75,7 +72,7 @@ public class b1_topicheaderpreview_debate extends AppCompatActivity {
         while (currentGame.getPlayer1Topics().length()>i)
         {
             String num=String.valueOf(i);
-            Log.i("jjjjjjjjjjjjjjjjjj", num);
+
             if(currentGame.getPlayer1Topics().charAt(i)=='1')
             {
                 one=one+score;
@@ -112,7 +109,7 @@ public class b1_topicheaderpreview_debate extends AppCompatActivity {
         while (currentGame.getPlayer2Topics().length()>i)
         {
             String num2=String.valueOf(i);
-            Log.i("kkkkkkkkkkkkkkkkkkkkkk", num2);
+
             if(currentGame.getPlayer2Topics().charAt(i)=='1')
             {
                 one=one+score;
@@ -155,7 +152,7 @@ public class b1_topicheaderpreview_debate extends AppCompatActivity {
         while (i<4)
         {
             String num3=String.valueOf(i);
-            Log.i("lllllllllllllllll", num3);
+
             if (myvaluesList[i]>largestvalue)
             {
                 largest = i;
@@ -171,7 +168,7 @@ public class b1_topicheaderpreview_debate extends AppCompatActivity {
             Random random = new Random();
             int randomInteger = random.nextInt(1);
             String n=String.valueOf(randomInteger);
-            Log.i("ooooooooooooooooooo", n);
+
             if (randomInteger==1)
             {
                 largest=same;
@@ -181,17 +178,16 @@ public class b1_topicheaderpreview_debate extends AppCompatActivity {
 
         largest++;
         String choose=String.valueOf(largest);
-        Log.i("nnnnnnnnnnnnnnnnnnnnnnn", choose);
+
         //Calculate Topic//End//a
         //Retrieve Topic//Start//
         //TODO CHANGE THIS VALUE TO "choose"
-        Log.i("qqqqqqqqqqqqqqqqqqq", databaseTopics.child("1").toString());
-        databaseTopics.child("1").addListenerForSingleValueEvent(new ValueEventListener() {
+
+        databaseTopics.child(choose).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot topicInfo : dataSnapshot.getChildren())
                 {
-                    Log.i("rrrrrrrrrrrrrrrrrrrrr", "GOT HERE");
 
                     String TopicTitle = "";
                     String TopicHeader1 = "";
@@ -205,10 +201,7 @@ public class b1_topicheaderpreview_debate extends AppCompatActivity {
                     Object th3= dataSnapshot.child("Topic Header3").getValue();
 
                     if (tt!=null&&th1!=null&&th2!=null&&th3!=null) {
-                        Log.i("ssssssssssssssssssssss", tt.toString());
-                        Log.i("tttttttttttttttttttttt", th1.toString());
-                        Log.i("uuuuuuuuuuuuuuuuuuuuuu", th2.toString());
-                        Log.i("vvvvvvvvvvvvvvvvvvvvvvv", th3.toString());
+
                         TopicTitle=tt.toString();
                         TopicHeader1=th1.toString();
                         TopicHeader2=th2.toString();
@@ -236,8 +229,6 @@ public class b1_topicheaderpreview_debate extends AppCompatActivity {
                 //databaseCurrentGames.child(currentGame.getGameID()).child("stages").setValue(currentGame.getStages());
 
 
-                Log.i("jjjjjjjTTjjjjjjjjj", currentGame.getStages().getTopicTitle());
-
                 TopicHeader1= (TextView) findViewById(R.id.topicheader);
                 TopicHeader1.setText(currentGame.getStages().getStage1().getTopicHeader());
 
@@ -252,16 +243,13 @@ public class b1_topicheaderpreview_debate extends AppCompatActivity {
                     public void run()
                     {
 
-                        Log.i("8888888888888888888888", "Here?");
-                        Log.i("8888888888888888888888", currentGame.getGameID());
+
                         databaseCurrentGames.child(currentGame.getGameID()).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                                 for (DataSnapshot topicInfo : dataSnapshot.getChildren())
                                 {
-                                    Log.i("{{{{{{{{{{{{{{{{{{{{{", "GOT HERE");
-                                    Log.i("%%%%%%%%%%%%%%%%5%%%%", dataSnapshot.toString());
                                     a1_open = "";
 
                                     Object a1o= dataSnapshot.child("stages").child("stage1").child("arg").getValue();
@@ -308,12 +296,6 @@ public class b1_topicheaderpreview_debate extends AppCompatActivity {
 
     }
 
-
-
-    private void displayText(String text){
-        Toast.makeText(b1_topicheaderpreview_debate.this, text, Toast.LENGTH_LONG).show();
-
-    }
     public void openB1_close_debate(){
         Intent intent = new Intent(this, b1_close_debate.class);
         Bundle bundle = new Bundle();

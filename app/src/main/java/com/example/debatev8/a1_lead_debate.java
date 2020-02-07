@@ -65,10 +65,10 @@ public class a1_lead_debate extends AppCompatActivity {
         final String userid = fireUser.getUid();
         DatabaseReference realtimeUserProfile =databaseUsers.child(userid);
         currentGame = (game) getIntent().getSerializableExtra("currentGame");
-        Log.i("bbbbbbbbbbbbbbbbbbbb", currentGame.toString());
-        Log.i("ccccccccccccccccccc", currentGame.getPlayer1Topics());
-        Log.i("ddddddddddddddddddd", currentGame.getPlayer2Topics());
-        Log.i("eeeeeeeeeeeeeeeeeee", currentGame.getGameID());
+//        Log.i("bbbbbbbbbbbbbbbbbbbb", currentGame.toString());
+//        Log.i("ccccccccccccccccccc", currentGame.getPlayer1Topics());
+//        Log.i("ddddddddddddddddddd", currentGame.getPlayer2Topics());
+//        Log.i("eeeeeeeeeeeeeeeeeee", currentGame.getGameID());
 
         //Calculate Topic//Start//
 
@@ -82,7 +82,7 @@ public class a1_lead_debate extends AppCompatActivity {
         while (currentGame.getPlayer1Topics().length()>i)
         {
             String num=String.valueOf(i);
-            Log.i("jjjjjjjjjjjjjjjjjj", num);
+            //Log.i("jjjjjjjjjjjjjjjjjj", num);
             if(currentGame.getPlayer1Topics().charAt(i)=='1')
             {
                 one=one+score;
@@ -119,7 +119,7 @@ public class a1_lead_debate extends AppCompatActivity {
         while (currentGame.getPlayer2Topics().length()>i)
         {
             String num2=String.valueOf(i);
-            Log.i("kkkkkkkkkkkkkkkkkkkkkk", num2);
+            //Log.i("kkkkkkkkkkkkkkkkkkkkkk", num2);
             if(currentGame.getPlayer2Topics().charAt(i)=='1')
             {
                 one=one+score;
@@ -162,7 +162,7 @@ public class a1_lead_debate extends AppCompatActivity {
         while (i<4)
         {
             String num3=String.valueOf(i);
-            Log.i("lllllllllllllllll", num3);
+            //Log.i("lllllllllllllllll", num3);
             if (myvaluesList[i]>largestvalue)
             {
                 largest = i;
@@ -178,7 +178,7 @@ public class a1_lead_debate extends AppCompatActivity {
             Random random = new Random();
             int randomInteger = random.nextInt(1);
             String n=String.valueOf(randomInteger);
-            Log.i("ooooooooooooooooooo", n);
+            //Log.i("ooooooooooooooooooo", n);
             if (randomInteger==1)
             {
                 largest=same;
@@ -188,17 +188,17 @@ public class a1_lead_debate extends AppCompatActivity {
 
         largest++;
         String choose=String.valueOf(largest);
-        Log.i("nnnnnnnnnnnnnnnnnnnnnnn", choose);
+        //Log.i("nnnnnnnnnnnnnnnnnnnnnnn", choose);
         //Calculate Topic//End//a
         //Retrieve Topic//Start//
         //TODO CHANGE THIS VALUE TO "choose"
-        Log.i("qqqqqqqqqqqqqqqqqqq", databaseTopics.child("1").toString());
-        databaseTopics.child("1").addListenerForSingleValueEvent(new ValueEventListener() {
+        //Log.i("qqqqqqqqqqqqqqqqqqq", databaseTopics.child("1").toString());
+        databaseTopics.child(choose).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot topicInfo : dataSnapshot.getChildren())
                 {
-                    Log.i("rrrrrrrrrrrrrrrrrrrrr", "GOT HERE");
+                    //Log.i("rrrrrrrrrrrrrrrrrrrrr", "GOT HERE");
 
                     String TopicTitle = "";
                     String TopicHeader1 = "";
@@ -212,10 +212,10 @@ public class a1_lead_debate extends AppCompatActivity {
                     Object th3= dataSnapshot.child("Topic Header3").getValue();
 
                     if (tt!=null&&th1!=null&&th2!=null&&th3!=null) {
-                        Log.i("ssssssssssssssssssssss", tt.toString());
-                        Log.i("tttttttttttttttttttttt", th1.toString());
-                        Log.i("uuuuuuuuuuuuuuuuuuuuuu", th2.toString());
-                        Log.i("vvvvvvvvvvvvvvvvvvvvvvv", th3.toString());
+//                        Log.i("ssssssssssssssssssssss", tt.toString());
+//                        Log.i("tttttttttttttttttttttt", th1.toString());
+//                        Log.i("uuuuuuuuuuuuuuuuuuuuuu", th2.toString());
+//                        Log.i("vvvvvvvvvvvvvvvvvvvvvvv", th3.toString());
                         TopicTitle=tt.toString();
                         TopicHeader1=th1.toString();
                         TopicHeader2=th2.toString();

@@ -85,7 +85,6 @@ public class b2_responsepreview_debate extends AppCompatActivity {
 
                         for (DataSnapshot topicInfo : dataSnapshot.getChildren())
                         {
-                            Log.i("rrrrrrrrrrrrrrrrrrrrr", "GOT HERE");
 
                             a3_open = "";
 
@@ -123,11 +122,6 @@ public class b2_responsepreview_debate extends AppCompatActivity {
         //Retrieve Topic//End//
 
     }
-
-
-
-
-
 
 
 

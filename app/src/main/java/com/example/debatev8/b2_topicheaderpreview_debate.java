@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
+//import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -76,7 +76,6 @@ public class b2_topicheaderpreview_debate extends AppCompatActivity {
 
                         for (DataSnapshot topicInfo : dataSnapshot.getChildren())
                         {
-                            Log.i("rrrrrrrrrrrrrrrrrrrrr", "GOT HERE");
 
                             a2_close = "";
 
@@ -85,7 +84,6 @@ public class b2_topicheaderpreview_debate extends AppCompatActivity {
                             {
                                 a2_close = a2c.toString();
                                 if (!a2_close.equals("0")) {
-                                    Log.i("qqqqqqqqqqqqqqqqqqqq", a2_close);
                                     currentGame.getStages().getStage2().setResp(a2_close);
                                     myArgTimer.cancel();
                                     myArgTimer.purge();
@@ -113,13 +111,6 @@ public class b2_topicheaderpreview_debate extends AppCompatActivity {
 
         //No timer immediately sent to waiting screen with pre view of next topic header
     }
-
-
-
-
-
-
-
 
 
 

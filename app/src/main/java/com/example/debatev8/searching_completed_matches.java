@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+//import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -47,25 +47,14 @@ public class searching_completed_matches extends AppCompatActivity {
                             game currentGame = dataSnapshot.getValue(game.class);
                             //beenJudged = (Boolean) userInPlayersWaiting.child("beenJudged").getValue();
 
-                            Log.i("YYYYYYYYYYYYYYYYYYYYYY", gameInfo.toString());
-                            Log.i("YYYYYYYYYYYYYYYYYYYYYY", gameInfo.getKey());
-                            Log.i("WWWWWWWWWWWWWWWWWWWWWW", gameInfo.child("stages").toString());
-                            Log.i("WWWWWWWWWWWWWWWWWWWWWW", gameInfo.child("stages").child("stage1").toString());
-                            Log.i("WWWWWWWWWWWWWWWWWWWWWW", gameInfo.child("stages").child("stage1").child("arg").getValue().toString());
                             if (currentGame!=null) {
                                 beenJudged = currentGame.isBeenJudged();
-                                Log.i("rrrrrrrrrrrrrrrrrrrrr", beenJudged.toString());
                             }
 
-                            for (DataSnapshot deeperSnapshot : dataSnapshot.getChildren())
-                            {
-                                Log.i("ZZZZZZZZZZZZZZZZZZZZ", deeperSnapshot.toString());
-                                Log.i("ZZZZZZZZZZZZZZZZZZZZ", deeperSnapshot.getKey());
-                            }
+
 
 
                             if (!beenJudged && currentGame!=null) {
-                                Log.i("QQQQQQQQQQQQQQQQQQQQQQ", dataSnapshot.toString());
 
                                 String gameID = "";
                                 Object gid=gameInfo.child("gameID").getValue();
@@ -78,8 +67,6 @@ public class searching_completed_matches extends AppCompatActivity {
                                     }
                                 }
 
-                                //Values to be used if beingJudged==false
-                                Log.i("rrrrrrrrrrrrrrrrrrrrr", "GOT HERE");
 //
                                 String player1ID = "";
                                 String player2ID = "";
@@ -114,10 +101,7 @@ public class searching_completed_matches extends AppCompatActivity {
                                 Object b3r = gameInfo.child("stages").child("stage3").child("resp").getValue();
 
                                 if (tt != null && th1 != null && th2 != null && th3 != null && p1 != null && p2 != null && a1a != null && a2r != null && a3a != null && b1r != null && b2a != null && b3r != null) {
-                                    Log.i("ssssssssssssssssssssss", tt.toString());
-                                    Log.i("tttttttttttttttttttttt", th1.toString());
-                                    Log.i("uuuuuuuuuuuuuuuuuuuuuu", th2.toString());
-                                    Log.i("vvvvvvvvvvvvvvvvvvvvvvv", th3.toString());
+
                                     player1ID = p1.toString();
                                     player2ID = p2.toString();
 

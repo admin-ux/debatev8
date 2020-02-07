@@ -8,11 +8,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
+//import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+//import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -99,17 +99,13 @@ public class debate_leaderboards extends AppCompatActivity {
 
     }
 
-    private void displayText(String text){
-        Toast.makeText(debate_leaderboards.this, text, Toast.LENGTH_LONG).show();
 
-    }
 
     private static final int RC_LEADERBOARD_UI = 9004;
     private void showDebate_Leaderboard_Total_Score() {
         //GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
         GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
         if (acc2 != null) {
-            Log.i("bbbbbbbbbbbbbbbbbbbbb", "Not Null");
             Games.getLeaderboardsClient(this, acc2)
                     .getLeaderboardIntent(getString(R.string.debate_leaderboard_total_score_id))
                     .addOnSuccessListener(new OnSuccessListener<Intent>() {
@@ -119,15 +115,12 @@ public class debate_leaderboards extends AppCompatActivity {
                         }
                     });
         }
-        else{
-            Log.i("eeeeeeeeeeeeeee", "Is Null");
-        }
+
     }
     private void showDebate_Leaderboard_Wins() {
         //GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
         GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
         if (acc2 != null) {
-            Log.i("bbbbbbbbbbbbbbbbbbbbb", "Not Null");
             Games.getLeaderboardsClient(this, acc2)
                     .getLeaderboardIntent(getString(R.string.debate_leaderboard_wins_id))
                     .addOnSuccessListener(new OnSuccessListener<Intent>() {
@@ -137,15 +130,12 @@ public class debate_leaderboards extends AppCompatActivity {
                         }
                     });
         }
-        else{
-            Log.i("eeeeeeeeeeeeeee", "Is Null");
-        }
+
     }
     private void showDebate_Leaderboard_Argument_Average() {
         //GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
         GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
         if (acc2 != null) {
-            Log.i("bbbbbbbbbbbbbbbbbbbbb", "Not Null");
             Games.getLeaderboardsClient(this, acc2)
                     .getLeaderboardIntent(getString(R.string.debate_leaderboard_argument_average_id))
                     .addOnSuccessListener(new OnSuccessListener<Intent>() {
@@ -155,15 +145,12 @@ public class debate_leaderboards extends AppCompatActivity {
                         }
                     });
         }
-        else{
-            Log.i("eeeeeeeeeeeeeee", "Is Null");
-        }
+
     }
     private void showDebate_Leaderboard_Respond_Average() {
-        //GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
+
         GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
         if (acc2 != null) {
-            Log.i("bbbbbbbbbbbbbbbbbbbbb", "Not Null");
             Games.getLeaderboardsClient(this, acc2)
                     .getLeaderboardIntent(getString(R.string.debate_leaderboard_respond_average_id))
                     .addOnSuccessListener(new OnSuccessListener<Intent>() {
@@ -173,16 +160,13 @@ public class debate_leaderboards extends AppCompatActivity {
                         }
                     });
         }
-        else{
-            Log.i("eeeeeeeeeeeeeee", "Is Null");
-        }
+
     }
 
     private void showJudgeLeaderboard() {
-        //GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
+
         GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
         if (acc2 != null) {
-            Log.i("bbbbbbbbbbbbbbbbbbbbb", "Not Null");
             Games.getLeaderboardsClient(this, acc2)
                     .getLeaderboardIntent(getString(R.string.judgeleaderboard_id))
                     .addOnSuccessListener(new OnSuccessListener<Intent>() {
@@ -192,52 +176,11 @@ public class debate_leaderboards extends AppCompatActivity {
                         }
                     });
         }
-        else{
-            Log.i("eeeeeeeeeeeeeee", "Is Null");
-        }
+
     }
     public void openChoice_home(){
         Intent intent = new Intent(this, choice_home.class);
         startActivity(intent);
     }
-//    private void postDebateTotalScore ()
-//    {
-//        GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
-//        if (acc2 != null) {
-//            Games.getLeaderboardsClient(this, acc2)
-//                    .submitScore(getString(R.string.debate_leaderboard_total_score_id), totalScore);
-//
-//
-//        }
-//    }
-//    private void postDebateWins ()
-//    {
-//        GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
-//        if (acc2 != null) {
-//            Games.getLeaderboardsClient(this, acc2)
-//                    .submitScore(getString(R.string.debate_leaderboard_wins_id), wins);
-//
-//
-//        }
-//    }
-//    private void postDebateA_avg ()
-//    {
-//        GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
-//        if (acc2 != null) {
-//            Games.getLeaderboardsClient(this, acc2)
-//                    .submitScore(getString(R.string.debate_leaderboard_argument_average_id), A_avg);
-//
-//
-//        }
-//    }
-//    private void postDebateR_avg ()
-//    {
-//        GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
-//        if (acc2 != null) {
-//            Games.getLeaderboardsClient(this, acc2)
-//                    .submitScore(getString(R.string.debate_leaderboard_respond_average_id), R_avg);
-//
-//
-//        }
-//    }
+
 }

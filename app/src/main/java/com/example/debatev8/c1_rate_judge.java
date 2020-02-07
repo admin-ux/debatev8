@@ -6,12 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+//import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
-import android.widget.Toast;
+//import android.widget.Toast;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -55,9 +55,6 @@ public class c1_rate_judge extends AppCompatActivity {
         final String userid = fireUser.getUid();
         DatabaseReference realtimeUserProfile =databaseUsers.child(userid);
         gameBeingJudged = (game) getIntent().getSerializableExtra("gameBeingJudged");
-        Log.i("bbbbbbbbbbbbbbbbbbbb", gameBeingJudged.toString());
-        Log.i("ccccccccccccccccccc", gameBeingJudged.getPlayer1Topics());
-        Log.i("ddddddddddddddddddd", gameBeingJudged.getPlayer2Topics());
 
         TopicHeader1= (TextView) findViewById(R.id.topicheader);
         TopicHeader1.setText(gameBeingJudged.getStages().getStage1().getTopicHeader());
@@ -66,7 +63,7 @@ public class c1_rate_judge extends AppCompatActivity {
         TopicTitle.setText(gameBeingJudged.getStages().getTopicTitle());
 
         seekbar1 = (SeekBar) findViewById(R.id.seekBar1);
-        //final TextView seekbar1Value = (TextView)findViewById(R.id.seekbarvalue);
+
         seekbar2 = (SeekBar) findViewById(R.id.seekBar2);
         //Value of Arg/ Resp changed by database
         Arga1 = (TextView) findViewById(R.id.a1leadpoint);
@@ -150,9 +147,6 @@ public class c1_rate_judge extends AppCompatActivity {
                 {
                     myArgTimer.cancel();
                     myArgTimer.purge();
-                    //currentGame.getStages().getStage2().setArg("I could not think of an argument");
-                    //Log.i("gggggggggggggggggggggg", currentGame.getGameID());
-                    //databaseCurrentGames.child(currentGame.getGameID()).child("stages").child("stage2").child("arg").setValue(currentGame.getStages().getStage2().getArg());
                     openC2Rate();
                 }
             }
@@ -172,9 +166,4 @@ public class c1_rate_judge extends AppCompatActivity {
         startActivity(intent);;
     }
 
-
-
-    private void displayText(String text){
-        Toast.makeText(c1_rate_judge.this, text, Toast.LENGTH_LONG).show();
-    }
 }

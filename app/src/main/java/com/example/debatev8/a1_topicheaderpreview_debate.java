@@ -7,13 +7,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+//import android.text.TextUtils;
+//
+//import android.view.View;
+//import android.widget.Button;
+//import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -23,8 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.Random;
+//import java.util.ArrayList;
+//import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -84,7 +84,7 @@ public class a1_topicheaderpreview_debate extends AppCompatActivity {
 
                         for (DataSnapshot topicInfo : dataSnapshot.getChildren())
                         {
-                            Log.i("rrrrrrrrrrrrrrrrrrrrr", "GOT HERE");
+                            //Log.i("rrrrrrrrrrrrrrrrrrrrr", "GOT HERE");
 
                             b1_close = "";
 
@@ -93,7 +93,7 @@ public class a1_topicheaderpreview_debate extends AppCompatActivity {
                             {
                                 b1_close = b1c.toString();
                                 if (!b1_close.equals("0")) {
-                                    Log.i("qqqqqqqqqqqqqqqqqqqq", b1_close);
+                                    //Log.i("qqqqqqqqqqqqqqqqqqqq", b1_close);
                                     currentGame.getStages().getStage1().setResp(b1_close);
                                     myArgTimer.cancel();
                                     myArgTimer.purge();

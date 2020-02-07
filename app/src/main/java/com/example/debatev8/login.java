@@ -11,7 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.EditText;
-import android.widget.Toast;
+//import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -87,16 +87,10 @@ public class login extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            Toast.makeText(login.this, "User Loggedin", Toast.LENGTH_SHORT).show();
                             //Starts this class if correctly signed in
-
-
-
-                            Toast.makeText(login.this, "User Loggedin", Toast.LENGTH_SHORT).show();
 
                             startActivity(new Intent(getApplicationContext(),choice_home.class));
                         }else {
-                            Toast.makeText(login.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE);
                         }
                     }

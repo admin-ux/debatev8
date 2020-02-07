@@ -8,12 +8,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
+//import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+//import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -63,10 +63,10 @@ public class a3_lead_debate extends AppCompatActivity {
         final String userid = fireUser.getUid();
         DatabaseReference realtimeUserProfile =databaseUsers.child(userid);
         currentGame = (game) getIntent().getSerializableExtra("currentGame");
-        Log.i("bbbbbbbbbbbbbbbbbbbb", currentGame.toString());
-        Log.i("ccccccccccccccccccc", currentGame.getPlayer1Topics());
-        Log.i("ddddddddddddddddddd", currentGame.getPlayer2Topics());
-        Log.i("eeeeeeeeeeeeeeeeeee", currentGame.getGameID());
+//        Log.i("bbbbbbbbbbbbbbbbbbbb", currentGame.toString());
+//        Log.i("ccccccccccccccccccc", currentGame.getPlayer1Topics());
+//        Log.i("ddddddddddddddddddd", currentGame.getPlayer2Topics());
+//        Log.i("eeeeeeeeeeeeeeeeeee", currentGame.getGameID());
 
         //Calculate Topic//Start//
 
@@ -94,7 +94,7 @@ public class a3_lead_debate extends AppCompatActivity {
                         arg_a3 = arg_a3Input.getText().toString();
                         currentGame.getStages().getStage3().setArg(arg_a3);
 
-                        displayText(arg_a3);
+//                        displayText(arg_a3);
 
                         currentGame.getStages().getStage3().setArg(arg_a3);
                         databaseCurrentGames.child(currentGame.getGameID()).child("stages").child("stage3").child("arg").setValue(currentGame.getStages().getStage3().getArg());
@@ -125,10 +125,10 @@ public class a3_lead_debate extends AppCompatActivity {
 
 
 
-    private void displayText(String text){
-        Toast.makeText(a3_lead_debate.this, text, Toast.LENGTH_LONG).show();
-
-    }
+//    private void displayText(String text){
+//        Toast.makeText(a3_lead_debate.this, text, Toast.LENGTH_LONG).show();
+//
+//    }
     public void OpenA3_waitinglastresp_debate(){
         Intent intent = new Intent(this, a3_waitinglastresp_debate.class);
         Bundle bundle = new Bundle();

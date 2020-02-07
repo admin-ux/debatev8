@@ -14,10 +14,6 @@ public class choice_debate extends AppCompatActivity {
     Button popButton;
     Button favButton;
 
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,34 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    tools:context=".return_repeat_judge">
 
 
-<!--    <Button-->
-<!--        android:id="@+id/signInGoogle"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginHorizontal="130dp"-->
-<!--        android:layout_marginTop="150dp"-->
-<!--        android:text="Sign in" />-->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="229dp"
+        android:layout_height="56dp"
+        android:text="The Debate App"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.115" />
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/signInGoogle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="130dp"
-        android:layout_marginTop="150dp"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintVertical_bias="0.232" />
 
     <Button
         android:id="@+id/signOutGoogle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign Out"
-        android:layout_marginHorizontal="130dp"
-        android:layout_marginTop="150dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signInGoogle"
+        app:layout_constraintVertical_bias="0.169"
         android:visibility="invisible"/>
 
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    android:orientation="vertical" android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    xmlns:tools="http://schemas.android.com/tools">-->
 
 
-</LinearLayout>
+<!--&lt;!&ndash;    <Button&ndash;&gt;-->
+<!--&lt;!&ndash;        android:id="@+id/signInGoogle"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_marginHorizontal="130dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_marginTop="150dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:text="Sign in" />&ndash;&gt;-->
+
+<!--    <com.google.android.gms.common.SignInButton-->
+<!--        android:id="@+id/signInGoogle"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginHorizontal="130dp"-->
+<!--        android:layout_marginTop="150dp"-->
+<!--        android:theme="@style/Theme.AppCompat"/>-->
+
+<!--    <Button-->
+<!--        android:id="@+id/signOutGoogle"-->
+<!--        android:layout_width="114dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginHorizontal="130dp"-->
+<!--        android:layout_marginTop="150dp"-->
+<!--        android:text="Sign Out"-->
+<!--        android:visibility="invisible" />-->
+
+
+<!--</LinearLayout>-->
+
+

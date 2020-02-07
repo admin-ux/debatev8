@@ -8,11 +8,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
+//import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+//import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -63,7 +63,6 @@ public class topic_vote extends AppCompatActivity {
         DatabaseReference realtimeUserGameID =databaseUsers.child(userid).child("GameID");
         //TODO make sure this works gets right value and is allowed to be declared final
         currentGame = (game) getIntent().getSerializableExtra("newGame");
-        Log.i("aaaaaaaaaaaaaaaaaaa", currentGame.getGameID());
 
         //Checking what player number the user is for readability of code
         if (currentGame.getPlayer1().equals("0"))
@@ -75,8 +74,6 @@ public class topic_vote extends AppCompatActivity {
             firstPlayer=true;
         }
 
-
-
         //Starts
 
 
@@ -86,14 +83,12 @@ public class topic_vote extends AppCompatActivity {
             realtimeUserProfile.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    Log.i("<<<<<<<<<<<<<<<<<<<<<<", dataSnapshot.toString());
                     for (DataSnapshot realtimeUserCurrentGameInfo : dataSnapshot.getChildren())
                     {
 
                         Object b= dataSnapshot.child("GameID").getValue();
 
                         if (b!=null) {
-                            Log.i("nnnnnnnnnnnnnnnnnnnn", b.toString());
                             gameID=b.toString();
                         }
 
@@ -110,13 +105,11 @@ public class topic_vote extends AppCompatActivity {
                         public void run()
                         {
 
-                            Log.i("oooooooooooooooo", "While Loop");
 
                             topic1 = (Button) findViewById(R.id.Topic1);
                             topic1.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    displayText("Clicked1");
                                     VotesCastList=VotesCastList.concat("1");
                                     topic1.setEnabled(false);
                                 }
@@ -127,7 +120,6 @@ public class topic_vote extends AppCompatActivity {
                                 @Override
                                 public void onClick(View v) {
                                     VotesCastList=VotesCastList.concat("2");
-                                    displayText("Clicked2");
                                     topic2.setEnabled(false);
                                 }
                             });
@@ -137,7 +129,6 @@ public class topic_vote extends AppCompatActivity {
                                 @Override
                                 public void onClick(View v) {
                                     VotesCastList=VotesCastList.concat("3");
-                                    displayText("Clicked3");
                                     topic3.setEnabled(false);
 
                                 }
@@ -150,7 +141,6 @@ public class topic_vote extends AppCompatActivity {
                                     //VotesCast.add(4);
                                     //lenOfArray++;
                                     VotesCastList=VotesCastList.concat("4");
-                                    displayText("Clicked4");
                                     topic4.setEnabled(false);
 
                                 }
@@ -166,21 +156,18 @@ public class topic_vote extends AppCompatActivity {
                     myVoteTimer.schedule(untilVotesCast, 0, 3000);
                     //2A) PLAYER VOTES//END//
 
-                    Log.i("iiiiiiiiiiiiiiiiiiiiiii", "After Timer");
-
                     //4A) PLAYER WAITS FOR OTHER PLAYER TO POST VOTES THEN TOPIC IS CALCULATED AND NEXT ACTIVITY IS CALLED//START//
                     final Timer myTimerReQuery = new Timer();
                     TimerTask untilReQuery = new TimerTask() {
                         @Override
                         public void run()
                         {
-                            Log.i("sssssssssssssssssss", "stop");
+
                             if (timer1Ended)
                             {
                                 //3A) VOTES ARE POSTED//START//
                                 if (firstloop)
                                 {
-                                    Log.i("zzzzzzzzzzzzzzzzzzz", VotesCastList);
                                     realtimeUserCurrentGame.child("player2Topics").setValue(VotesCastList);
                                     firstloop=false;
                                 }
@@ -198,10 +185,8 @@ public class topic_vote extends AppCompatActivity {
                                             Object b= dataSnapshot.child("player1Topics").getValue();
 
                                             if (b!=null) {
-                                                Log.i("nnnnnnnnnnnnnnnnnnnn", b.toString());
                                                 player1ID=b.toString();
                                             }
-                                            Log.i("qqqqqqqqqqqqqqqq", dataSnapshot.toString());
                                             if (!player1ID.equals("0")) {
 
                                                 //TODO Do player 2 calculation before timer quit
@@ -242,7 +227,6 @@ public class topic_vote extends AppCompatActivity {
         //1B) DETERMINE PLAYER NUMBER TO REDUCE WRITES//START//
         else
         {
-            Log.i("ttttttttttttttttttttt", "Here???");
             final DatabaseReference realtimeUserCurrentGame = databaseCurrentGames.child(currentGame.getGameID());
 
             //2B) PLAYER VOTES//START//
@@ -258,7 +242,6 @@ public class topic_vote extends AppCompatActivity {
                     topic1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            displayText("Clicked1");
                             VotesCastList=VotesCastList.concat("1");
                             topic1.setEnabled(false);
                         }
@@ -269,7 +252,6 @@ public class topic_vote extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             VotesCastList=VotesCastList.concat("2");
-                            displayText("Clicked2");
                             topic2.setEnabled(false);
                         }
                     });
@@ -279,7 +261,6 @@ public class topic_vote extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             VotesCastList=VotesCastList.concat("3");
-                            displayText("Clicked3");
                             topic3.setEnabled(false);
                         }
                     });
@@ -289,7 +270,6 @@ public class topic_vote extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             VotesCastList=VotesCastList.concat("4");
-                            displayText("Clicked4");
                             topic4.setEnabled(false);
                         }
                     });
@@ -334,10 +314,8 @@ public class topic_vote extends AppCompatActivity {
                                     Object b= dataSnapshot.child("player2Topics").getValue();
 
                                     if (b!=null) {
-                                        Log.i("nnnnnnnnnnnnnnnnnnnn", b.toString());
                                         player2ID=b.toString();
                                     }
-                                    Log.i("pppppppppppppppppppppp", dataSnapshot.toString());
                                     if (!player2ID.equals("0")) {
 
                                         myTimerReQuery.cancel();
@@ -367,15 +345,8 @@ public class topic_vote extends AppCompatActivity {
         }
         //1B) DETERMINE PLAYER NUMBER TO REDUCE WRITES//END//
 
-
-
-
-
     }
-    private void displayText(String text){
-        Toast.makeText(topic_vote.this, text, Toast.LENGTH_LONG).show();
 
-    }
     public void openA1_lead_debate(){
         Intent intent = new Intent(this, a1_lead_debate.class);
         Bundle bundle = new Bundle();
