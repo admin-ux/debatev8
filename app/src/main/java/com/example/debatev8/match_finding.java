@@ -10,10 +10,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
+import android.widget.Toast;
 import java.io.Serializable;
 
 import com.google.firebase.auth.FirebaseUser;
@@ -48,12 +49,11 @@ public class match_finding extends AppCompatActivity {
     game newGame = new game("0", false, false,false, null, "0", "0", null, "0", "0",0,0,0,0,0);
     int playerCurrentPosition;
     String newplayerID;
+    int iterations=0;
     Long newPlayerCurrentPosition;
     boolean newPlayer=false;
     boolean inUse=true;
-    //***********************************************************************************************Must save query data
-    //Query player = databasePlayersWaiting.orderByValue().limitToLast(1);
-   //**********************************************************************************************Have to get player there longest
+    String userid;
 
 
     @Override
@@ -66,10 +66,6 @@ public class match_finding extends AppCompatActivity {
         final String userid = fireUser.getUid();
         final DatabaseReference currentPlayer =databaseUsers.child(userid);
 
-
-        //This should happen immediately
-        //Getting Player Position Data and incrementing by 1
-        //Not Working **********************************************************************
         databasePlayerPosition.addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
@@ -103,7 +99,16 @@ public class match_finding extends AppCompatActivity {
                                 @Override
                                 public void run()
                                 {
-
+                                    //Toast.makeText(match_finding.this, "a", Toast.LENGTH_LONG).show();
+                                    displayMessage();
+                                    iterations++;
+                                    if(iterations>2)
+                                    {
+                                        displayMessage();
+                                        myTimerReQuery.cancel();
+                                        myTimerReQuery.purge();
+                                        openChoice_home();
+                                    }
                                     Query player = FirebaseDatabase.getInstance().getReference().child("PlayerWaitingList").orderByChild("positionInList").limitToFirst(1);
 
                                     //player = databasePlayersWaiting.orderByChild("positionInList").limitToFirst(1);
@@ -137,12 +142,10 @@ public class match_finding extends AppCompatActivity {
 
                                                         //Good choice
                                                         if (newplayerID.compareTo(userid) != 0  && !inUse && newplayerID != null)
-                                                        {//&& newplayerID != null may be a problem
+                                                        {
 
-                                                            //##################################
-                                                            //Conditions from above need to be read through and adjusted
-                                                            //##################################
-                                                            //**Need to set a condition if player is null wait 1 second then search again -> ie cant find partner imediately
+
+
                                                             //find new players user data with id
                                                             DatabaseReference newPlayer = databaseUsers.child(newplayerID);
                                                             //Generate unique id for game
@@ -166,15 +169,10 @@ public class match_finding extends AppCompatActivity {
                                                             newGame.setPlayer1Topics("0");
                                                             newGame.setPlayer2Topics("0");
 
-                                                            //Old object
-                                                            //game(gameID, true, false, emptystages, userid, newplayerID, emptytopic);
-                                                            //In game set to true=1
+
                                                             currentPlayer.child("inGame").setValue(1);
                                                             newPlayer.child("inGame").setValue(1);
-//                                                            DatabaseReference newPlayerInGame = databaseUsers.child(newplayerID).child("inGame");
-//                                                            newPlayerInGame.setValue(true);
-
-
+//
                                                             //Saving the new created game
                                                             //databaseUsers.child(userid).setValue(newUser);
                                                             databaseCurrentGames.child(gameID).setValue(newGame);
@@ -190,8 +188,6 @@ public class match_finding extends AppCompatActivity {
                                                             myTimerReQuery.purge();
 
                                                             opentopic_vote();
-                                                            //openA1_lead_debate();
-                                                            //opentopic_vote();
 
 
                                                         }
@@ -255,30 +251,17 @@ public class match_finding extends AppCompatActivity {
                             databasePlayersWaiting.child(stringCurrentPosition).setValue(evenPlayer);
                             //On data change of inGame Value to true start new activity
 
-
-
                             currentPlayer.child("inGame").addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     //if in game is true move to next screen
 
-//                                    for (DataSnapshot messageSnapshot : dataSnapshot.getChildren()) {
-//                                        inGame = (String) messageSnapshot.child("inGame").getValue();
-//                                        Log.i("#######################", messageSnapshot.toString());
-//
-//                                    }
                                     Long inGame= (Long) dataSnapshot.getValue();
                                     String stringInGame = Long.toString(inGame);
 
-                                    //Log.i("#######################", dataSnapshot.getValue().toString());
                                     if (stringInGame.equals("1")) {
                                         opentopic_vote();
-                                        //openB1_close_debate();
-                                        //
                                     }
-
-
-
 
                                 }
 
@@ -287,7 +270,6 @@ public class match_finding extends AppCompatActivity {
 
                                 }
                             });
-
 
                         }
 
@@ -309,15 +291,16 @@ public class match_finding extends AppCompatActivity {
 
 
 
-        //*2*Once Player is found match created and Topic chosen*//
-
-
-
     }
 
     @Override
     public void onBackPressed() {
-
+        if (playerCurrentPosition%2==0){
+            String a= ""+playerCurrentPosition;
+            databasePlayersWaiting.child(a).removeValue();
+        }
+        Intent intent = new Intent(this, choice_home.class);
+        startActivity(intent);
     }
 
     public void opentopic_vote(){
@@ -330,4 +313,17 @@ public class match_finding extends AppCompatActivity {
 
         startActivity(intent);
     }
+    public void openChoice_home(){
+
+
+        Intent intent = new Intent(this, choice_home.class);
+        startActivity(intent);
+    }
+    public void displayMessage(){
+
+
+        Toast.makeText(match_finding.this, "There were no players available, please try agin in a little while.", Toast.LENGTH_LONG).show();
+
+    }
+
 }
