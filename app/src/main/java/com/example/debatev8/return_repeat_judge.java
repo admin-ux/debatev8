@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 //import android.util.Log;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -48,6 +49,9 @@ public class return_repeat_judge extends AppCompatActivity {
     DatabaseReference databaseUsers = databaseRoot.child("UsersList");//***
     DatabaseReference databaseTopics = databaseRoot.child("Topics");
     DatabaseReference databaseCurrentGames = databaseRoot.child("CurrentGames");
+
+    FirebaseUser fireUser = FirebaseAuth.getInstance().getCurrentUser();
+    final String userid = fireUser.getUid();
 
     int iterations =0;
     int iterations1 =0;
@@ -245,6 +249,7 @@ public class return_repeat_judge extends AppCompatActivity {
                                                            databaseUsers.child(gameBeingJudged.getPlayer2()).child("r_rvg").setValue(R_avg2);
                                                            databaseUsers.child(gameBeingJudged.getPlayer2()).child("numGamesPlayed").setValue(numGamesPlayed2);
                                                            databaseUsers.child(gameBeingJudged.getPlayer2()).child("totalScore").setValue(totalScore2);
+                                                           //databaseCurrentGames.child(gameBeingJudged.getGameID()).removeValue();
                                                        } else {
                                                            //Add Win to player2
                                                            wins2++;
@@ -276,6 +281,8 @@ public class return_repeat_judge extends AppCompatActivity {
                                                            databaseUsers.child(gameBeingJudged.getPlayer2()).child("r_rvg").setValue(R_avg2);
                                                            databaseUsers.child(gameBeingJudged.getPlayer2()).child("numGamesPlayed").setValue(numGamesPlayed2);
                                                            databaseUsers.child(gameBeingJudged.getPlayer2()).child("totalScore").setValue(totalScore2);
+
+                                                           //databaseCurrentGames.child(gameBeingJudged.getGameID()).removeValue();
                                                        }
                                                    } else {
                                                        if (aTotal != bTotal) {
@@ -307,6 +314,8 @@ public class return_repeat_judge extends AppCompatActivity {
                                                                databaseUsers.child(gameBeingJudged.getPlayer2()).child("r_rvg").setValue(R_avg2);
                                                                databaseUsers.child(gameBeingJudged.getPlayer2()).child("numGamesPlayed").setValue(numGamesPlayed2);
                                                                databaseUsers.child(gameBeingJudged.getPlayer2()).child("totalScore").setValue(totalScore2);
+
+                                                               //databaseCurrentGames.child(gameBeingJudged.getGameID()).removeValue();
                                                            } else {
                                                                //Add Win to player2 (Lesser Points)
                                                                wins2++;
@@ -335,13 +344,35 @@ public class return_repeat_judge extends AppCompatActivity {
                                                                databaseUsers.child(gameBeingJudged.getPlayer2()).child("r_rvg").setValue(R_avg2);
                                                                databaseUsers.child(gameBeingJudged.getPlayer2()).child("numGamesPlayed").setValue(numGamesPlayed2);
                                                                databaseUsers.child(gameBeingJudged.getPlayer2()).child("totalScore").setValue(totalScore2);
-
-
+                                                               //databaseCurrentGames.child(gameBeingJudged.getGameID()).removeValue();
                                                            }
                                                        } else {
                                                            //Add a Tie Game
                                                        }
                                                    }
+                                                   //Incrementing Judge Score
+                                                   Log.d("qqqqqqqqqqqqqqqq","111111111111111111111");
+                                                   databaseUsers.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
+                                                       @Override
+                                                       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                           Log.d("qqqqqqqqqqqqqqqq","222222222222222222222222222");
+                                                           for (DataSnapshot gameInfo : dataSnapshot.getChildren()) {
+                                                               Object js = dataSnapshot.child("judgeScore").getValue();
+                                                               Log.d("qqqqqqqqqqqqqqqq","33333333333333333333");
+                                                               if (iterations2==0&&js!=null) {
+                                                                   Log.d("qqqqqqqqqqqqqqqq","444444444444444444");
+                                                                   int judgeScore = (int) (long) js;
+                                                                   judgeScore=judgeScore+1;
+                                                                   databaseUsers.child(userid).child("judgeScore").setValue(judgeScore);
+                                                               }
+                                                           }
+                                                       }
+
+                                                       @Override
+                                                       public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                       }
+                                                   });
                                                    //*
 
                                                }

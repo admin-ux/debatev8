@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import java.io.Serializable;
 
@@ -50,11 +51,13 @@ public class match_finding extends AppCompatActivity {
     int playerCurrentPosition;
     String newplayerID;
     int iterations=0;
+    int goingBack=0;
     Long newPlayerCurrentPosition;
     boolean newPlayer=false;
     boolean inUse=true;
     String userid;
-
+    TextView warningMessage;
+    TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,10 +65,12 @@ public class match_finding extends AppCompatActivity {
         setContentView(R.layout.finding_match);
 
 
+        title = (TextView) findViewById(R.id.title_finding_match);
+
         FirebaseUser fireUser = FirebaseAuth.getInstance().getCurrentUser();
         final String userid = fireUser.getUid();
         final DatabaseReference currentPlayer =databaseUsers.child(userid);
-
+        goingBack=0;
         databasePlayerPosition.addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
@@ -100,21 +105,17 @@ public class match_finding extends AppCompatActivity {
                                 public void run()
                                 {
                                     //Toast.makeText(match_finding.this, "a", Toast.LENGTH_LONG).show();
-                                    displayMessage();
+                                    //displayMessage();
                                     iterations++;
-                                    if(iterations>2)
+                                    if(iterations>5)
                                     {
-                                        displayMessage();
+                                        goingBack=1;
                                         myTimerReQuery.cancel();
                                         myTimerReQuery.purge();
                                         openChoice_home();
                                     }
                                     Query player = FirebaseDatabase.getInstance().getReference().child("PlayerWaitingList").orderByChild("positionInList").limitToFirst(1);
 
-                                    //player = databasePlayersWaiting.orderByChild("positionInList").limitToFirst(1);
-
-
-                                    //player.addValueEventListener(new ValueEventListener() {
                                     player.addListenerForSingleValueEvent(
 
                                             new ValueEventListener() {
@@ -200,7 +201,7 @@ public class match_finding extends AppCompatActivity {
                                                             }
                                                             catch(Exception e) {
                                                                 //  Block of code to handle errors
-                                                                System.out.println("Player was deleted");
+                                                                //System.out.println("Player was deleted");
                                                             }
 
                                                         }
@@ -231,6 +232,8 @@ public class match_finding extends AppCompatActivity {
 
                             };//Every Second
                             myTimerReQuery.schedule(untilReQuery,0,3000);
+//                            warningMessage.setVisibility(View.VISIBLE);
+//                            title.setVisibility(View.GONE);
 
 
 
@@ -314,16 +317,13 @@ public class match_finding extends AppCompatActivity {
         startActivity(intent);
     }
     public void openChoice_home(){
-
-
         Intent intent = new Intent(this, choice_home.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("goingBack",goingBack);
+        intent.putExtras(bundle);
+
         startActivity(intent);
     }
-    public void displayMessage(){
 
-
-        Toast.makeText(match_finding.this, "There were no players available, please try agin in a little while.", Toast.LENGTH_LONG).show();
-
-    }
 
 }

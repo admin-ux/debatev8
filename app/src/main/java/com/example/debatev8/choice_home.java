@@ -34,7 +34,7 @@ public class choice_home extends AppCompatActivity {
     private Button leaderButton;
 
 
-
+    int goingBack;
 
 
     @Override
@@ -43,7 +43,14 @@ public class choice_home extends AppCompatActivity {
         setContentView(R.layout.home_choice);
 
 
+        if (getIntent().getSerializableExtra("goingBack")!=null){
+            goingBack = (Integer) getIntent().getSerializableExtra("goingBack");
+            if (goingBack==1)
+            {
+                displayMessage();
+            }
 
+        }
         debateButton = (Button) findViewById(R.id.debatestreamButton);
         debateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,5 +95,8 @@ public class choice_home extends AppCompatActivity {
     public void openLeaderBooard(){
         Intent intent = new Intent(this, choice_leaderboards.class);
         startActivity(intent);
+    }
+    public void displayMessage(){
+        Toast.makeText(choice_home.this, "There were no players available, please try agin in a little while.", Toast.LENGTH_LONG).show();
     }
 }

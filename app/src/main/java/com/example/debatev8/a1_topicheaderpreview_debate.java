@@ -88,7 +88,6 @@ public class a1_topicheaderpreview_debate extends AppCompatActivity {
 
                         for (DataSnapshot topicInfo : dataSnapshot.getChildren())
                         {
-                            //Log.i("rrrrrrrrrrrrrrrrrrrrr", "GOT HERE");
 
                             b1_close = "";
 

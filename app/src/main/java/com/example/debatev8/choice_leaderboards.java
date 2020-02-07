@@ -42,7 +42,7 @@ public class choice_leaderboards extends AppCompatActivity {
 
     int iterations =0;
 
-    int totalScore,wins,A_avg,R_avg,numGamesPlayed;
+    int totalScore,wins,A_avg,R_avg,numGamesPlayed,judgeScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,26 +91,27 @@ public class choice_leaderboards extends AppCompatActivity {
                     Object ts = dataSnapshot.child("totalScore").getValue();
                     Object aa = dataSnapshot.child("a_avg").getValue();
                     Object ra = dataSnapshot.child("r_rvg").getValue();
+                    Object js = dataSnapshot.child("judgeScore").getValue();
 
 
 
-
-                    if (iterations==0&&ngp!=null&&w!=null&&ts!=null&&aa!=null&&ra!=null)
+                    if (iterations==0&&ngp!=null&&w!=null&&ts!=null&&aa!=null&&ra!=null&&js!=null)
                     {
                         iterations=1;
 
                         totalScore = (int) (long) ts;
                         wins = (int) (long) w;
                         A_avg = (int) (long) aa;
-
                         R_avg = (int) (long) ra;
                         numGamesPlayed = (int) (long) ngp;
+                        judgeScore = (int) (long) js;
 
 
                         postDebateWins();
                         postDebateTotalScore();
                         postDebateR_avg();
                         postDebateA_avg();
+                        postJudgeScore();
                     }
 
 
@@ -191,6 +192,16 @@ public class choice_leaderboards extends AppCompatActivity {
         if (acc2 != null) {
             Games.getLeaderboardsClient(this, acc2)
                     .submitScore(getString(R.string.debate_leaderboard_respond_average_id), R_avg);
+
+
+        }
+    }
+    private void postJudgeScore ()
+    {
+        GoogleSignInAccount acc2 = GoogleSignIn.getLastSignedInAccount(this);
+        if (acc2 != null) {
+            Games.getLeaderboardsClient(this, acc2)
+                    .submitScore(getString(R.string.judgeleaderboard_id), R_avg);
 
 
         }

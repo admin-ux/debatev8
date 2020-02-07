@@ -145,6 +145,7 @@ public class searching_completed_matches extends AppCompatActivity {
                                 gameBeingJudged.setStages(retrievedDebateStages);
                                 gameBeingJudged.setPlayer1(player1ID);
                                 gameBeingJudged.setPlayer2(player2ID);
+                                gameBeingJudged.setGameID(gameID);
                                 myTimerReQuery.cancel();
                                 myTimerReQuery.purge();
                                 openC1_rate_debate();

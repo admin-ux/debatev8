@@ -192,7 +192,7 @@ public class a1_lead_debate extends AppCompatActivity {
         //Retrieve Topic//Start//
         //TODO CHANGE THIS VALUE TO "choose"
 
-        databaseTopics.child(choose).addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseTopics.child("1").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot topicInfo : dataSnapshot.getChildren())
