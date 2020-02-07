@@ -28,10 +28,15 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
-//Database: Saves User/ Finds User individual ID
-//1 a) Initial -> Stores User Class Object In database
-//1 b) Non-initial -> Gets Users Object
-//
+
+//Description       : This class is the return repeat choice screen for the judge stream
+//Inner Workings    :
+//                  1) Total score, average argument, average response and who won is calculated
+//                  2) All values including games played are read from firebase
+//                  3) New totals are calculated and posted to user profiles on firebase
+//                  Note: the reason it is not directly posted to the leaderboard is because we do not have these
+//                      : users google sign in. After it is posted to firebase, if the userlogs in and navigates to debate_leaderboards
+//                      : the class updates the googles scoreboards
 public class return_repeat_judge extends AppCompatActivity {
 
     Button judgeAgainButton;

@@ -26,10 +26,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.Timer;
 import java.util.TimerTask;
 
+//Description       : This class is the sixth screen of a debate of player two in the debate stream Round 3
+//Inner Workings    :
+//                  1) Reads player 1's opening argument
+//                  2) Waits for 15 seconds for player to give and submit a response
 public class b3_close_debate extends AppCompatActivity {
-    //1 Data is saved to Current Games gamed id
-    //2 Waits for "b"
-
 
 
     String resp_b3;

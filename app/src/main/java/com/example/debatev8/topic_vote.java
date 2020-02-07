@@ -31,16 +31,19 @@ import java.util.TimerTask;
 //2) PLAYER VOTES
 //3) VOTES ARE POSTED
 //4) PLAYER WAITS FOR OTHER PLAYER TO POST VOTES THEN TOPIC IS CALCULATED AND NEXT ACTIVITY IS CALLED
+
+
+
+//Description       : This class is the topic vote algorithm class, finds and stores players votes
+//Inner Workings    :
+//                  1) User picks in order the topics they most want to debate
+//                  2) class wait for other user before continuing
 public class topic_vote extends AppCompatActivity {
-    //1 Data is saved to Current Games gamed id
-    //2 Waits for "b"
 
     Button topic1, topic2, topic3, topic4;
-    //ArrayList<Integer> VotesCast = new ArrayList<Integer>();
     String VotesCastList = "";
     int lenOfArray;
     String gameID;
-    String name;
     game currentGame;
     boolean timer1Ended=false;
     boolean firstloop=true;

@@ -23,15 +23,19 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+
+//Description       : This class is the first screen of a debate of player one in the debate stream Round 1
+//Inner Workings    :
+//                  1) Calculates the chosen topic from topic_vote's currentGames object
+//                  2) Builds currentGames object from firebase
+//                  3) Waits 15 seconds for a response from player if not entered continues to next screen
 public class a1_lead_debate extends AppCompatActivity {
     //1 Data is saved to Current Games gamed id
     //2 Waits for "b"
-
 
 
     String arg_a1;
@@ -46,7 +50,6 @@ public class a1_lead_debate extends AppCompatActivity {
 
     game currentGame;
 
-    //int myvaluesList[];
     int[] myvaluesList = new int[4];
 
     DatabaseReference databaseRoot = FirebaseDatabase.getInstance().getReference();//***
@@ -65,10 +68,6 @@ public class a1_lead_debate extends AppCompatActivity {
         final String userid = fireUser.getUid();
         DatabaseReference realtimeUserProfile =databaseUsers.child(userid);
         currentGame = (game) getIntent().getSerializableExtra("currentGame");
-//        Log.i("bbbbbbbbbbbbbbbbbbbb", currentGame.toString());
-//        Log.i("ccccccccccccccccccc", currentGame.getPlayer1Topics());
-//        Log.i("ddddddddddddddddddd", currentGame.getPlayer2Topics());
-//        Log.i("eeeeeeeeeeeeeeeeeee", currentGame.getGameID());
 
         //Calculate Topic//Start//
 
@@ -82,7 +81,7 @@ public class a1_lead_debate extends AppCompatActivity {
         while (currentGame.getPlayer1Topics().length()>i)
         {
             String num=String.valueOf(i);
-            //Log.i("jjjjjjjjjjjjjjjjjj", num);
+
             if(currentGame.getPlayer1Topics().charAt(i)=='1')
             {
                 one=one+score;
@@ -119,7 +118,7 @@ public class a1_lead_debate extends AppCompatActivity {
         while (currentGame.getPlayer2Topics().length()>i)
         {
             String num2=String.valueOf(i);
-            //Log.i("kkkkkkkkkkkkkkkkkkkkkk", num2);
+
             if(currentGame.getPlayer2Topics().charAt(i)=='1')
             {
                 one=one+score;
@@ -162,7 +161,7 @@ public class a1_lead_debate extends AppCompatActivity {
         while (i<4)
         {
             String num3=String.valueOf(i);
-            //Log.i("lllllllllllllllll", num3);
+
             if (myvaluesList[i]>largestvalue)
             {
                 largest = i;
@@ -178,7 +177,7 @@ public class a1_lead_debate extends AppCompatActivity {
             Random random = new Random();
             int randomInteger = random.nextInt(1);
             String n=String.valueOf(randomInteger);
-            //Log.i("ooooooooooooooooooo", n);
+
             if (randomInteger==1)
             {
                 largest=same;
@@ -188,17 +187,17 @@ public class a1_lead_debate extends AppCompatActivity {
 
         largest++;
         String choose=String.valueOf(largest);
-        //Log.i("nnnnnnnnnnnnnnnnnnnnnnn", choose);
+
         //Calculate Topic//End//a
         //Retrieve Topic//Start//
         //TODO CHANGE THIS VALUE TO "choose"
-        //Log.i("qqqqqqqqqqqqqqqqqqq", databaseTopics.child("1").toString());
+
         databaseTopics.child(choose).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot topicInfo : dataSnapshot.getChildren())
                 {
-                    //Log.i("rrrrrrrrrrrrrrrrrrrrr", "GOT HERE");
+
 
                     String TopicTitle = "";
                     String TopicHeader1 = "";
@@ -302,9 +301,6 @@ public class a1_lead_debate extends AppCompatActivity {
 
             }
         });
-        //Retrieve Topic//End//
-
-
 
     }
 

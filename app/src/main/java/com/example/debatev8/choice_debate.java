@@ -7,7 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-
+//Description       : This class is not used
+//Inner Workings    :
 public class choice_debate extends AppCompatActivity {
 
     Button topicButton;

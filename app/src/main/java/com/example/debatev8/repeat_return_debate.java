@@ -16,10 +16,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-//Database: Saves User/ Finds User individual ID
-//1 a) Initial -> Stores User Class Object In database
-//1 b) Non-initial -> Gets Users Object
-//
+//Description       : This class is the return repeat choice screen for the debate stream
+//Inner Workings    :
+//                  1) User picks between debate again or quit
 public class repeat_return_debate extends AppCompatActivity {
 
     private Button debateAgainButton;

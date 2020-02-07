@@ -4,6 +4,8 @@ import java.io.Serializable;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
+//Description       : This class is for the stage object
+//Inner Workings    :
 public class stage implements Serializable{
     private String TopicHeader;
     private String Arg;

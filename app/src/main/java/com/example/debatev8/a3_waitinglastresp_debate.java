@@ -28,11 +28,11 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+//Description       : This class is the seventh screen of a debate of player one in the debate stream Round 3
+//Inner Workings    :
+//                  1) Displays player 2 Response from Round 3
+//                  2) Waits for user to click continue
 public class a3_waitinglastresp_debate extends AppCompatActivity {
-    //1 Data is saved to Current Games gamed id
-    //2 Waits for "b"
-
-
 
     String b3_close;
 

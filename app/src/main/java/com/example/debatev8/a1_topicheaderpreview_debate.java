@@ -28,6 +28,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
+//Description       : This class is the second screen of a debate of player one in the debate stream Round 1
+//Inner Workings    :
+//                  1) Gets and displays next rounds sub topic
+//                  2) Waits for player 2 Response from Round 1
 public class a1_topicheaderpreview_debate extends AppCompatActivity {
     //1 Data is saved to Current Games gamed id
     //2 Waits for "b"

@@ -18,6 +18,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
+//Description       : This class is the home selection screen
+//Inner Workings    :
+//                  1) User selects from the 3 streams
+
+
 //Database: Saves User/ Finds User individual ID
 //1 a) Initial -> Stores User Class Object In database
 //1 b) Non-initial -> Gets Users Object

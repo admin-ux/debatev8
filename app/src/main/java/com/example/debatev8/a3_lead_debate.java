@@ -28,9 +28,12 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+//Description       : This class is the fifth screen of a debate of player one in the debate stream Round 3
+//Inner Workings    :
+//                  1) Displays sub topic for round 3
+//                  2) Waits for 15 seconds for a response if not entered continues to next screen
 public class a3_lead_debate extends AppCompatActivity {
-    //1 Data is saved to Current Games gamed id
-    //2 Waits for "b"
+
 
 
 
@@ -63,12 +66,7 @@ public class a3_lead_debate extends AppCompatActivity {
         final String userid = fireUser.getUid();
         DatabaseReference realtimeUserProfile =databaseUsers.child(userid);
         currentGame = (game) getIntent().getSerializableExtra("currentGame");
-//        Log.i("bbbbbbbbbbbbbbbbbbbb", currentGame.toString());
-//        Log.i("ccccccccccccccccccc", currentGame.getPlayer1Topics());
-//        Log.i("ddddddddddddddddddd", currentGame.getPlayer2Topics());
-//        Log.i("eeeeeeeeeeeeeeeeeee", currentGame.getGameID());
 
-        //Calculate Topic//Start//
 
 
         arg_a3Input = (EditText) findViewById(R.id.arg_a3);
@@ -120,15 +118,6 @@ public class a3_lead_debate extends AppCompatActivity {
     }
 
 
-
-
-
-
-
-//    private void displayText(String text){
-//        Toast.makeText(a3_lead_debate.this, text, Toast.LENGTH_LONG).show();
-//
-//    }
     public void OpenA3_waitinglastresp_debate(){
         Intent intent = new Intent(this, a3_waitinglastresp_debate.class);
         Bundle bundle = new Bundle();

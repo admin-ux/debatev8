@@ -26,9 +26,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ValueEventListener;
 
+//Description       : This class is the home choice screen for leaderboards
+//Inner Workings    :
+//                  1) User picks between judge and debate leaderboards
+
 public class choice_leaderboards extends AppCompatActivity {
-    //1 Data is saved to Current Games gamed id
-    //2 Waits for "b"
+
 
     DatabaseReference databaseRoot = FirebaseDatabase.getInstance().getReference();//***
     DatabaseReference databaseUsers = databaseRoot.child("UsersList");//***
@@ -102,16 +105,12 @@ public class choice_leaderboards extends AppCompatActivity {
 
                         R_avg = (int) (long) ra;
                         numGamesPlayed = (int) (long) ngp;
-//                        totalScore = (Integer) ngp;
-//                        wins = (Integer) w;
-//                        A_avg = (Integer) ts;
-//                        R_avg = (Integer) aa;
-//                        numGamesPlayed = (Integer) ra;
 
-                        //postDebateWins();
+
+                        postDebateWins();
                         postDebateTotalScore();
-                        //postDebateR_avg();
-                        //postDebateA_avg();
+                        postDebateR_avg();
+                        postDebateA_avg();
                     }
 
 

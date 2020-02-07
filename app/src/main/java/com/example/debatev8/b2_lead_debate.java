@@ -28,11 +28,11 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+//Description       : This class is the third screen of a debate of player two in the debate stream Round 2
+//Inner Workings    :
+//                  1) Displays sub topic for round 2
+//                  2) Waits for 15 seconds for a response if not entered continues to next screen
 public class b2_lead_debate extends AppCompatActivity {
-    //1 Data is saved to Current Games gamed id
-    //2 Waits for "b"
-
-
 
     String arg_b2;
 
@@ -94,8 +94,7 @@ public class b2_lead_debate extends AppCompatActivity {
 
 
                                 currentGame.getStages().getStage2().setArg(arg_b2);
-                                //Log.i("fffffffffffffffffff", databaseCurrentGames.child(currentGame.getGameID()).child("stages").child("stage2").child("arg").toString());
-                                //Log.i("*****************", currentGame.getStages().getStage2().getArg());
+
                                 databaseCurrentGames.child(currentGame.getGameID()).child("stages").child("stage2").child("arg").setValue(currentGame.getStages().getStage2().getArg());
                                 myArgTimer.cancel();
                                 myArgTimer.purge();
@@ -108,7 +107,6 @@ public class b2_lead_debate extends AppCompatActivity {
                             myArgTimer.cancel();
                             myArgTimer.purge();
                             currentGame.getStages().getStage2().setArg("I could not think of an argument");
-                            //Log.i("gggggggggggggggggggggg", currentGame.getGameID());
                             databaseCurrentGames.child(currentGame.getGameID()).child("stages").child("stage2").child("arg").setValue(currentGame.getStages().getStage2().getArg());
                             openB2_topicheaderpreview_debate();
                         }

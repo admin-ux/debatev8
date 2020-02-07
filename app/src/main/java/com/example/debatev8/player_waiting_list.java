@@ -4,6 +4,8 @@ package com.example.debatev8;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
+//Description       : This class is the class that is used to build firebase waiting list object
+//Inner Workings    :
 public class player_waiting_list {
     private String UserID;
     private int PositionInList;

@@ -4,6 +4,8 @@ package com.example.debatev8;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
+//Description       : This class is not used
+
 public class review_stage {
     private int Debater1Review;
     private int Debater2Review;

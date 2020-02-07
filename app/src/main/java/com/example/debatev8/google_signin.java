@@ -30,8 +30,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.PlayGamesAuthProvider;
 
-import com.google.firebase.analytics.FirebaseAnalytics;
-import java.net.URI;
+
+
+//Description       : This class is the signin page
+//Inner Workings    :
+//                  1) User is signed into google games and google play
 
 public class google_signin extends AppCompatActivity {
     private SignInButton signInButton;
@@ -41,10 +44,6 @@ public class google_signin extends AppCompatActivity {
     private FirebaseAuth mAuth;
     //    private Button btnSignOut, showLeaderBoard;
     private int RC_SIGN_IN = 1;
-//    private Games games;
-//    private LeaderboardsClient leaderboardsClient;
-//    private FirebaseAnalytics mFirebaseAnalytics;
-//    private GoogleSignInAccount acc;
 
 
     @Override
@@ -54,37 +53,17 @@ public class google_signin extends AppCompatActivity {
         setContentView(R.layout.signin_google);
 
         signInButton = (SignInButton) findViewById(R.id.signInGoogle);
-        //signInButton.setColorScheme(SignInButton.COLOR_DARK);
-        //signInButton.setStyle(0,0);
+
         mAuth = FirebaseAuth.getInstance();
-        // showLeaderBoard = findViewById(R.id.showLeaderBoard);
-        //btnSignOut = findViewById(R.id.signOutGoogle);
-//
+
         GoogleSignInOptions gso = new GoogleSignInOptions
                 .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestScopes(Games.SCOPE_GAMES_LITE)
                 .requestIdToken(getString(R.string.default_web_client_id))
-//                .requestServerAuthCode(getString(R.string.default_web_client_id))
-
                 .requestEmail()
                 .build();
-//        GoogleSignInOptions gso = new GoogleSignInOptions
-//                .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-//                .requestScopes(Games.SCOPE_GAMES_LITE)
-//                .requestEmail()
-//                .build();
 
-//        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN)
-//                .requestServerAuthCode(getString(R.string.default_web_client_id))
-//                .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
-//        Bundle bundle = new Bundle();
-//        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.LOGIN, bundle);
-
-
-//        leaderboardsClient.getLeaderboardsClient(this,gso);
-//        leaderboardsClient.getAllLeaderboardsIntent();
 
 
         signInButton.setOnClickListener(new View.OnClickListener() {
@@ -95,35 +74,12 @@ public class google_signin extends AppCompatActivity {
 
             }
         });
-//        showLeaderBoard.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                showLeaderboard();
-////                Bundle bundle = new Bundle();
-////                bundle.putLong(FirebaseAnalytics.Param.SCORE, score);
-////                bundle.putString("leaderboard_id", getString(R.string.leaderboard_id));
-////                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.POST_SCORE, bundle);
-////                mFirebaseAnalytics.getFirebaseInstanceId().
-//
-//            }
-//        });
-
-
-//        btnSignOut.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                mGoogleSignInClient.signOut();
-////                Toast.makeText(google_signin3_yt_easylearn.this,"You are Logged Out",Toast.LENGTH_SHORT).show();
-//                btnSignOut.setVisibility(View.INVISIBLE);
-//            }
-//        });
 
 
     }
 
     private void signIn(){
-//        GoogleSignInClient signInClient = GoogleSignIn.getClient(this,
-//                GoogleSignInOptions.DEFAULT_SIGN_IN);
+
 
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
@@ -142,17 +98,13 @@ public class google_signin extends AppCompatActivity {
         try{
 
             GoogleSignInAccount acc = completedTask.getResult(ApiException.class);
-            //Toast.makeText(google_signin3_yt_easylearn.this,"Signed In Successfully",Toast.LENGTH_SHORT).show();
-
             FirebaseGoogleAuth(acc);
 
 
 
         }
         catch (ApiException e){
-//            Toast.makeText(google_signin3_yt_easylearn.this,"Sign In Failed",Toast.LENGTH_SHORT).show();
-//            Log.i("aaaaaaaaaaaaaaaaaaaaa", e.toString());
-//            Log.i("bbbbbbbbbbbbbbbbbbbbb", "Sign in Result = "+e.getStatusCode());
+
             FirebaseGoogleAuth(null);
         }
     }
@@ -178,26 +130,10 @@ public class google_signin extends AppCompatActivity {
                 }
             });
         }
-//        else{
-//            Toast.makeText(google_signin3_yt_easylearn.this, "acc failed", Toast.LENGTH_SHORT).show();
-//        }
+
     }
 
-//    private void updateUI(FirebaseUser fUser){
-//        btnSignOut.setVisibility(View.VISIBLE);
-//        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-//        if(account !=  null){
-//            String personName = account.getDisplayName();
-//            String personGivenName = account.getGivenName();
-//            String personFamilyName = account.getFamilyName();
-//            String personEmail = account.getEmail();
-//            String personId = account.getId();
-//            Uri personPhoto = account.getPhotoUrl();
-//
-//            Toast.makeText(google_signin3_yt_easylearn.this,personName + personEmail ,Toast.LENGTH_SHORT).show();
-//        }
 
-//    }
 
     public void openChoice_home(){
         Intent intent = new Intent(this, choice_home.class);

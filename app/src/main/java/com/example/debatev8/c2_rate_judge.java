@@ -22,6 +22,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Timer;
 import java.util.TimerTask;
 
+//Description       : This class is the second screen of the judge stream
+//Inner Workings    :
+//                  1) Waits for a judge to select scores for each player
+//                  2) Adds scores to gameBeingJudged object
 public class c2_rate_judge extends AppCompatActivity {
 
     SeekBar seekbar1,seekbar2;

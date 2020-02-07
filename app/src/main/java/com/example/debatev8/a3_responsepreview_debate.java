@@ -23,11 +23,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
+//Description       : This class is the sixth screen of a debate of player one in the debate stream Round 3
+//Inner Workings    :
+//                  1) Gets and displays players previous response from last round
+//                  2) Waits for player 2 Intro Argument for Round 3
 public class a3_responsepreview_debate extends AppCompatActivity {
     //1 Data is saved to Current Games gamed id
     //2 Waits for "b"

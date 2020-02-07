@@ -16,6 +16,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
+//Description       : This class is the algorithm that searches for completed games in the currentGames list to judge
+//Inner Workings    :
+//                  1) creates gameBeingJudged object
+//                  2) Fills gameBeingJudged object with firebase values of the found game
 public class searching_completed_matches extends AppCompatActivity {
 
     Boolean beenJudged;

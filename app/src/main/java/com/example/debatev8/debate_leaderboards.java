@@ -26,9 +26,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ValueEventListener;
 
+//Description       : This class is the choice screen for debate leaderboards
+//Inner Workings    :
+//                  1) User picks a debate leaderboard
+//                  2) Updates all debate google games leaderboards
 public class debate_leaderboards extends AppCompatActivity {
-    //1 Data is saved to Current Games gamed id
-    //2 Waits for "b"
+
 
     DatabaseReference databaseRoot = FirebaseDatabase.getInstance().getReference();//***
     DatabaseReference databaseUsers = databaseRoot.child("UsersList");//***

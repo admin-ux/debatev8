@@ -2,6 +2,10 @@ package com.example.debatev8;
 
 import java.sql.Struct;
 import java.io.Serializable;
+
+//Description       : This class is an object used in Game craetion
+//Inner Workings    :
+
 public class debate_stages implements Serializable{
     private  String TopicTitle;
     private review_stage ReviewStage;

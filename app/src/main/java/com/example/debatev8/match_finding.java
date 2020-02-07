@@ -9,11 +9,11 @@ import android.os.Handler;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+
 import java.io.Serializable;
 
 import com.google.firebase.auth.FirebaseUser;
@@ -25,13 +25,19 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
+//Description       : This class is the match making algorithm that finds other users and builds debates
+//Inner Workings    :
+//                  1) PlayerPosition is checked on firebase
+//                  2) If Even added to waiting list
+//                  3) If odd search waiting list
+//                  4) If good match is found by querying firebase the odd player -> player 1 creates a game and adds player 2 to it
+//                  5) Player 2 is removed from waiting list
+//                  6) If even waits to be found by even player and added to a game
 public class match_finding extends AppCompatActivity {
-    //1 Data is saved to Current Games gamed id
-    //2 Waits for "b"
+
 
     DatabaseReference databaseRoot = FirebaseDatabase.getInstance().getReference();//***
     DatabaseReference databaseUsers = databaseRoot.child("UsersList");//***
@@ -43,11 +49,8 @@ public class match_finding extends AppCompatActivity {
     int playerCurrentPosition;
     String newplayerID;
     Long newPlayerCurrentPosition;
-    int count=0;
     boolean newPlayer=false;
-    boolean player_InUse;
     boolean inUse=true;
-    String inGame;
     //***********************************************************************************************Must save query data
     //Query player = databasePlayersWaiting.orderByValue().limitToLast(1);
    //**********************************************************************************************Have to get player there longest
@@ -72,12 +75,10 @@ public class match_finding extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot)
                     {
-                        Log.i("!!!!!!!!!!!!!!!", "*************************************");
                         final Long position = dataSnapshot.getValue(Long.class);
 
                         //longPlayer = position.getPlayerPosition();
                         playerCurrentPosition = position.intValue() + 1;
-                        Log.i("cccccccccccccc", String.valueOf(playerCurrentPosition));
 
                         //Adding 1 to position because 1 user is now added
 
@@ -89,10 +90,9 @@ public class match_finding extends AppCompatActivity {
 
                         if (playerCurrentPosition % 2 != 0)
                         {
-                            displayText("Should Add Game");
+//                            displayText("Should Add Game");
 
 
-                            Log.i("QQQQQQQQQQQQ", "right outside of loop");
 
                             //This timer is used to rerun this section of code every second
                             //It will be used to re-query incase our previous query was a "Bad Choice"
@@ -107,8 +107,7 @@ public class match_finding extends AppCompatActivity {
                                     Query player = FirebaseDatabase.getInstance().getReference().child("PlayerWaitingList").orderByChild("positionInList").limitToFirst(1);
 
                                     //player = databasePlayersWaiting.orderByChild("positionInList").limitToFirst(1);
-                                    Log.i("wwwwwwwwwwwwwwwwww", "1 iteration");
-                                    Log.d("&&&&&&PLAYER&&&&&&&", player.toString());
+
 
                                     //player.addValueEventListener(new ValueEventListener() {
                                     player.addListenerForSingleValueEvent(
@@ -118,12 +117,7 @@ public class match_finding extends AppCompatActivity {
                                                 @Override
 
                                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                                    //TODO Will be removed just for developer benefit
-                                                    if (dataSnapshot.exists()) {
-                                                        Log.i("xxxxxxxxx", "it exists");
-                                                    }
 
-                                                    Log.i("RRRRRRRRRRRRRRRRRR", "Inside Data Snap");
                                                     for (DataSnapshot userInPlayersWaiting : dataSnapshot.getChildren()) {
                                                         newPlayerCurrentPosition = (Long) userInPlayersWaiting.child("positionInList").getValue();
                                                         newplayerID = (String) userInPlayersWaiting.child("userID").getValue();
@@ -132,15 +126,6 @@ public class match_finding extends AppCompatActivity {
 
                                                     String stringNewPlayerCurrentPosition = Long.toString(newPlayerCurrentPosition);
 
-                                                    Log.i("aaaaaaaaaaaaaaaaaaaa", "newplayerID________________________________________________________________________________________________");
-                                                    Log.i("aaaaaaaaaaaaaaaaaaaa", newplayerID);
-                                                    Log.i("aaaaaaaaaaaaaaaaaaaa", "newPlayerCurrentPosition________________________________________________________________________________________________");
-                                                    Log.i("aaaaaaaaaaaaaaaaaaaa", stringNewPlayerCurrentPosition);
-                                                    Log.i("bbbbbbbbbbbbbbbbbbbb", "currentuserID|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
-                                                    Log.i("bbbbbbbbbbbbbbbbbbbb", userid);
-                                                    //String newplayerID = hashNewPlayerID.get(0);
-
-                                                    Log.i("LLLLLLLL", "Leaving the loop");
                                                     newPlayer = true;
 
 
@@ -150,11 +135,10 @@ public class match_finding extends AppCompatActivity {
                                                     {
                                                        databasePlayersWaiting.child(stringNewPlayerCurrentPosition).child("inUse").setValue(true);
 
-                                                        Log.i("yyyyyyyyyyyyyy", "Not In Use");
                                                         //Good choice
                                                         if (newplayerID.compareTo(userid) != 0  && !inUse && newplayerID != null)
                                                         {//&& newplayerID != null may be a problem
-                                                            Log.i("gggggggggggggggg", "Good Choice");
+
                                                             //##################################
                                                             //Conditions from above need to be read through and adjusted
                                                             //##################################
@@ -196,8 +180,7 @@ public class match_finding extends AppCompatActivity {
                                                             databaseCurrentGames.child(gameID).setValue(newGame);
                                                             //game(String gameID, boolean gameFull, boolean beenJudged, debate_stages stages, String player1, String player2, topic topicChoosen)
 
-                                                            //TODO May switch to a query
-                                                            Log.i("KKKKKKKKKKKKKK", stringNewPlayerCurrentPosition);
+
                                                             databasePlayersWaiting.child(stringNewPlayerCurrentPosition).removeValue();
                                                             //Query removingNewPlayer = FirebaseDatabase.getInstance().getReference().child("PlayerWaitingList").equalTo(position);
 
@@ -205,11 +188,10 @@ public class match_finding extends AppCompatActivity {
                                                             //TODO Remove listener should be placed here
                                                             myTimerReQuery.cancel();
                                                             myTimerReQuery.purge();
-                                                            Log.i("CCCCCCCCCCCCCCCC", "After listener removed");
+
                                                             opentopic_vote();
                                                             //openA1_lead_debate();
                                                             //opentopic_vote();
-                                                            Log.i("mmmmmmmmmmmmmmmmmm", "should not be here 3g");
 
 
                                                         }
@@ -232,11 +214,7 @@ public class match_finding extends AppCompatActivity {
 
                                                     }
 
-                                                    else
-                                                    {
 
-
-                                                    }
 
 
                                                 }
@@ -244,7 +222,7 @@ public class match_finding extends AppCompatActivity {
                                                 @Override
                                                 public void onCancelled(@NonNull DatabaseError databaseError) {
                                                     //Should not result in a database error -> should keep searching until list contains
-                                                    Log.i("sssssssssssssss", "should not be here");
+
 
                                                 }
                                             });
@@ -267,8 +245,8 @@ public class match_finding extends AppCompatActivity {
                         //May need to switch the names of the
                         else
                         {
-                            displayText("Avoiding Everything");
-                            Log.i("zzzzzzzzzzzzzzzzzzzz", "Should be added +++++++++++++++++++++++++++++++++++++");
+                            //displayText("Avoiding Everything");
+
                             //player_InUse=false;
                             player_waiting_list evenPlayer = new player_waiting_list(userid, playerCurrentPosition, false);
                             String stringCurrentPosition = "";
@@ -276,8 +254,7 @@ public class match_finding extends AppCompatActivity {
                             //databasePlayersWaiting.setValue(userid);
                             databasePlayersWaiting.child(stringCurrentPosition).setValue(evenPlayer);
                             //On data change of inGame Value to true start new activity
-                            Log.i("bbbbbbbbbbbbbbbbbbbb", "currentuserID|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
-                            Log.i("bbbbbbbbbbbbbbbbbbbb", userid);
+
 
 
                             currentPlayer.child("inGame").addValueEventListener(new ValueEventListener() {
@@ -292,16 +269,14 @@ public class match_finding extends AppCompatActivity {
 //                                    }
                                     Long inGame= (Long) dataSnapshot.getValue();
                                     String stringInGame = Long.toString(inGame);
-                                    Log.i("(((((((((((((((((((((((", stringInGame);
+
                                     //Log.i("#######################", dataSnapshot.getValue().toString());
                                     if (stringInGame.equals("1")) {
                                         opentopic_vote();
                                         //openB1_close_debate();
                                         //
                                     }
-                                    else{
-                                        Log.i("bbbbbbbbbbbbbbbbbbbb", "problem");
-                                    }
+
 
 
 
@@ -339,10 +314,7 @@ public class match_finding extends AppCompatActivity {
 
 
     }
-    private void displayText(String text){
-        Toast.makeText(match_finding.this, text, Toast.LENGTH_LONG).show();
 
-    }
     @Override
     public void onBackPressed() {
 

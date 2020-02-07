@@ -1,6 +1,8 @@
 package com.example.debatev8;
 import java.io.Serializable;
 
+//Description       : This class is for the topic object creation
+//Inner Workings    :
 public class topic implements Serializable{
     private String TopicTitle;
     private String TopicHeader1;

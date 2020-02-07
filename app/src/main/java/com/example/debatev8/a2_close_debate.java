@@ -28,11 +28,11 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+//Description       : This class is the forth screen of a debate of player one in the debate stream Round 2
+//Inner Workings    :
+//                  1) Reads player 2's opening argument
+//                  2) Waits for 15 seconds for player to give and submit a response
 public class a2_close_debate extends AppCompatActivity {
-    //1 Data is saved to Current Games gamed id
-    //2 Waits for "b"
-
-
 
     String resp_a2;
 

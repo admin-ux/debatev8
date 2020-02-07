@@ -16,7 +16,7 @@
     <meta-data android:name="com.google.android.gms.version"
         android:value="@integer/google_play_services_version"/>
 
-    <activity android:name=".google_signin3_yt_easylearn">
+    <activity android:name=".google_signin">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 
@@ -28,7 +28,6 @@
 
     <activity android:name=".choice_home" />
     <activity android:name=".match_finding" android:noHistory="true" />
-    <activity android:name=".choice_debate" />
     <activity android:name=".topic_vote" android:noHistory="true"/>
     <activity android:name=".a1_lead_debate" />
     <activity android:name=".a1_topicheaderpreview_debate" />
@@ -43,7 +42,6 @@
     <activity android:name=".a3_waitinglastresp_debate" />
     <activity android:name=".a3_responsepreview_debate" />
     <activity android:name=".b3_close_debate" />
-    <activity android:name=".rating_opponent_ab_debate" />
     <activity android:name=".repeat_return_debate" />
 
     <activity android:name=".searching_completed_matches"/>

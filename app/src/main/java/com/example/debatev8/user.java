@@ -4,6 +4,8 @@ package com.example.debatev8;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
+//Description       : This class is used to create the user object
+//Inner Workings    :
 public class user {
     private String Name;
     private String Email;

@@ -28,6 +28,10 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+//Description       : This class is the third screen of a debate of player one in the debate stream Round 1
+//Inner Workings    :
+//                  1) Gets and displays players previous response from last round
+//                  2) Waits for player 2 Intro Argument for Round 2
 public class a1_responsepreview_debate extends AppCompatActivity {
     //1 Data is saved to Current Games gamed id
     //2 Waits for "b"
@@ -86,7 +90,6 @@ public class a1_responsepreview_debate extends AppCompatActivity {
 
                         for (DataSnapshot topicInfo : dataSnapshot.getChildren())
                         {
-                            //Log.i("rrrrrrrrrrrrrrrrrrrrr", "GOT HERE");
 
                             b2_open = "";
 
@@ -124,13 +127,6 @@ public class a1_responsepreview_debate extends AppCompatActivity {
         //Retrieve Topic//End//
 
     }
-
-
-
-
-
-
-
 
 
     public void openA2_close_debate(){

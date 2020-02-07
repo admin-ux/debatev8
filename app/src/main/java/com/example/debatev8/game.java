@@ -2,8 +2,8 @@ package com.example.debatev8;
 import java.io.Serializable;
 
 
-
-
+//Description       : This class is the game object that structures debates
+//Inner Workings    :
 public class game implements Serializable{
 
     private String GameID;
