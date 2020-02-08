@@ -125,13 +125,6 @@ public class b1_close_debate extends AppCompatActivity {
     }
 
 
-
-
-
-//    private void displayText(String text){
-//        Toast.makeText(b1_close_debate.this, text, Toast.LENGTH_LONG).show();
-//
-//    }
     public void openB2_lead_debate(){
         Intent intent = new Intent(this, b2_lead_debate.class);
         Bundle bundle = new Bundle();

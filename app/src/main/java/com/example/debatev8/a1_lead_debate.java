@@ -268,7 +268,6 @@ public class a1_lead_debate extends AppCompatActivity {
                                 arg_a1 = arg_a1Input.getText().toString();
                                 currentGame.getStages().getStage1().setArg(arg_a1);
 
-                                displayText(arg_a1);
 
                                 currentGame.getStages().getStage1().setArg(arg_a1);
                                 databaseCurrentGames.child(currentGame.getGameID()).child("stages").child("stage1").child("arg").setValue(currentGame.getStages().getStage1().getArg());
@@ -303,10 +302,7 @@ public class a1_lead_debate extends AppCompatActivity {
 
 
 
-    private void displayText(String text){
-        Toast.makeText(a1_lead_debate.this, text, Toast.LENGTH_LONG).show();
 
-    }
     public void openA1_topicheaderpreview_debate(){
         Intent intent = new Intent(this, a1_topicheaderpreview_debate.class);
         Bundle bundle = new Bundle();
