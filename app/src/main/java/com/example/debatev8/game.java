@@ -13,7 +13,7 @@ public class game implements Serializable{
     private debate_stages Stages;
     private String Player1;
     private String Player2;
-    private topic TopicChosen;
+//    private topic TopicChosen;
     private String Player1Topics;
     private String Player2Topics;
 
@@ -26,7 +26,7 @@ public class game implements Serializable{
     public game() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
-    public game(String gameID, boolean gameFull, boolean beenJudged, boolean gameFinished, debate_stages stages, String player1, String player2, topic topicChosen, String player1Topics, String player2Topics, Integer totalScore, Integer wins, Integer a_avg, Integer r_avg, Integer numGamesPlayed) {
+    public game(String gameID, boolean gameFull, boolean beenJudged, boolean gameFinished, debate_stages stages, String player1, String player2, String player1Topics, String player2Topics, Integer totalScore, Integer wins, Integer a_avg, Integer r_avg, Integer numGamesPlayed) {
         GameID = gameID;
         GameFull = gameFull;
         BeenJudged = beenJudged;
@@ -34,7 +34,7 @@ public class game implements Serializable{
         Stages = stages;
         Player1 = player1;
         Player2 = player2;
-        TopicChosen = topicChosen;
+//        TopicChosen = topicChosen;
         Player1Topics = player1Topics;
         Player2Topics = player2Topics;
         TotalScore = totalScore;
@@ -101,13 +101,13 @@ public class game implements Serializable{
         Player2 = player2;
     }
 
-    public topic getTopicChoosen() {
-        return TopicChosen;
-    }
-
-    public void setTopicChoosen(topic topicChoosen) {
-        TopicChosen = topicChoosen;
-    }
+//    public topic getTopicChoosen() {
+//        return TopicChosen;
+//    }
+//
+//    public void setTopicChoosen(topic topicChoosen) {
+//        TopicChosen = topicChoosen;
+//    }
 
     public String getPlayer1Topics ()
     {
@@ -128,13 +128,13 @@ public class game implements Serializable{
         Player2Topics = player2topics;
     }
 
-    public topic getTopicChosen() {
-        return TopicChosen;
-    }
-
-    public void setTopicChosen(topic topicChosen) {
-        TopicChosen = topicChosen;
-    }
+//    public topic getTopicChosen() {
+//        return TopicChosen;
+//    }
+//
+//    public void setTopicChosen(topic topicChosen) {
+//        TopicChosen = topicChosen;
+//    }
 
     public Integer getTotalScore() {
         return TotalScore;

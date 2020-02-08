@@ -16,7 +16,7 @@
     <meta-data android:name="com.google.android.gms.version"
         android:value="@integer/google_play_services_version"/>
 
-    <activity android:name=".login">
+    <activity android:name=".google_signin">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 
@@ -24,7 +24,7 @@
       </intent-filter>
     </activity>
 
-    <activity android:name=".google_signin" />
+    <activity android:name=".login" />
 
     <activity android:name=".choice_home" />
     <activity android:name=".match_finding" android:noHistory="true" />
@@ -52,7 +52,7 @@
 
     <activity android:name=".choice_leaderboards" />
     <activity android:name=".debate_leaderboards" />
-    <activity android:name=".judge_leaderboards" />
+
   </application>
 
 </manifest>

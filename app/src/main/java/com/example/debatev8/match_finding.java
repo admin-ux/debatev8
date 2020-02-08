@@ -47,7 +47,7 @@ public class match_finding extends AppCompatActivity {
     DatabaseReference databasePlayersWaiting = databaseRoot.child("PlayerWaitingList");
     DatabaseReference databaseCurrentGames = databaseRoot.child("CurrentGames");
 
-    game newGame = new game("0", false, false,false, null, "0", "0", null, "0", "0",0,0,0,0,0);
+    game newGame = new game("0", false, false,false, null, "0", "0", "0", "0",0,0,0,0,0);
     int playerCurrentPosition;
     String newplayerID;
     int iterations=0;
@@ -166,7 +166,7 @@ public class match_finding extends AppCompatActivity {
                                                             newGame.setStages(emptystages);
                                                             newGame.setPlayer1(userid);
                                                             newGame.setPlayer2(newplayerID);
-                                                            newGame.setTopicChoosen(emptytopic);
+                                                            //newGame.setTopicChoosen(emptytopic);
                                                             newGame.setPlayer1Topics("0");
                                                             newGame.setPlayer2Topics("0");
 

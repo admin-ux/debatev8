@@ -187,7 +187,7 @@ public class b1_topicheaderpreview_debate extends AppCompatActivity {
         //Retrieve Topic//Start//
         //TODO CHANGE THIS VALUE TO "choose"
 
-        databaseTopics.child("1").addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseTopics.child(choose).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot topicInfo : dataSnapshot.getChildren())

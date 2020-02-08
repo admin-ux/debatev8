@@ -192,7 +192,7 @@ public class a1_lead_debate extends AppCompatActivity {
         //Retrieve Topic//Start//
         //TODO CHANGE THIS VALUE TO "choose"
 
-        databaseTopics.child("1").addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseTopics.child(choose).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot topicInfo : dataSnapshot.getChildren())
@@ -211,10 +211,7 @@ public class a1_lead_debate extends AppCompatActivity {
                     Object th3= dataSnapshot.child("Topic Header3").getValue();
 
                     if (tt!=null&&th1!=null&&th2!=null&&th3!=null) {
-//                        Log.i("ssssssssssssssssssssss", tt.toString());
-//                        Log.i("tttttttttttttttttttttt", th1.toString());
-//                        Log.i("uuuuuuuuuuuuuuuuuuuuuu", th2.toString());
-//                        Log.i("vvvvvvvvvvvvvvvvvvvvvvv", th3.toString());
+
                         TopicTitle=tt.toString();
                         TopicHeader1=th1.toString();
                         TopicHeader2=th2.toString();

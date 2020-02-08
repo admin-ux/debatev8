@@ -56,6 +56,7 @@ public class return_repeat_judge extends AppCompatActivity {
     int iterations =0;
     int iterations1 =0;
     int iterations2 =0;
+    int iterations3 =0;
 
     int totalScore1=-100000000;
     int wins1=-100000000;
@@ -351,18 +352,23 @@ public class return_repeat_judge extends AppCompatActivity {
                                                        }
                                                    }
                                                    //Incrementing Judge Score
-                                                   Log.d("qqqqqqqqqqqqqqqq","111111111111111111111");
+
                                                    databaseUsers.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
                                                        @Override
                                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                                           Log.d("qqqqqqqqqqqqqqqq","222222222222222222222222222");
                                                            for (DataSnapshot gameInfo : dataSnapshot.getChildren()) {
                                                                Object js = dataSnapshot.child("judgeScore").getValue();
-                                                               Log.d("qqqqqqqqqqqqqqqq","33333333333333333333");
-                                                               if (iterations2==0&&js!=null) {
-                                                                   Log.d("qqqqqqqqqqqqqqqq","444444444444444444");
-                                                                   int judgeScore = (int) (long) js;
-                                                                   judgeScore=judgeScore+1;
+                                                               int judgeScore=0;
+                                                               if (iterations3==0&&js!=null) {
+                                                                   iterations3++;
+                                                                   judgeScore = (int) (long) js;
+                                                                   judgeScore = judgeScore + 1;
+                                                                   databaseUsers.child(userid).child("judgeScore").setValue(judgeScore);
+
+                                                               }
+                                                               if (iterations3==0&& js==null) {
+                                                                   iterations3++;
+                                                                   judgeScore = judgeScore + 1;
                                                                    databaseUsers.child(userid).child("judgeScore").setValue(judgeScore);
                                                                }
                                                            }
