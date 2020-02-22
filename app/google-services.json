@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:92664854926:android:ab9b99d42e941188deccdf",
         "android_client_info": {
-          "package_name": "com.example.debatev8"
+          "package_name": "com.game.thedebateapp"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "92664854926-6gmtqelqv8io6ui35mgapt8vr2j2ikoj.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.debatev8",
+            "package_name": "com.game.thedebateapp",
             "certificate_hash": "89094980a6b64cf07ab1fc880eb52d38cde36509"
           }
         },

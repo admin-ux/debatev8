@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.debatev8">
+    package="com.game.thedebateapp">
 
   <uses-permission android:name="android.permission.INTERNET" />
 
   <application
+
       android:allowBackup="true"
       android:icon="@mipmap/ic_launcher"
       android:label="The Debate App"
@@ -16,7 +17,7 @@
     <meta-data android:name="com.google.android.gms.version"
         android:value="@integer/google_play_services_version"/>
 
-    <activity android:name=".google_signin">
+    <activity android:name="com.game.thedebateapp.google_signin">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 
@@ -24,34 +25,34 @@
       </intent-filter>
     </activity>
 
-    <activity android:name=".login" />
+    <activity android:name="com.game.thedebateapp.login" />
 
-    <activity android:name=".choice_home" />
-    <activity android:name=".match_finding" android:noHistory="true" />
-    <activity android:name=".topic_vote" android:noHistory="true"/>
-    <activity android:name=".a1_lead_debate" />
-    <activity android:name=".a1_topicheaderpreview_debate" />
-    <activity android:name=".a1_responsepreview_debate" />
-    <activity android:name=".b1_topicheaderpreview_debate" />
-    <activity android:name=".b1_close_debate" />
-    <activity android:name=".b2_lead_debate" />
-    <activity android:name=".b2_topicheaderpreview_debate" />
-    <activity android:name=".b2_responsepreview_debate" />
-    <activity android:name=".a2_close_debate" />
-    <activity android:name=".a3_lead_debate" />
-    <activity android:name=".a3_waitinglastresp_debate" />
-    <activity android:name=".a3_responsepreview_debate" />
-    <activity android:name=".b3_close_debate" />
-    <activity android:name=".repeat_return_debate" />
+    <activity android:name="com.game.thedebateapp.choice_home" />
+    <activity android:name="com.game.thedebateapp.match_finding" android:noHistory="true" />
+    <activity android:name="com.game.thedebateapp.topic_vote" android:noHistory="true"/>
+    <activity android:name="com.game.thedebateapp.a1_lead_debate" />
+    <activity android:name="com.game.thedebateapp.a1_topicheaderpreview_debate" />
+    <activity android:name="com.game.thedebateapp.a1_responsepreview_debate" />
+    <activity android:name="com.game.thedebateapp.b1_topicheaderpreview_debate" />
+    <activity android:name="com.game.thedebateapp.b1_close_debate" />
+    <activity android:name="com.game.thedebateapp.b2_lead_debate" />
+    <activity android:name="com.game.thedebateapp.b2_topicheaderpreview_debate" />
+    <activity android:name="com.game.thedebateapp.b2_responsepreview_debate" />
+    <activity android:name="com.game.thedebateapp.a2_close_debate" />
+    <activity android:name="com.game.thedebateapp.a3_lead_debate" />
+    <activity android:name="com.game.thedebateapp.a3_waitinglastresp_debate" />
+    <activity android:name="com.game.thedebateapp.a3_responsepreview_debate" />
+    <activity android:name="com.game.thedebateapp.b3_close_debate" />
+    <activity android:name="com.game.thedebateapp.repeat_return_debate" />
 
-    <activity android:name=".searching_completed_matches"/>
-    <activity android:name=".c1_rate_judge" />
-    <activity android:name=".c2_rate_judge" />
-    <activity android:name=".c3_rate_judge" />
-    <activity android:name=".return_repeat_judge" />
+    <activity android:name="com.game.thedebateapp.searching_completed_matches"/>
+    <activity android:name="com.game.thedebateapp.c1_rate_judge" />
+    <activity android:name="com.game.thedebateapp.c2_rate_judge" />
+    <activity android:name="com.game.thedebateapp.c3_rate_judge" />
+    <activity android:name="com.game.thedebateapp.return_repeat_judge" />
 
-    <activity android:name=".choice_leaderboards" />
-    <activity android:name=".debate_leaderboards" />
+    <activity android:name="com.game.thedebateapp.choice_leaderboards" />
+    <activity android:name="com.game.thedebateapp.debate_leaderboards" />
 
   </application>
 
