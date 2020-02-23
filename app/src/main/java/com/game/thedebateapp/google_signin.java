@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -30,11 +31,12 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 public class google_signin extends AppCompatActivity {
     private SignInButton signInButton;
+    private Button emailSignIn;
     private GoogleSignInClient mGoogleSignInClient;
     //    private GoogleSignInAccount mGoogleSignInAccount;
     private  String TAG = "MainActivity";
     private FirebaseAuth mAuth;
-    //    private Button btnSignOut, showLeaderBoard;
+    private Button previousSignIn;
     private int RC_SIGN_IN = 1;
 
 
@@ -62,6 +64,24 @@ public class google_signin extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 signIn();
+
+
+            }
+        });
+        emailSignIn = (Button) findViewById(R.id.emailSignInButton);
+        emailSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openLogin();
+
+
+            }
+        });
+        previousSignIn = (Button) findViewById(R.id.previouslySignedInButton);
+        previousSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openGoogle_signin();
 
 
             }
@@ -129,6 +149,14 @@ public class google_signin extends AppCompatActivity {
 
     public void openChoice_home(){
         Intent intent = new Intent(this, choice_home.class);
+        startActivity(intent);
+    }
+    public void openLogin(){
+        Intent intent = new Intent(this, register.class);
+        startActivity(intent);
+    }
+    public void openGoogle_signin(){
+        Intent intent = new Intent(this, google_signin.class);
         startActivity(intent);
     }
 }

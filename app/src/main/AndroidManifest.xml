@@ -17,7 +17,7 @@
     <meta-data android:name="com.google.android.gms.version"
         android:value="@integer/google_play_services_version"/>
 
-    <activity android:name="com.game.thedebateapp.google_signin">
+    <activity android:name="com.game.thedebateapp.google_signin" android:noHistory="true">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 
@@ -25,9 +25,10 @@
       </intent-filter>
     </activity>
 
-    <activity android:name="com.game.thedebateapp.login" />
+    <activity android:name="com.game.thedebateapp.login" android:noHistory="true" />
+    <activity android:name="com.game.thedebateapp.register" android:noHistory="true" />
 
-    <activity android:name="com.game.thedebateapp.choice_home" />
+    <activity android:name="com.game.thedebateapp.choice_home" android:noHistory="true"/>
     <activity android:name="com.game.thedebateapp.match_finding" android:noHistory="true" />
     <activity android:name="com.game.thedebateapp.topic_vote" android:noHistory="true"/>
     <activity android:name="com.game.thedebateapp.a1_lead_debate" />

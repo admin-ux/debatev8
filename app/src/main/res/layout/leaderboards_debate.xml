@@ -18,18 +18,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.115" />
 
-    <Button
-        android:id="@+id/debateLeaderBoardTotalScore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Total Score"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/leaderboards"
-        app:layout_constraintVertical_bias="0.154" />
-
     <!--    <Button-->
 <!--        android:id="@+id/debateLeaderBoardA_avg"-->
 <!--        android:layout_width="wrap_content"-->
@@ -54,23 +42,37 @@
 <!--        app:layout_constraintTop_toBottomOf="@+id/debateLeaderBoardWins" />-->
 
     <Button
+        android:id="@+id/debateLeaderBoardTotalScore"
+        android:layout_width="171dp"
+        android:layout_height="42dp"
+        android:text="Total Score"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/leaderboards"
+        app:layout_constraintVertical_bias="0.163" />
+
+    <Button
         android:id="@+id/debateLeaderBoardWins"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="174dp"
+        android:layout_height="42dp"
         android:layout_marginTop="28dp"
         android:text="Total Wins"
+        app:layout_constraintBottom_toTopOf="@+id/quit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/debateLeaderBoardTotalScore" />
+        app:layout_constraintTop_toBottomOf="@+id/debateLeaderBoardTotalScore"
+        app:layout_constraintVertical_bias="0.046" />
 
     <Button
         android:id="@+id/debateLeaderBoardA_avg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="175dp"
+        android:layout_height="51dp"
         android:layout_marginTop="120dp"
         android:text="Argument Average"
-        app:layout_constraintBottom_toTopOf="@+id/quit"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,15 +81,14 @@
 
     <Button
         android:id="@+id/debateLeaderBoardR_avg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="173dp"
+        android:layout_height="43dp"
         android:text="Respond Average"
         app:layout_constraintBottom_toTopOf="@+id/debateLeaderBoardA_avg"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/debateLeaderBoardWins"
-        app:layout_constraintVertical_bias="0.547" />
+        app:layout_constraintVertical_bias="0.513" />
 
     <Button
         android:id="@+id/quit"

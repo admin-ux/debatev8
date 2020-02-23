@@ -20,15 +20,14 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-//Description       : This class is not used
-//Inner Workings    :
+
 public class register extends AppCompatActivity {
 
     EditText mFullname,mEmail,mPassword1,mPassword2;
     Button mRegisterBtn;
     TextView mLoginBtn;
     FirebaseAuth fAuth;
-    ProgressBar progressBar;
+
 
     DatabaseReference databaseRoot = FirebaseDatabase.getInstance().getReference();//***
     DatabaseReference databaseUsers = databaseRoot.child("UsersList");//***
@@ -48,7 +47,7 @@ public class register extends AppCompatActivity {
         mLoginBtn = findViewById(R.id.createText1);
 
         fAuth = FirebaseAuth.getInstance();
-        progressBar = findViewById(R.id.progressBar);
+
 
         if(fAuth.getCurrentUser() != null){
             startActivity(new Intent(getApplicationContext(),choice_home.class));
@@ -79,7 +78,7 @@ public class register extends AppCompatActivity {
                     mPassword1.setError("Password must be greater than or equal to 6 characters.");
                     return;
                 }
-                progressBar.setVisibility(View.VISIBLE);
+
 
                 //register the user in firebase
 
@@ -106,7 +105,7 @@ public class register extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(),choice_home.class));
 
                         }else {
-                            progressBar.setVisibility(View.GONE);
+
                         }
 
 

@@ -11,12 +11,33 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    signingConfigs{
+        release{
+            keyAlias 'key-release5'
+            keyPassword 'r963op1Sh7Fe'
+            storeFile file("C:/Users/admin_d/StudioProjects/ReleaseKeys/keystore/keystore-release5.jks")
+            storePassword 'r963op1Sh7Fe'
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.release
+
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            debuggable false
+            //testCoverageEnabled = true
+            debuggable = false
+
+        }
+        debug {
+            testCoverageEnabled = false
+            signingConfig signingConfigs.debug
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            //signingConfig debug.signingConfig
+
+
+
         }
     }
 }

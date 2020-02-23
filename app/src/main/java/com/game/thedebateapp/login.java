@@ -27,7 +27,7 @@ public class login extends AppCompatActivity {
     Button mLoginBtn;
     TextView mCreateBtn;
     FirebaseAuth fAuth;
-    ProgressBar progressBar;
+
 
 
     @Override
@@ -43,7 +43,7 @@ public class login extends AppCompatActivity {
         mCreateBtn = findViewById(R.id.createText1);
         mLoginBtn = findViewById(R.id.continueBtn);
         fAuth = FirebaseAuth.getInstance();
-        progressBar = findViewById(R.id.progressBar);
+
 
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +63,7 @@ public class login extends AppCompatActivity {
                     mPassword.setError("Password must be greater than or equal to 6 characters.");
                     return;
                 }
-                progressBar.setVisibility(View.VISIBLE);
+
 
                 // Authenticate the User
 
@@ -75,7 +75,7 @@ public class login extends AppCompatActivity {
 
                             startActivity(new Intent(getApplicationContext(),choice_home.class));
                         }else {
-                            progressBar.setVisibility(View.GONE);
+
                         }
                     }
                 });
@@ -86,8 +86,12 @@ public class login extends AppCompatActivity {
         mCreateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),register.class));
+                openRegister();
             }
         });
+    }
+    public void openRegister(){
+        Intent intent = new Intent(this, register.class);
+        startActivity(intent);
     }
 }
