@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.game.thedebateapp"
         minSdkVersion 16
@@ -50,24 +50,24 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    implementation 'com.google.firebase:firebase-analytics:17.2.2'
+    implementation 'com.google.firebase:firebase-analytics:17.3.0'
 
     //Real Time database
-    implementation 'com.google.firebase:firebase-database:19.2.0'
+    implementation 'com.google.firebase:firebase-database:19.2.1'
     //Authentication / Sign in
-    implementation 'com.google.firebase:firebase-auth:19.2.0'
+    implementation 'com.google.firebase:firebase-auth:19.3.0'
 //    implementation 'com.google.firebase:firebase-auth:19.2.0'
 //    implementation 'com.google.android.gms:play-services-auth:17.0.0'
 
     //Google Play different services -> May Remove later
     implementation 'com.google.android.gms:play-services-games:19.0.0'
-    implementation 'com.google.android.gms:play-services-auth:17.0.0'
+    implementation 'com.google.android.gms:play-services-auth:18.0.0'
     implementation 'com.google.android.gms:play-services-identity:17.0.0'
 
     //implementation 'com.google.android.gms.games.leaderboards'
     //implementation 'com.google.android.gms.games'
 
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0'
     //Navigation
     //def nav_version="2.1.0"
     //implementation "androidx.navigation:navigation-fragment:$nav_version"

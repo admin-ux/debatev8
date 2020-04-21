@@ -195,17 +195,9 @@ public class match_finding extends AppCompatActivity {
                                                                 //  Block of code to handle errors
                                                                 //System.out.println("Player was deleted");
                                                             }
-
                                                         }
-
                                                         System.out.println("Done Waiting");
-
-
                                                     }
-
-
-
-
                                                 }
 
                                                 @Override
@@ -215,8 +207,6 @@ public class match_finding extends AppCompatActivity {
 
                                                 }
                                             });
-
-
                                     //Flush out game/add players
 
                                 }
@@ -287,7 +277,7 @@ public class match_finding extends AppCompatActivity {
 
 
     }
-
+    //TODO: If back button is pressed more management is needed
     @Override
     public void onBackPressed() {
         if (playerCurrentPosition%2==0){
