@@ -6,8 +6,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseUser;
@@ -19,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -30,6 +33,7 @@ import java.util.TimerTask;
 //                  4) If good match is found by querying firebase the odd player -> player 1 creates a game and adds player 2 to it
 //                  5) Player 2 is removed from waiting list
 //                  6) If even waits to be found by even player and added to a game
+//TODO Fix resuming without permission
 public class match_finding extends AppCompatActivity {
 
 
@@ -38,6 +42,7 @@ public class match_finding extends AppCompatActivity {
     DatabaseReference databasePlayerPosition = databaseRoot.child("PlayerPosition");
     DatabaseReference databasePlayersWaiting = databaseRoot.child("PlayerWaitingList");
     DatabaseReference databaseCurrentGames = databaseRoot.child("CurrentGames");
+    DatabaseReference databaseUnfulfilled = databaseRoot.child("UnfulfilledPositions");
 
     game newGame = new game("0", false, false,false, null, "0", "0", "0", "0",0,0,0,0,0);
     int playerCurrentPosition;
@@ -51,6 +56,7 @@ public class match_finding extends AppCompatActivity {
     TextView warningMessage;
     TextView title;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +69,9 @@ public class match_finding extends AppCompatActivity {
         final String userid = fireUser.getUid();
         final DatabaseReference currentPlayer =databaseUsers.child(userid);
         goingBack=0;
+
+
+
         databasePlayerPosition.addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
@@ -70,193 +79,275 @@ public class match_finding extends AppCompatActivity {
                     {
                         final Long position = dataSnapshot.getValue(Long.class);
 
-                        //longPlayer = position.getPlayerPosition();
-                        playerCurrentPosition = position.intValue() + 1;
 
-                        //Adding 1 to position because 1 user is now added
+                        //???????????????????????????????????????????????????????????????????????????????????????????????????????????????????
 
-                        databasePlayerPosition.setValue(playerCurrentPosition);
+                        final Query unfulfilledPosition = FirebaseDatabase.getInstance().getReference().child("UnfulfilledPositions").limitToFirst(1);
+
+                        //************Currently Here*********************
+                        //Query for UnfulfilledPositions List
+                        //ELSE NULL -> use PlayerPosition
+                        //If Not NULL -> Remove First Query and use as Position
+                        //Continue as normal
+                        //*****
+                        //Later Add in positions if user quits when not matched
+                        //or if user is kicked add to Unfulfilled list
+                        //***************************************************
+
+                        unfulfilledPosition.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//
+                                for (DataSnapshot value : dataSnapshot.getChildren()) {
+                                    final Long unfulfilledPositionCollected = (Long) value.getValue();
+
+                                    Log.d("AAAAAAAAAAAAAAAAAAAAAB", unfulfilledPositionCollected.toString());
+                                    //**********************************************************************************
+                                    //TODO Add all code to here than continue above plan
+                                    //**********************************************************************************
 
 
-                        //*1*Queries Not Matched Players List Finds an empty match *//
-                        //This player is odd and will do the searching
+                                    //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-                        if (playerCurrentPosition % 2 != 0)
-                        {
+                                    //Checking if unfulfilledPosisitions List is empty
+                                    if (unfulfilledPositionCollected!=null)
+                                    {
+                                        //If not empty first number is used as new position
+                                        playerCurrentPosition=unfulfilledPositionCollected.intValue();
+                                        //Then unfulfilledPosition Value is removed from its own list as now it
+                                        //is being used and hopefully, depending if the player finds a match,
+                                        //fulfilled
+                                        value.getRef().setValue(null);
+
+                                        Log.d("AAAAAAAAAAAAAAAAAAAAAC", Integer.toString(playerCurrentPosition));
+
+                                    }
+                                    else{
+                                        playerCurrentPosition = position.intValue() + 1;
+                                        databasePlayerPosition.setValue(playerCurrentPosition);
+                                    }
+
+
+                                    //Adding 1 to position because 1 user is now added
+
+
+
+
+                                    //*1*Queries Not Matched Players List Finds an empty match *//
+                                    //This player is odd and will do the searching
+
+                                    if (playerCurrentPosition % 2 != 0)
+                                    {
 //                            displayText("Should Add Game");
 
 
 
-                            //This timer is used to rerun this section of code every second
-                            //It will be used to re-query incase our previous query was a "Bad Choice"
-                            final Timer myTimerReQuery = new Timer();
-                            TimerTask untilReQuery= new TimerTask()
-                            {
+                                        //This timer is used to rerun this section of code every second
+                                        //It will be used to re-query incase our previous query was a "Bad Choice"
+                                        final Timer myTimerReQuery = new Timer();
+                                        TimerTask untilReQuery= new TimerTask()
+                                        {
 
-                                @Override
-                                public void run()
-                                {
-                                    //Toast.makeText(match_finding.this, "a", Toast.LENGTH_LONG).show();
-                                    //displayMessage();
-                                    iterations++;
-                                    if(iterations>5)
-                                    {
-                                        goingBack=1;
-                                        myTimerReQuery.cancel();
-                                        myTimerReQuery.purge();
-                                        openChoice_home();
-                                    }
-                                    Query player = FirebaseDatabase.getInstance().getReference().child("PlayerWaitingList").orderByChild("positionInList").limitToFirst(1);
+                                            @Override
+                                            public void run()
+                                            {
+                                                //Toast.makeText(match_finding.this, "a", Toast.LENGTH_LONG).show();
+                                                //displayMessage();
+                                                iterations++;
+                                                if(iterations>5)
+                                                {
+                                                    //String String_playerCurrentPosition=String.valueOf(playerCurrentPosition);
+                                                    databaseUnfulfilled.child("Value").setValue(playerCurrentPosition);
+                                                    goingBack=1;
+                                                    myTimerReQuery.cancel();
+                                                    myTimerReQuery.purge();
+                                                    openChoice_home();
 
-                                    player.addListenerForSingleValueEvent(
+                                                    //*********************************************************************************************************
+                                                    //TODO Add playerCurrentPosition to databaseUnfulfilled list
+                                                    //*********************************************************************************************************
+                                                }
 
-                                            new ValueEventListener() {
+                                                final Query player = FirebaseDatabase.getInstance().getReference().child("PlayerWaitingList").orderByChild("positionInList").limitToFirst(1);
 
-                                                @Override
+                                                player.addListenerForSingleValueEvent(
 
-                                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                        new ValueEventListener() {
 
-                                                    for (DataSnapshot userInPlayersWaiting : dataSnapshot.getChildren()) {
-                                                        newPlayerCurrentPosition = (Long) userInPlayersWaiting.child("positionInList").getValue();
-                                                        newplayerID = (String) userInPlayersWaiting.child("userID").getValue();
-                                                        inUse = (boolean) userInPlayersWaiting.child("inUse").getValue();
-                                                    }
+                                                            @Override
 
-                                                    String stringNewPlayerCurrentPosition = Long.toString(newPlayerCurrentPosition);
+                                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                                                    newPlayer = true;
+                                                                for (DataSnapshot userInPlayersWaiting : dataSnapshot.getChildren()) {
+                                                                    newPlayerCurrentPosition = (Long) userInPlayersWaiting.child("positionInList").getValue();
+                                                                    newplayerID = (String) userInPlayersWaiting.child("userID").getValue();
+                                                                    inUse = (boolean) userInPlayersWaiting.child("inUse").getValue();
+                                                                    Log.d("AAAAAAAAAAAAAAAAAAAAAE", "Check list if odd");
+                                                                }
+                                                                String stringNewPlayerCurrentPosition="Null";
+                                                                if (newPlayerCurrentPosition!=null) {
+                                                                    stringNewPlayerCurrentPosition = Long.toString(newPlayerCurrentPosition);
+                                                                }
 
+                                                                newPlayer = true;
 
-
-
-                                                    if (!inUse)
-                                                    {
-                                                       databasePlayersWaiting.child(stringNewPlayerCurrentPosition).child("inUse").setValue(true);
-
-                                                        //Good choice
-                                                        if (newplayerID.compareTo(userid) != 0  && !inUse && newplayerID != null)
-                                                        {
-
-
-
-                                                            //find new players user data with id
-                                                            DatabaseReference newPlayer = databaseUsers.child(newplayerID);
-                                                            //Generate unique id for game
-                                                            String gameID = databaseCurrentGames.push().getKey();
-
-                                                            //Set both players gameId to generated one -> might remove if redundancy
-                                                            currentPlayer.child("GameID").setValue(gameID);
-                                                            newPlayer.child("GameID").setValue(gameID);
-
-                                                            //Debate Stages and topic have no value will be set as match progresses
-                                                            debate_stages emptystages = new debate_stages();
-                                                            topic emptytopic = new topic();
-
-                                                            newGame.setGameID(gameID);
-                                                            newGame.setGameFull(true);
-                                                            newGame.setBeenJudged(false);
-                                                            newGame.setStages(emptystages);
-                                                            newGame.setPlayer1(userid);
-                                                            newGame.setPlayer2(newplayerID);
-                                                            //newGame.setTopicChoosen(emptytopic);
-                                                            newGame.setPlayer1Topics("0");
-                                                            newGame.setPlayer2Topics("0");
+                                                                Log.d("AAAAAAAAAAAAAAAAAAAAAD", "Got Here Somehow");
 
 
-                                                            currentPlayer.child("inGame").setValue(1);
-                                                            newPlayer.child("inGame").setValue(1);
+                                                                if (!inUse && !stringNewPlayerCurrentPosition.equals("Null") )
+                                                                {
+                                                                    databasePlayersWaiting.child(stringNewPlayerCurrentPosition).child("inUse").setValue(true);
+
+                                                                    //Good choice
+                                                                    if (newplayerID.compareTo(userid) != 0  && !inUse && newplayerID != null)
+                                                                    {
+
+
+
+                                                                        //find new players user data with id
+                                                                        DatabaseReference newPlayer = databaseUsers.child(newplayerID);
+                                                                        //Generate unique id for game
+                                                                        String gameID = databaseCurrentGames.push().getKey();
+
+                                                                        //Set both players gameId to generated one -> might remove if redundancy
+                                                                        currentPlayer.child("GameID").setValue(gameID);
+                                                                        newPlayer.child("GameID").setValue(gameID);
+
+                                                                        //Debate Stages and topic have no value will be set as match progresses
+                                                                        debate_stages emptystages = new debate_stages();
+                                                                        topic emptytopic = new topic();
+
+                                                                        newGame.setGameID(gameID);
+                                                                        newGame.setGameFull(true);
+                                                                        newGame.setBeenJudged(false);
+                                                                        newGame.setStages(emptystages);
+                                                                        newGame.setPlayer1(userid);
+                                                                        newGame.setPlayer2(newplayerID);
+                                                                        //newGame.setTopicChoosen(emptytopic);
+                                                                        newGame.setPlayer1Topics("0");
+                                                                        newGame.setPlayer2Topics("0");
+
+
+                                                                        currentPlayer.child("inGame").setValue(1);
+                                                                        newPlayer.child("inGame").setValue(1);
 //
-                                                            //Saving the new created game
-                                                            //databaseUsers.child(userid).setValue(newUser);
-                                                            databaseCurrentGames.child(gameID).setValue(newGame);
-                                                            //game(String gameID, boolean gameFull, boolean beenJudged, debate_stages stages, String player1, String player2, topic topicChoosen)
+                                                                        //Saving the new created game
+                                                                        //databaseUsers.child(userid).setValue(newUser);
+                                                                        databaseCurrentGames.child(gameID).setValue(newGame);
+                                                                        //game(String gameID, boolean gameFull, boolean beenJudged, debate_stages stages, String player1, String player2, topic topicChoosen)
 
 
-                                                            databasePlayersWaiting.child(stringNewPlayerCurrentPosition).removeValue();
-                                                            //Query removingNewPlayer = FirebaseDatabase.getInstance().getReference().child("PlayerWaitingList").equalTo(position);
+                                                                        databasePlayersWaiting.child(stringNewPlayerCurrentPosition).removeValue();
+                                                                        //Query removingNewPlayer = FirebaseDatabase.getInstance().getReference().child("PlayerWaitingList").equalTo(position);
 
-                                                            //New game created, players added to game
-                                                            //TODO Remove listener should be placed here
-                                                            myTimerReQuery.cancel();
-                                                            myTimerReQuery.purge();
+                                                                        //New game created, players added to game
+                                                                        //TODO Remove listener should be placed here
+                                                                        myTimerReQuery.cancel();
+                                                                        myTimerReQuery.purge();
 
-                                                            opentopic_vote();
+                                                                        opentopic_vote();
 
 
-                                                        }
+                                                                    }
 
-                                                        //Bad choice of new user
-                                                        else
-                                                        {
-                                                            try {
-                                                                databasePlayersWaiting.child(stringNewPlayerCurrentPosition).child("inUse").setValue(false);
+                                                                    //Bad choice of new user
+                                                                    else
+                                                                    {
+                                                                        try {
+                                                                            databasePlayersWaiting.child(stringNewPlayerCurrentPosition).child("inUse").setValue(false);
+                                                                        }
+                                                                        catch(Exception e) {
+                                                                            //  Block of code to handle errors
+                                                                            //System.out.println("Player was deleted");
+                                                                        }
+                                                                    }
+                                                                    System.out.println("Done Waiting");
+                                                                }
                                                             }
-                                                            catch(Exception e) {
-                                                                //  Block of code to handle errors
-                                                                //System.out.println("Player was deleted");
+
+                                                            @Override
+                                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                                                //Should not result in a database error -> should keep searching until list contains
+
+
                                                             }
-                                                        }
-                                                        System.out.println("Done Waiting");
-                                                    }
-                                                }
+                                                        });
+                                                //Flush out game/add players
 
-                                                @Override
-                                                public void onCancelled(@NonNull DatabaseError databaseError) {
-                                                    //Should not result in a database error -> should keep searching until list contains
+                                            }
+                                            //TODO Optimize the reset of finding a newplayer
 
-
-                                                }
-                                            });
-                                    //Flush out game/add players
-
-                                }
-                            //TODO Optimize the reset of finding a newplayer
-
-                            };//Every Second
-                            myTimerReQuery.schedule(untilReQuery,0,3000);
+                                        };//Every Second
+                                        myTimerReQuery.schedule(untilReQuery,0,3000);
 //                            warningMessage.setVisibility(View.VISIBLE);
 //                            title.setVisibility(View.GONE);
 
 
 
 
-                        }
-                        //This player is even and will be added to the database and wait, while continualy
-                        //checking if player has been added to a game
-                        //May need to switch the names of the
-                        else
-                        {
-                            //displayText("Avoiding Everything");
-
-                            //player_InUse=false;
-                            player_waiting_list evenPlayer = new player_waiting_list(userid, playerCurrentPosition, false);
-                            String stringCurrentPosition = "";
-                            stringCurrentPosition = Integer.toString(playerCurrentPosition);
-                            //databasePlayersWaiting.setValue(userid);
-                            databasePlayersWaiting.child(stringCurrentPosition).setValue(evenPlayer);
-                            //On data change of inGame Value to true start new activity
-
-                            currentPlayer.child("inGame").addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    //if in game is true move to next screen
-
-                                    Long inGame= (Long) dataSnapshot.getValue();
-                                    String stringInGame = Long.toString(inGame);
-
-                                    if (stringInGame.equals("1")) {
-                                        opentopic_vote();
                                     }
+                                    //This player is even and will be added to the database and wait, while continualy
+                                    //checking if player has been added to a game
+                                    //May need to switch the names of the
+                                    else
+                                    {
+                                        //displayText("Avoiding Everything");
+
+                                        //player_InUse=false;
+                                        player_waiting_list evenPlayer = new player_waiting_list(userid, playerCurrentPosition, false);
+                                        String stringCurrentPosition = "";
+                                        stringCurrentPosition = Integer.toString(playerCurrentPosition);
+                                        //databasePlayersWaiting.setValue(userid);
+                                        databasePlayersWaiting.child(stringCurrentPosition).setValue(evenPlayer);
+                                        //On data change of inGame Value to true start new activity
+
+                                        currentPlayer.child("inGame").addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                //if in game is true move to next screen
+
+                                                Long inGame= (Long) dataSnapshot.getValue();
+                                                String stringInGame = Long.toString(inGame);
+
+                                                if (stringInGame.equals("1")) {
+                                                    opentopic_vote();
+                                                }
+
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                            }
+                                        });
+
+                                    }
+                                    //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 
                                 }
+                            }
 
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                                }
-                            });
+                            }
+                        });
 
-                        }
+                        //???????????????????????????????????????????????????????????????????????????????????????????????????????????????????
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                     }
                     @Override
@@ -280,8 +371,34 @@ public class match_finding extends AppCompatActivity {
     //TODO: If back button is pressed more management is needed
     @Override
     public void onBackPressed() {
+        iterations=6;
+        //String String_playerCurrentPosition=String.valueOf(playerCurrentPosition);
+        databaseUnfulfilled.child("Value").setValue(playerCurrentPosition);
+        //*********************************************************************************************************
+        //TODO Add playerCurrentPosition to databaseUnfulfilled list
+        //*********************************************************************************************************
+
         if (playerCurrentPosition%2==0){
             String a= ""+playerCurrentPosition;
+            databasePlayersWaiting.child(a).removeValue();
+        }
+
+
+        Intent intent = new Intent(this, choice_home.class);
+        startActivity(intent);
+    }
+
+    public void onPause() {
+        super.onPause();
+        iterations=6;
+        //String String_playerCurrentPosition = String.valueOf(playerCurrentPosition);
+        databaseUnfulfilled.child("Value").setValue(playerCurrentPosition);
+        //*********************************************************************************************************
+        //TODO Add playerCurrentPosition to databaseUnfulfilled list
+        //*********************************************************************************************************
+
+        if (playerCurrentPosition % 2 == 0) {
+            String a = "" + playerCurrentPosition;
             databasePlayersWaiting.child(a).removeValue();
         }
         Intent intent = new Intent(this, choice_home.class);

@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="60dp"
         android:layout_marginTop="25dp"
+        android:gravity="center"
         android:text="Topic Title" />
     <TextView
         android:id="@+id/message"
@@ -17,6 +18,7 @@
         android:layout_marginHorizontal="150dp"
         android:layout_marginTop="100dp"
         android:text="Next Sub Topic"
+        android:gravity="center"
         android:textSize="25sp" />
 
     <TextView
@@ -25,6 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="150dp"
         android:layout_marginTop="25dp"
+        android:gravity="center"
         android:text="Topic Header" />
 
 

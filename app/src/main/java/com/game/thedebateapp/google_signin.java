@@ -31,12 +31,12 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 public class google_signin extends AppCompatActivity {
     private SignInButton signInButton;
-    private Button emailSignIn;
+    //private Button emailSignIn;
     private GoogleSignInClient mGoogleSignInClient;
     //    private GoogleSignInAccount mGoogleSignInAccount;
     private  String TAG = "MainActivity";
     private FirebaseAuth mAuth;
-    private Button previousSignIn;
+    //private Button previousSignIn;
     private int RC_SIGN_IN = 1;
 
 
@@ -68,24 +68,24 @@ public class google_signin extends AppCompatActivity {
 
             }
         });
-        emailSignIn = (Button) findViewById(R.id.emailSignInButton);
-        emailSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openLogin();
-
-
-            }
-        });
-        previousSignIn = (Button) findViewById(R.id.previouslySignedInButton);
-        previousSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openGoogle_signin();
-
-
-            }
-        });
+//        emailSignIn = (Button) findViewById(R.id.emailSignInButton);
+//        emailSignIn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                openLogin();
+//
+//
+//            }
+//        });
+//        previousSignIn = (Button) findViewById(R.id.previouslySignedInButton);
+//        previousSignIn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                openGoogle_signin();
+//
+//
+//            }
+//        });
 
 
     }

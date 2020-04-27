@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="150dp"
         android:layout_marginTop="100dp"
+        android:gravity="center"
         android:text="Players Response"
         android:textSize="25sp" />
 
@@ -18,7 +19,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="150dp"
         android:layout_marginTop="40dp"
-        android:text="Response" />
+        android:text="Response"
+        android:gravity="center"/>
 
 
 </LinearLayout>

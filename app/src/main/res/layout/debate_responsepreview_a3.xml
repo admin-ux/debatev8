@@ -10,6 +10,7 @@
         android:layout_marginHorizontal="150dp"
         android:layout_marginTop="100dp"
         android:text="Players Response"
+        android:gravity="center"
         android:textSize="25sp" />
 
     <TextView
@@ -18,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="150dp"
         android:layout_marginTop="40dp"
+        android:gravity="center"
         android:text="Response" />
     <Button
         android:id="@+id/submitButton"

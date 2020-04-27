@@ -8,6 +8,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="60dp"
         android:layout_marginTop="25dp"
+        android:gravity="center"
         android:text="Topic Title" />
     <TextView
         android:id="@+id/topicheader"
@@ -15,6 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="130dp"
         android:layout_marginTop="45dp"
+        android:gravity="center"
         android:text="Topic Header" />
 
     <TextView
@@ -23,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="130dp"
         android:layout_marginTop="45dp"
+        android:gravity="center"
         android:text="TextView" />
 
     <Button
