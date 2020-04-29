@@ -1,40 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/topictitle"
-        android:layout_width="115dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="60dp"
-        android:layout_marginTop="25dp"
-        android:gravity="center"
-        android:text="Topic Title" />
-    <TextView
-        android:id="@+id/topicheader"
-        android:layout_width="151dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="130dp"
-        android:layout_marginTop="45dp"
-        android:gravity="center"
-        android:text="Topic Header" />
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_weight="1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
-    <Button
-        android:id="@+id/submitButton"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="130dp"
-        android:layout_marginTop="80dp"
-        android:text="Submit" />
+        android:layout_height="0dp"
+        android:layout_weight="0.05"
+        android:gravity="center|top"
+        android:orientation="vertical"/>
 
-    <EditText
-        android:id="@+id/arg_b2"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="130dp"
-        android:layout_marginTop="130dp"
-        android:ems="10"
-        android:hint="Your Argument"
-        android:inputType="textLongMessage" />
+        android:layout_height="0dp"
+        android:layout_weight="0.333"
+        android:gravity="center|top"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/topictitle"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:gravity="start|top"
+            android:text="Topic Title"
+            android:layout_weight="0.125" />
+
+        <TextView
+            android:id="@+id/topicheader"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:text="Topic Header"
+            android:layout_weight="0.125" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.75"
+            android:gravity="center|top"
+            android:orientation="vertical" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".18"
+        android:gravity="center|bottom"
+        android:orientation="vertical"
+        android:padding="30dp">
+
+        <EditText
+            android:id="@+id/arg_b2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Your Argument"
+            android:inputType="textLongMessage"
+            android:layout_weight=".5"/>
+
+        <Button
+            android:id="@+id/submitButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:layout_weight=".5"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.05"
+        android:gravity="center|top"
+        android:orientation="vertical" />
+
 
 </LinearLayout>

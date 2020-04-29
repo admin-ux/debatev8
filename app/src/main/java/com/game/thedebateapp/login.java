@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.EditText;
@@ -30,12 +29,12 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 
-//Description       : This class is not used
+//Description       :
 //Inner Workings    :
 public class login extends AppCompatActivity {
 
     //****************GOOGLE
-    private SignInButton signInButton;
+    private SignInButton googleSignInButton;
     //private Button emailSignIn;
     private GoogleSignInClient mGoogleSignInClient;
     //    private GoogleSignInAccount mGoogleSignInAccount;
@@ -47,7 +46,7 @@ public class login extends AppCompatActivity {
 
     EditText mEmail, mPassword;
     Button mLoginBtn;
-    TextView mCreateBtn;
+    TextView mSignUpBtn;
     FirebaseAuth fAuth;
 
 
@@ -60,7 +59,7 @@ public class login extends AppCompatActivity {
 
         //************************GOOGLE
 
-        signInButton = (SignInButton) findViewById(R.id.signInGoogle);
+        googleSignInButton = (SignInButton) findViewById(R.id.signInGoogle);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -73,7 +72,7 @@ public class login extends AppCompatActivity {
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        signInButton.setOnClickListener(new View.OnClickListener() {
+        googleSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 signIn();
@@ -83,8 +82,8 @@ public class login extends AppCompatActivity {
 
         mEmail = findViewById(R.id.emailAddress);
         mPassword = findViewById(R.id.password);
-        mCreateBtn = findViewById(R.id.createText1);
-        mLoginBtn = findViewById(R.id.continueBtn);
+        mSignUpBtn = findViewById(R.id.SignUp);
+        mLoginBtn = findViewById(R.id.Login);
         fAuth = FirebaseAuth.getInstance();
 
 
@@ -107,9 +106,7 @@ public class login extends AppCompatActivity {
                     return;
                 }
 
-
                 // Authenticate the User
-
                 fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -127,7 +124,7 @@ public class login extends AppCompatActivity {
             }
         });
 
-        mCreateBtn.setOnClickListener(new View.OnClickListener() {
+        mSignUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openRegister();
@@ -166,7 +163,7 @@ public class login extends AppCompatActivity {
 
         }
         catch (ApiException e){
-
+            Log.d("AAAAAAAAAAAAAAAAAAAAAG", "apiException");
             FirebaseGoogleAuth(null);
         }
     }

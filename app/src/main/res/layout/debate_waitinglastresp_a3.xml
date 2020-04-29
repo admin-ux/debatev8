@@ -1,26 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_weight="1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
-    <TextView
-        android:id="@+id/topictitle"
-        android:layout_width="115dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="60dp"
-        android:layout_marginTop="25dp"
-        android:gravity="center"
-        android:text="Topic Title" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.075"
+        android:gravity="center|top"
+        android:orientation="vertical"/>
 
-    <TextView
-        android:id="@+id/message"
-        android:layout_width="205dp"
-        android:layout_height="108dp"
-        android:layout_marginHorizontal="150dp"
-        android:layout_marginTop="100dp"
-        android:text="Waiting on Opponents Last Response"
-        android:gravity="center"
-        android:textSize="25sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.4"
+        android:gravity="center|top"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/topictitle"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:gravity="start|top"
+            android:text="Topic Title"
+            android:layout_weight="0.3" />
+
+        <TextView
+            android:id="@+id/message"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:text="Waiting on Opponents Last Response"
+            android:textSize="25sp"
+            android:layout_weight="0.55"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.4"
+        android:gravity="center|top"
+        android:orientation="vertical"/>
 
 
 </LinearLayout>
