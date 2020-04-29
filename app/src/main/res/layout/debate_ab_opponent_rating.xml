@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".rating_opponent_ab_debate">
+    >
 
     <TextView
         android:id="@+id/Rate_Your_Opponent"

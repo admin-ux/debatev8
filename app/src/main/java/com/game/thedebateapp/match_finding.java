@@ -53,7 +53,7 @@ public class match_finding extends AppCompatActivity {
     boolean newPlayer=false;
     boolean inUse=true;
     String userid;
-    TextView warningMessage;
+    int StartingActivityIf_1=0;
     TextView title;
 
 
@@ -80,9 +80,13 @@ public class match_finding extends AppCompatActivity {
                         final Long position = dataSnapshot.getValue(Long.class);
 
 
-                        //???????????????????????????????????????????????????????????????????????????????????????????????????????????????????
+                        Log.d("AAAAAAAAAAAAFPosition", position.toString());
+
+
 
                         final Query unfulfilledPosition = FirebaseDatabase.getInstance().getReference().child("UnfulfilledPositions").limitToFirst(1);
+
+
 
                         //************Currently Here*********************
                         //Query for UnfulfilledPositions List
@@ -101,7 +105,7 @@ public class match_finding extends AppCompatActivity {
                                 for (DataSnapshot value : dataSnapshot.getChildren()) {
                                     final Long unfulfilledPositionCollected = (Long) value.getValue();
 
-                                    Log.d("AAAAAAAAAAAAAAAAAAAAAB", unfulfilledPositionCollected.toString());
+                                    Log.d("AAAAAAAAAAAABFoundValue", unfulfilledPositionCollected.toString());
                                     //**********************************************************************************
                                     //TODO Add all code to here than continue above plan
                                     //**********************************************************************************
@@ -110,7 +114,7 @@ public class match_finding extends AppCompatActivity {
                                     //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
                                     //Checking if unfulfilledPosisitions List is empty
-                                    if (unfulfilledPositionCollected!=null)
+                                    if (dataSnapshot.getValue() !=null && unfulfilledPositionCollected.intValue()!=0 && unfulfilledPositionCollected.intValue()!=9999)
                                     {
                                         //If not empty first number is used as new position
                                         playerCurrentPosition=unfulfilledPositionCollected.intValue();
@@ -122,11 +126,12 @@ public class match_finding extends AppCompatActivity {
                                         Log.d("AAAAAAAAAAAAAAAAAAAAAC", Integer.toString(playerCurrentPosition));
 
                                     }
-                                    else{
+                                    else {
                                         playerCurrentPosition = position.intValue() + 1;
                                         databasePlayerPosition.setValue(playerCurrentPosition);
-                                    }
 
+                                        Log.d("BBBBBBBBBBBBBBBBBBBBBB", "Not In Single Listener Current Value:" + playerCurrentPosition);
+                                    }
 
                                     //Adding 1 to position because 1 user is now added
 
@@ -157,7 +162,8 @@ public class match_finding extends AppCompatActivity {
                                                 if(iterations>5)
                                                 {
                                                     //String String_playerCurrentPosition=String.valueOf(playerCurrentPosition);
-                                                    databaseUnfulfilled.child("Value").setValue(playerCurrentPosition);
+                                                    databaseUnfulfilled.child("Value"+playerCurrentPosition).setValue(playerCurrentPosition);
+                                                    Log.d("FFFFFFFFFFFFFFFFFFFF", "Woops Current Position:" + playerCurrentPosition);
                                                     goingBack=1;
                                                     myTimerReQuery.cancel();
                                                     myTimerReQuery.purge();
@@ -182,7 +188,7 @@ public class match_finding extends AppCompatActivity {
                                                                     newPlayerCurrentPosition = (Long) userInPlayersWaiting.child("positionInList").getValue();
                                                                     newplayerID = (String) userInPlayersWaiting.child("userID").getValue();
                                                                     inUse = (boolean) userInPlayersWaiting.child("inUse").getValue();
-                                                                    Log.d("AAAAAAAAAAAAAAAAAAAAAE", "Check list if odd");
+                                                                    Log.d("AAAAAAAAAAAAAAAAAAAAAE", "Is odd "+playerCurrentPosition);
                                                                 }
                                                                 String stringNewPlayerCurrentPosition="Null";
                                                                 if (newPlayerCurrentPosition!=null) {
@@ -203,7 +209,7 @@ public class match_finding extends AppCompatActivity {
                                                                     {
 
 
-
+                                                                        Log.d("GGGGGGGGGGGGGGGGGGGG", "In Game Creator");
                                                                         //find new players user data with id
                                                                         DatabaseReference newPlayer = databaseUsers.child(newplayerID);
                                                                         //Generate unique id for game
@@ -244,7 +250,7 @@ public class match_finding extends AppCompatActivity {
                                                                         //TODO Remove listener should be placed here
                                                                         myTimerReQuery.cancel();
                                                                         myTimerReQuery.purge();
-
+                                                                        Log.d("GGGGGGGGGGGGGGGGGGGG", "End Should topic vote");
                                                                         opentopic_vote();
 
 
@@ -292,7 +298,7 @@ public class match_finding extends AppCompatActivity {
                                     else
                                     {
                                         //displayText("Avoiding Everything");
-
+                                        Log.d("CCCCCCCCCCCCCCCC", "Waiting List");
                                         //player_InUse=false;
                                         player_waiting_list evenPlayer = new player_waiting_list(userid, playerCurrentPosition, false);
                                         String stringCurrentPosition = "";
@@ -305,11 +311,12 @@ public class match_finding extends AppCompatActivity {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                 //if in game is true move to next screen
-
+                                                Log.d("CCCCCCCCCCCCCCCC", "Value Change");
                                                 Long inGame= (Long) dataSnapshot.getValue();
                                                 String stringInGame = Long.toString(inGame);
 
                                                 if (stringInGame.equals("1")) {
+                                                    Log.d("CCCCCCCCCCCCCCCC", "Value Did Change");
                                                     opentopic_vote();
                                                 }
 
@@ -330,6 +337,7 @@ public class match_finding extends AppCompatActivity {
 
                             @Override
                             public void onCancelled(@NonNull DatabaseError databaseError) {
+                                Log.d("DDDDDDDDDDDDDDDDDDD", "Duh");
 
                             }
                         });
@@ -371,9 +379,10 @@ public class match_finding extends AppCompatActivity {
     //TODO: If back button is pressed more management is needed
     @Override
     public void onBackPressed() {
+        Log.d("IIIIIIIIIIIIIIIIIIII", "It stinkin better not be here");
         iterations=6;
         //String String_playerCurrentPosition=String.valueOf(playerCurrentPosition);
-        databaseUnfulfilled.child("Value").setValue(playerCurrentPosition);
+        databaseUnfulfilled.child("Value"+playerCurrentPosition).setValue(playerCurrentPosition);
         //*********************************************************************************************************
         //TODO Add playerCurrentPosition to databaseUnfulfilled list
         //*********************************************************************************************************
@@ -390,22 +399,27 @@ public class match_finding extends AppCompatActivity {
 
     public void onPause() {
         super.onPause();
-        iterations=6;
-        //String String_playerCurrentPosition = String.valueOf(playerCurrentPosition);
-        databaseUnfulfilled.child("Value").setValue(playerCurrentPosition);
-        //*********************************************************************************************************
-        //TODO Add playerCurrentPosition to databaseUnfulfilled list
-        //*********************************************************************************************************
+        if (StartingActivityIf_1!=1) {
+            Log.d("HHHHHHHHHHHHHHHHHHHHH", "Better not be here");
+            iterations = 6;
+            //String String_playerCurrentPosition = String.valueOf(playerCurrentPosition);
+            databaseUnfulfilled.child("Value" + playerCurrentPosition).setValue(playerCurrentPosition);
+            //*********************************************************************************************************
+            //TODO Add playerCurrentPosition to databaseUnfulfilled list
+            //*********************************************************************************************************
 
-        if (playerCurrentPosition % 2 == 0) {
-            String a = "" + playerCurrentPosition;
-            databasePlayersWaiting.child(a).removeValue();
+            if (playerCurrentPosition % 2 == 0) {
+                String a = "" + playerCurrentPosition;
+                databasePlayersWaiting.child(a).removeValue();
+            }
+            Intent intent = new Intent(this, choice_home.class);
+            startActivity(intent);
         }
-        Intent intent = new Intent(this, choice_home.class);
-        startActivity(intent);
     }
 
     public void opentopic_vote(){
+        StartingActivityIf_1=1;
+        Log.d("JJJJJJJJJJJJJJJJJJJJJ", "Can Probably Work With this");
         Intent intent = new Intent(this, topic_vote.class);
         //Should send completed object of newGame
         //TODO only responds to 1st player
@@ -416,6 +430,7 @@ public class match_finding extends AppCompatActivity {
         startActivity(intent);
     }
     public void openChoice_home(){
+        StartingActivityIf_1=1;
         Intent intent = new Intent(this, choice_home.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("goingBack",goingBack);

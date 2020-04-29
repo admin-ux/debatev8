@@ -1,47 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_weight="1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
         <TextView
             android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="170dp"
-            android:layout_marginLeft="170dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="171dp"
-            android:layout_marginRight="171dp"
-            android:text="Main Menu"
-             />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center|bottom"
-        android:orientation="vertical"
-        android:padding="10dp">
-
-        <Button
-            android:id="@+id/debatestreamButton"
             android:layout_width="match_parent"
-            android:layout_height="145dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".25"
+            android:layout_marginTop="40dp"
+            android:text="Main Menu"
+            android:gravity="center|top" />
 
-            android:text="Debate" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center|bottom"
+            android:orientation="vertical"
+            android:padding="10dp">
 
-        <Button
-        android:id="@+id/judgestreamButton"
-        android:layout_width="match_parent"
-        android:layout_height="145dp"
+            <Button
+                android:id="@+id/debatestreamButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:text="Debate" />
 
-        android:text="Judge" />
+            <Button
+                android:id="@+id/judgestreamButton"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_weight="0.25"
+                android:text="Judge"/>
 
-        <Button
-        android:id="@+id/leaderboardButton"
-        android:layout_width="match_parent"
-        android:layout_height="145dp"
-        android:text="Leader Board" />
+            <Button
+                android:id="@+id/leaderboardButton"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_weight="0.25"
+                android:text="Leader Board" />
     </LinearLayout>
 
 </LinearLayout>

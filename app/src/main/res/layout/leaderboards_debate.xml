@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".choice_leaderboards">
-
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
     <TextView
         android:id="@+id/leaderboards"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:text="Choose a Leaderboard"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.115" />
+        android:gravity="center|top" />
 
     <!--    <Button-->
     <!--        android:id="@+id/debateLeaderBoardA_avg"-->
@@ -41,61 +37,42 @@
     <!--        app:layout_constraintStart_toStartOf="parent"-->
     <!--        app:layout_constraintTop_toBottomOf="@+id/debateLeaderBoardWins" />-->
 
-    <Button
-        android:id="@+id/debateLeaderBoardTotalScore"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="84dp"
-        android:text="Total Score"
-        app:layout_constraintDimensionRatio="H,20:5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/leaderboards" />
+        android:layout_weight="1"
+        android:gravity="center|bottom"
+        android:orientation="vertical"
+        android:padding="10dp">
 
-    <Button
-        android:id="@+id/debateLeaderBoardWins"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="Total Wins"
-        app:layout_constraintDimensionRatio="H,20:5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/debateLeaderBoardTotalScore" />
+        <Button
+            android:id="@+id/debateLeaderBoardTotalScore"
+            android:layout_width="match_parent"
+            android:layout_height="145dp"
+            android:text="Total Score" />
 
-    <Button
-        android:id="@+id/debateLeaderBoardA_avg"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="Argument Average"
-        app:layout_constraintDimensionRatio="H,20:5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/debateLeaderBoardWins" />
+        <Button
+            android:id="@+id/debateLeaderBoardWins"
+            android:layout_width="match_parent"
+            android:layout_height="145dp"
+            android:text="Total Wins" />
 
-    <Button
-        android:id="@+id/debateLeaderBoardR_avg"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="Respond Average"
-        app:layout_constraintDimensionRatio="H,20:5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/debateLeaderBoardA_avg" />
+        <Button
+            android:id="@+id/debateLeaderBoardA_avg"
+            android:layout_width="match_parent"
+            android:layout_height="145dp"
+            android:text="Argument Average"/>
 
-    <Button
-        android:id="@+id/quit"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="Quit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="H,20:5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/debateLeaderBoardR_avg"
-        app:layout_constraintVertical_bias="0.0" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/debateLeaderBoardR_avg"
+            android:layout_width="match_parent"
+            android:layout_height="145dp"
+            android:text="Respond Average" />
+
+        <Button
+            android:id="@+id/quit"
+            android:layout_width="match_parent"
+            android:layout_height="145dp"
+            android:text="Quit" />
+    </LinearLayout>
+</LinearLayout>

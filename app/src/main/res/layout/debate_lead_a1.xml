@@ -1,42 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
     <TextView
         android:id="@+id/topictitle"
-        android:layout_width="115dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="60dp"
-        android:layout_marginTop="25dp"
-        android:gravity="center"
+        android:layout_marginTop="40dp"
+        android:gravity="center|top"
         android:text="Topic Title" />
+
     <TextView
         android:id="@+id/topicheader"
-        android:layout_width="151dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="130dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="75dp"
         android:gravity="center"
         android:text="Topic Header" />
 
-    <Button
-        android:id="@+id/submitButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="130dp"
-        android:layout_marginTop="80dp"
-        android:text="Submit" />
 
-    <EditText
-        android:id="@+id/arg_a1"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="130dp"
-        android:layout_marginTop="130dp"
-        android:ems="10"
-        android:hint="Your Argument"
-        android:inputType="textLongMessage" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center|bottom"
+        android:orientation="vertical"
+        android:padding="40dp">
+
+        <EditText
+            android:id="@+id/arg_a1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="130dp"
+            android:layout_marginBottom="25dp"
+            android:ems="10"
+            android:hint="Your Argument"
+            android:inputType="textLongMessage" />
+        <Button
+            android:id="@+id/submitButton"
+            android:layout_width="match_parent"
+            android:layout_height="145dp"
+            android:text="Submit" />
+
+
+    </LinearLayout>
 
 
 </LinearLayout>
