@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 //import android.util.Log;
 
 import com.google.firebase.auth.FirebaseUser;
@@ -27,7 +28,7 @@ import java.util.TimerTask;
 public class a3_waitinglastresp_debate extends AppCompatActivity {
 
     String b3_close;
-
+    TextView TopicTitle;
 
     game currentGame;
 
@@ -51,7 +52,8 @@ public class a3_waitinglastresp_debate extends AppCompatActivity {
 
 
 
-
+        TopicTitle= (TextView) findViewById(R.id.topictitle);
+        TopicTitle.setText(currentGame.getStages().getTopicTitle());
         final Timer myArgTimer = new Timer();
         TimerTask untilArgMade = new TimerTask() {
             @Override

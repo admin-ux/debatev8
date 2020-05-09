@@ -94,7 +94,7 @@ public class b3_close_debate extends AppCompatActivity {
 
                     }
                 });
-                if (timeriterations>1)
+                if (timeriterations>2)
                 {
                     myArgTimer.cancel();
                     myArgTimer.purge();

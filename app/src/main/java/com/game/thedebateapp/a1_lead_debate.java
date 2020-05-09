@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -75,9 +76,10 @@ public class a1_lead_debate extends AppCompatActivity {
 
         int score=15;
         int i=0;
-        while (currentGame.getPlayer1Topics().length()>i)
+        while (currentGame.getPlayer1Topics().length()>i+1)
         {
             String num=String.valueOf(i);
+            Log.d("player1 topics", currentGame.getPlayer1Topics());
 
             if(currentGame.getPlayer1Topics().charAt(i)=='1')
             {
@@ -112,7 +114,7 @@ public class a1_lead_debate extends AppCompatActivity {
         }
         score=15;
         i=0;
-        while (currentGame.getPlayer2Topics().length()>i)
+        while (currentGame.getPlayer2Topics().length()>i+1)
         {
             String num2=String.valueOf(i);
 
@@ -147,10 +149,15 @@ public class a1_lead_debate extends AppCompatActivity {
             }
 
         }
+
         myvaluesList[0]=one;
+        String a=String.valueOf(one);
         myvaluesList[1]=two;
+        String b=String.valueOf(two);
         myvaluesList[2]=three;
+        String c=String.valueOf(three);
         myvaluesList[3]=four;
+        String d=String.valueOf(four);
         int largest = 0;
         int largestvalue=myvaluesList[0];
         int same = -1;
@@ -187,8 +194,6 @@ public class a1_lead_debate extends AppCompatActivity {
 
         //Calculate Topic//End//a
         //Retrieve Topic//Start//
-        //TODO CHANGE THIS VALUE TO "choose"
-
         databaseTopics.child(choose).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -274,7 +279,7 @@ public class a1_lead_debate extends AppCompatActivity {
 
                             }
                         });
-                        if (timeriterations>1)
+                        if (timeriterations>2)
                         {
                             myArgTimer.cancel();
                             myArgTimer.purge();

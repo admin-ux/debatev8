@@ -101,7 +101,7 @@ public class a2_close_debate extends AppCompatActivity {
 
                     }
                 });
-                if (timeriterations>1)
+                if (timeriterations>2)
                 {
                     myArgTimer.cancel();
                     myArgTimer.purge();

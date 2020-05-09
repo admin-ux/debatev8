@@ -59,14 +59,6 @@ public class b1_close_debate extends AppCompatActivity {
         final String userid = fireUser.getUid();
         DatabaseReference realtimeUserProfile =databaseUsers.child(userid);
         currentGame = (game) getIntent().getSerializableExtra("currentGame");
-//        Log.i("bbbbbbbbbbbbbbbbbbbb", currentGame.toString());
-//        Log.i("ccccccccccccccccccc", currentGame.getPlayer1Topics());
-//        Log.i("ddddddddddddddddddd", currentGame.getPlayer2Topics());
-//        Log.i("eeeeeeeeeeeeeeeeeee", currentGame.getGameID());
-
-
-
-
 
         resp_b1Input = (EditText) findViewById(R.id.resp_b1);
 
@@ -102,7 +94,7 @@ public class b1_close_debate extends AppCompatActivity {
 
                     }
                 });
-                if (timeriterations>1)
+                if (timeriterations>2)
                 {
                     myArgTimer.cancel();
                     myArgTimer.purge();

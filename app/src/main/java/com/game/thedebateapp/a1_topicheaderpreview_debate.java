@@ -40,6 +40,7 @@ public class a1_topicheaderpreview_debate extends AppCompatActivity {
 
     String b1_close;
     TextView TopicHeader2;
+    TextView TopicTitle;
 
     game currentGame;
 
@@ -72,7 +73,8 @@ public class a1_topicheaderpreview_debate extends AppCompatActivity {
         TopicHeader2 = (TextView) findViewById(R.id.topicheader);
         TopicHeader2.setText(currentGame.getStages().getStage2().getTopicHeader());
 
-
+        TopicTitle= (TextView) findViewById(R.id.topictitle);
+        TopicTitle.setText(currentGame.getStages().getTopicTitle());
 
 
 
@@ -96,7 +98,6 @@ public class a1_topicheaderpreview_debate extends AppCompatActivity {
                             {
                                 b1_close = b1c.toString();
                                 if (!b1_close.equals("0")) {
-                                    //Log.i("qqqqqqqqqqqqqqqqqqqq", b1_close);
                                     currentGame.getStages().getStage1().setResp(b1_close);
                                     myArgTimer.cancel();
                                     myArgTimer.purge();

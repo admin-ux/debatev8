@@ -29,7 +29,7 @@ public class b2_topicheaderpreview_debate extends AppCompatActivity {
 
     String a2_close;
     TextView TopicHeader3;
-
+    TextView TopicTitle;
     game currentGame;
 
 
@@ -55,6 +55,9 @@ public class b2_topicheaderpreview_debate extends AppCompatActivity {
 
         TopicHeader3 = (TextView) findViewById(R.id.topicheader);
         TopicHeader3.setText(currentGame.getStages().getStage3().getTopicHeader());
+
+        TopicTitle= (TextView) findViewById(R.id.topictitle);
+        TopicTitle.setText(currentGame.getStages().getTopicTitle());
 
 
         final Timer myArgTimer = new Timer();

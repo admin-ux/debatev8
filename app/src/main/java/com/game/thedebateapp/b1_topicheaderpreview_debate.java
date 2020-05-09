@@ -68,7 +68,7 @@ public class b1_topicheaderpreview_debate extends AppCompatActivity {
 
         int score=15;
         int i=0;
-        while (currentGame.getPlayer1Topics().length()>i)
+        while (currentGame.getPlayer1Topics().length()>i+1)
         {
             String num=String.valueOf(i);
 
@@ -105,7 +105,7 @@ public class b1_topicheaderpreview_debate extends AppCompatActivity {
         }
         score=15;
         i=0;
-        while (currentGame.getPlayer2Topics().length()>i)
+        while (currentGame.getPlayer2Topics().length()>i+1)
         {
             String num2=String.valueOf(i);
 

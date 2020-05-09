@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 //import android.util.Log;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -88,7 +89,6 @@ public class return_repeat_judge extends AppCompatActivity {
                    Object ts = dataSnapshot.child("totalScore").getValue();
                    Object aa = dataSnapshot.child("a_avg").getValue();
                    Object ra = dataSnapshot.child("r_rvg").getValue();
-
                    if (ngp!=null){
 
                    }
@@ -106,20 +106,30 @@ public class return_repeat_judge extends AppCompatActivity {
                    }
 
                    //wins1=dataSnapshot.child("wins").getValue();
-                   if (iterations1==0&&ngp!=null&&w!=null&&ts!=null&&aa!=null&&ra!=null)
-                   {
-                       iterations1++;
-                       totalScore1 = 0;
-                       wins1 = 0;
-                       A_avg1 = 0;
-                       R_avg1 = 0;
-                       numGamesPlayed1 = 0;
+                       if (iterations1==0)
+                       {
+                           iterations1++;
 
-                       totalScore1 = (int) (long) ts;
-                       wins1 = (int) (long) w;
-                       A_avg1 = (int) (long) aa;
-                       R_avg1 = (int) (long) ra;
-                       numGamesPlayed1 = (int) (long) ngp;
+                           if (ngp!=null&&w!=null&&ts!=null&&aa!=null&&ra!=null){
+                               totalScore1 = 0;
+                               wins1 = 0;
+                               A_avg1 = 0;
+                               R_avg1 = 0;
+                               numGamesPlayed1 = 0;
+
+                               totalScore1 = (int) (long) ts;
+                               wins1 = (int) (long) w;
+                               A_avg1 = (int) (long) aa;
+                               R_avg1 = (int) (long) ra;
+                               numGamesPlayed1 = (int) (long) ngp;
+                           }
+                           else{
+                               totalScore1 = 0;
+                               wins1 = 0;
+                               A_avg1 = 0;
+                               R_avg1 = 0;
+                               numGamesPlayed1 = 0;
+                           }
 
                        //************Player 2
                        databaseUsers.child(gameBeingJudged.getPlayer2()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -132,25 +142,31 @@ public class return_repeat_judge extends AppCompatActivity {
                                    Object ts = dataSnapshot.child("totalScore").getValue();
                                    Object aa = dataSnapshot.child("a_avg").getValue();
                                    Object ra = dataSnapshot.child("r_rvg").getValue();
-
-
-
-
-                                   if (iterations2==0&&ngp!=null&&w!=null&&ts!=null&&aa!=null&&ra!=null)
+                                   if (iterations2==0)
                                    {
                                        iterations2++;
-                                       totalScore2 = 0;
-                                       wins2 = 0;
-                                       A_avg2 = 0;
-                                       R_avg2 = 0;
-                                       numGamesPlayed2 = 0;
-                                       totalScore2 = (int) (long) ts;
-                                       wins2 = (int) (long) w;
-                                       A_avg2 = (int) (long) aa;
 
-                                       R_avg2 = (int) (long) ra;
-                                       numGamesPlayed2 = (int) (long) ngp;
+                                    if (ngp!=null&&w!=null&&ts!=null&&aa!=null&&ra!=null){
+                                        totalScore2 = 0;
+                                        wins2 = 0;
+                                        A_avg2 = 0;
+                                        R_avg2 = 0;
+                                        numGamesPlayed2 = 0;
+                                        totalScore2 = (int) (long) ts;
+                                        wins2 = (int) (long) w;
+                                        A_avg2 = (int) (long) aa;
 
+                                        R_avg2 = (int) (long) ra;
+                                        numGamesPlayed2 = (int) (long) ngp;
+                                    }
+                                    else{
+                                        iterations2++;
+                                        totalScore2 = 0;
+                                        wins2 = 0;
+                                        A_avg2 = 0;
+                                        R_avg2 = 0;
+                                        numGamesPlayed2 = 0;
+                                    }
                                        //*************************Calculations for Score
                                        final Timer myTimerReQuery = new Timer();
                                        TimerTask untilReQuery= new TimerTask()
@@ -159,8 +175,7 @@ public class return_repeat_judge extends AppCompatActivity {
                                            @Override
                                            public void run()
                                            {
-
-                                                if (iterations>0)
+                                               if (iterations>0)
                                                 {
                                                     myTimerReQuery.cancel();
                                                     myTimerReQuery.purge();
@@ -433,15 +448,20 @@ public class return_repeat_judge extends AppCompatActivity {
         });
 
     }
+
+
     //May change this to not allow choice of debate and use algorithm instead
     public void openJudgechoice(){
+        databaseCurrentGames.child(gameBeingJudged.getGameID()).setValue(null);
         Intent intent = new Intent(this, searching_completed_matches.class);
+
 
 
         startActivity(intent);
     }
     //opens judge wait screen
     public void quitChoice(){
+        databaseCurrentGames.child(gameBeingJudged.getGameID()).setValue(null);
         Intent intent = new Intent(this, choice_home.class);
         startActivity(intent);
     }

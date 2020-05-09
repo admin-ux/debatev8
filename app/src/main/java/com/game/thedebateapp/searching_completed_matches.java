@@ -171,6 +171,17 @@ public class searching_completed_matches extends AppCompatActivity {
             myTimerReQuery.schedule(untilReQuery,0,3000);
 
     }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, choice_home.class);
+        startActivity(intent);
+    }
+
+    public void onPause() {
+        super.onPause();
+        Intent intent = new Intent(this, choice_home.class);
+        startActivity(intent);
+    }
     public void openC1_rate_debate(){
         Intent intent = new Intent(this, c1_rate_judge.class);
         Bundle bundle = new Bundle();

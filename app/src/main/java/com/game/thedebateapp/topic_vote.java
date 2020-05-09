@@ -219,6 +219,7 @@ public class topic_vote extends AppCompatActivity {
                                                 if (firstloop)
                                                 {
                                                     realtimeUserCurrentGame.child("player2Topics").setValue(VotesCastList);
+                                                    currentGame.setPlayer2Topics(VotesCastList);
                                                     firstloop=false;
                                                 }
                                                 //3A) VOTES ARE POSTED//END//
@@ -346,6 +347,7 @@ public class topic_vote extends AppCompatActivity {
                                         if(firstloop)
                                         {
                                             realtimeUserCurrentGame.child("player1Topics").setValue(VotesCastList);
+                                            currentGame.setPlayer1Topics(VotesCastList);
                                             firstloop=false;
                                         }
                                         //3B) VOTES ARE POSTED//END//
@@ -355,9 +357,6 @@ public class topic_vote extends AppCompatActivity {
                                                 for (DataSnapshot realtimeUserCurrentGameInfo : dataSnapshot.getChildren()) {
                                                     //Check if first player
 
-
-                //                                    String player2ID = (String) realtimeUserCurrentGameInfo.child("player2Topics").getValue();
-                //                                    Log.i("sssssssssssssssssss", player2ID);
 
                                                     String player2ID="";
 
