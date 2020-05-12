@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "92664854926-4901v9bj4umoc12j8mii6i86emqae22s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.debatev8",
+            "certificate_hash": "f54b562608c417758b2b711442fdcd3d1be8f123"
+          }
+        },
+        {
           "client_id": "92664854926-dfeapcq2lnu6flb5fjqdc7e5mlq5r8ct.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -51,6 +59,22 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "92664854926-f0vmoqc86kd1b3b2rvbv2mbvmarknd0o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.game.thedebateapp",
+            "certificate_hash": "e14d62a3ddda4f05eec4a9a509b33c225baaa9bc"
+          }
+        },
+        {
+          "client_id": "92664854926-392ajhg4fna2qoheejee9jt44ac77704.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.game.thedebateapp",
+            "certificate_hash": "54d89514da1feb7514f460800974cc3c69160ca5"
+          }
+        },
         {
           "client_id": "92664854926-9bhqdk6mr8p4f9r140o61sgkniei6nh1.apps.googleusercontent.com",
           "client_type": 1,
