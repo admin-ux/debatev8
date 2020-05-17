@@ -27,6 +27,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 //Description       :
@@ -49,6 +51,8 @@ public class login extends AppCompatActivity {
     TextView mSignUpBtn;
     FirebaseAuth fAuth;
 
+    DatabaseReference databaseRoot = FirebaseDatabase.getInstance().getReference();//***
+    DatabaseReference databaseUsers = databaseRoot.child("UsersList");//***
 
 
     @Override
@@ -69,6 +73,8 @@ public class login extends AppCompatActivity {
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
+
+
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
@@ -115,7 +121,7 @@ public class login extends AppCompatActivity {
 
                             startActivity(new Intent(getApplicationContext(),choice_home.class));
                         }else {
-                            Log.d("AAAAAAAAAAAAAAAAAAAAAZ", "DANG IT?");
+
 
                         }
                     }
@@ -148,7 +154,6 @@ public class login extends AppCompatActivity {
         if(requestCode == RC_SIGN_IN){
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleSignInResult(task);
-            Log.d("AAAAAAAAAAAAAAAAAAAAAD", "HERE?");
         }
     }
 
@@ -157,18 +162,15 @@ public class login extends AppCompatActivity {
 
             GoogleSignInAccount acc = completedTask.getResult(ApiException.class);
             FirebaseGoogleAuth(acc);
-            Log.d("AAAAAAAAAAAAAAAAAAAAAC", "HERE?");
-
-
 
         }
         catch (ApiException e){
-            Log.d("AAAAAAAAAAAAAAAAAAAAAG", "apiException");
+
             FirebaseGoogleAuth(null);
         }
     }
 
-    private void FirebaseGoogleAuth(GoogleSignInAccount acct) {
+    private void FirebaseGoogleAuth(final GoogleSignInAccount acct) {
         //check if the account is null
         if (acct != null) {
             AuthCredential authCredential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
@@ -179,11 +181,22 @@ public class login extends AppCompatActivity {
                     if (task.isSuccessful()) {
 
                         FirebaseUser user = mAuth.getCurrentUser();
+
+                        String userid = user.getUid();//***
+                        String userEmail=acct.getEmail();
+                        String userName=acct.getGivenName();
+
+                        int inGame = 0;
+                        //This sets the users Uid as the individual id in the database
+
+                        user newUser = new user(userid,userName,inGame,userEmail,"0");//***
+
+                        databaseUsers.child(userid).setValue(newUser);
                         //updateUI(user);
                         //Starts next screen
+
                         openChoice_home();
                     } else {
-                        Log.d("AAAAAAAAAAAAAAAAAAAAAB", "DANG IT");
 
                         // updateUI(null);
                     }

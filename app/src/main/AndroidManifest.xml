@@ -31,29 +31,29 @@
     <activity android:name="com.game.thedebateapp.choice_home" android:noHistory="true"/>
     <activity android:name="com.game.thedebateapp.match_finding" android:noHistory="true" />
     <activity android:name="com.game.thedebateapp.topic_vote" android:noHistory="true"/>
-    <activity android:name="com.game.thedebateapp.a1_lead_debate" />
-    <activity android:name="com.game.thedebateapp.a1_topicheaderpreview_debate" />
-    <activity android:name="com.game.thedebateapp.a1_responsepreview_debate" />
-    <activity android:name="com.game.thedebateapp.b1_topicheaderpreview_debate" />
-    <activity android:name="com.game.thedebateapp.b1_close_debate" />
-    <activity android:name="com.game.thedebateapp.b2_lead_debate" />
-    <activity android:name="com.game.thedebateapp.b2_topicheaderpreview_debate" />
-    <activity android:name="com.game.thedebateapp.b2_responsepreview_debate" />
-    <activity android:name="com.game.thedebateapp.a2_close_debate" />
-    <activity android:name="com.game.thedebateapp.a3_lead_debate" />
-    <activity android:name="com.game.thedebateapp.a3_waitinglastresp_debate" />
-    <activity android:name="com.game.thedebateapp.a3_responsepreview_debate" />
-    <activity android:name="com.game.thedebateapp.b3_close_debate" />
-    <activity android:name="com.game.thedebateapp.repeat_return_debate" />
+    <activity android:name="com.game.thedebateapp.a1_lead_debate" android:noHistory="true" />
+    <activity android:name="com.game.thedebateapp.a1_topicheaderpreview_debate" android:noHistory="true" />
+    <activity android:name="com.game.thedebateapp.a1_responsepreview_debate" android:noHistory="true" />
+    <activity android:name="com.game.thedebateapp.b1_topicheaderpreview_debate" android:noHistory="true" />
+    <activity android:name="com.game.thedebateapp.b1_close_debate" android:noHistory="true" />
+    <activity android:name="com.game.thedebateapp.b2_lead_debate" android:noHistory="true" />
+    <activity android:name="com.game.thedebateapp.b2_topicheaderpreview_debate" android:noHistory="true" />
+    <activity android:name="com.game.thedebateapp.b2_responsepreview_debate" android:noHistory="true" />
+    <activity android:name="com.game.thedebateapp.a2_close_debate" android:noHistory="true" />
+    <activity android:name="com.game.thedebateapp.a3_lead_debate" android:noHistory="true" />
+    <activity android:name="com.game.thedebateapp.a3_waitinglastresp_debate" android:noHistory="true" />
+    <activity android:name="com.game.thedebateapp.a3_responsepreview_debate" android:noHistory="true" />
+    <activity android:name="com.game.thedebateapp.b3_close_debate" android:noHistory="true" />
+    <activity android:name="com.game.thedebateapp.repeat_return_debate" android:noHistory="true"/>
 
-    <activity android:name="com.game.thedebateapp.searching_completed_matches"/>
-    <activity android:name="com.game.thedebateapp.c1_rate_judge" />
-    <activity android:name="com.game.thedebateapp.c2_rate_judge" />
-    <activity android:name="com.game.thedebateapp.c3_rate_judge" />
-    <activity android:name="com.game.thedebateapp.return_repeat_judge" />
+    <activity android:name="com.game.thedebateapp.searching_completed_matches" android:noHistory="true"/>
+    <activity android:name="com.game.thedebateapp.c1_rate_judge" android:noHistory="true" />
+    <activity android:name="com.game.thedebateapp.c2_rate_judge" android:noHistory="true" />
+    <activity android:name="com.game.thedebateapp.c3_rate_judge" android:noHistory="true" />
+    <activity android:name="com.game.thedebateapp.return_repeat_judge" android:noHistory="true" />
 
-    <activity android:name="com.game.thedebateapp.choice_leaderboards" />
-    <activity android:name="com.game.thedebateapp.debate_leaderboards" />
+    <activity android:name="com.game.thedebateapp.choice_leaderboards" android:noHistory="true" />
+    <activity android:name="com.game.thedebateapp.debate_leaderboards" android:noHistory="true" />
 
   </application>
 

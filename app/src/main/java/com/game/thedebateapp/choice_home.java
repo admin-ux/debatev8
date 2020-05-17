@@ -89,6 +89,6 @@ public class choice_home extends AppCompatActivity {
         startActivity(intent);
     }
     public void displayMessage(){
-        Toast.makeText(choice_home.this, "There were no players available, please try agin in a little while.", Toast.LENGTH_LONG).show();
+        Toast.makeText(choice_home.this, "There were no players available, please try again in a little while.", Toast.LENGTH_LONG).show();
     }
 }

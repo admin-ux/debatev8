@@ -49,6 +49,12 @@ public class a1_lead_debate extends AppCompatActivity {
     game currentGame;
 
     int[] myvaluesList = new int[4];
+    int[] tie = new int[2];
+
+    int one=0;
+    int two=0;
+    int three=0;
+    int four=0;
 
     DatabaseReference databaseRoot = FirebaseDatabase.getInstance().getReference();//***
     DatabaseReference databaseUsers = databaseRoot.child("UsersList");//***
@@ -69,17 +75,12 @@ public class a1_lead_debate extends AppCompatActivity {
 
         //Calculate Topic//Start//
 
-        int one=0;
-        int two=0;
-        int three=0;
-        int four=0;
+
 
         int score=15;
         int i=0;
         while (currentGame.getPlayer1Topics().length()>i+1)
         {
-            String num=String.valueOf(i);
-            Log.d("player1 topics", currentGame.getPlayer1Topics());
 
             if(currentGame.getPlayer1Topics().charAt(i)=='1')
             {
@@ -116,7 +117,6 @@ public class a1_lead_debate extends AppCompatActivity {
         i=0;
         while (currentGame.getPlayer2Topics().length()>i+1)
         {
-            String num2=String.valueOf(i);
 
             if(currentGame.getPlayer2Topics().charAt(i)=='1')
             {
@@ -150,43 +150,45 @@ public class a1_lead_debate extends AppCompatActivity {
 
         }
 
+
         myvaluesList[0]=one;
-        String a=String.valueOf(one);
         myvaluesList[1]=two;
-        String b=String.valueOf(two);
         myvaluesList[2]=three;
-        String c=String.valueOf(three);
         myvaluesList[3]=four;
-        String d=String.valueOf(four);
         int largest = 0;
         int largestvalue=myvaluesList[0];
-        int same = -1;
+
         i=1;
+        int first=0;
         while (i<4)
         {
-            String num3=String.valueOf(i);
-
             if (myvaluesList[i]>largestvalue)
             {
-                largest = i;
-            }
-            else if (myvaluesList[i]==largestvalue)
-            {
-                same=i;
+                largestvalue = myvaluesList[i];
             }
             i++;
         }
-        if (same!=-1)
+        i=1;
+        while (i<4)
         {
-            Random random = new Random();
-            int randomInteger = random.nextInt(1);
-            String n=String.valueOf(randomInteger);
-
-            if (randomInteger==1)
+            if (myvaluesList[i]==largestvalue)
             {
-                largest=same;
+                if (first==0){
+                    tie[0]=i;
+                    first=1;
+                    largest=tie[0];
+                }
+                else{
+                    tie[1]=i;
+                    first=2;
+                }
             }
+            i++;
         }
+        if(first==2){
+            largest = Math.max(tie[0], tie[1]);
+        }
+
         String num=String.valueOf(i);
 
         largest++;

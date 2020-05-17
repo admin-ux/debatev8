@@ -79,18 +79,17 @@ public class topic_vote extends AppCompatActivity {
         }
 
         //Starts
-        Log.d("BBBBBBBBBBBBBBBBB","BBBBBBBBBBBBBBBBBBBBBB");
+
         databaseCurrentTopics.addListenerForSingleValueEvent(new ValueEventListener()
         {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
-                Log.d("CCCCCCCCCCCCCCCCCCCCCC",dataSnapshot.toString());
+
                 for (DataSnapshot topics : dataSnapshot.getChildren())
                 {
                     itterations=0;
-                    Log.d("AAAAAAAAAAAAAAAAAAAAA",topics.toString());
-                    Log.d("BBBBBBBBBBBBBBBBBBBB",dataSnapshot.toString());
+
                     String Topic1 = "";
                     String Topic2 = "";
                     String Topic3 = "";
@@ -109,10 +108,6 @@ public class topic_vote extends AppCompatActivity {
                         Topic2 = tt2.toString();
                         Topic3 = tt3.toString();
                         Topic4 = tt4.toString();
-                        Log.d("Topic1",Topic1);
-                        Log.d("Topic2",Topic2);
-                        Log.d("Topic3",Topic3);
-                        Log.d("Topic4",Topic4);
 
                         topic1 = (Button) findViewById(R.id.Topic1);
                         topic2 = (Button) findViewById(R.id.Topic2);
@@ -229,18 +224,17 @@ public class topic_vote extends AppCompatActivity {
                                                         for (DataSnapshot realtimeUserCurrentGameInfo : dataSnapshot.getChildren()) {
                                                             //Check if first player
 
-                                                            //String player1ID = (String) realtimeUserCurrentGameInfo.child("player1Topics").getValue();
-                                                            //Log.i("sssssssssssssssssss", player1ID);
-                                                            String player1ID="";
+
+                                                            String player1TopicsString="";
 
                                                             Object b= dataSnapshot.child("player1Topics").getValue();
 
                                                             if (b!=null) {
-                                                                player1ID=b.toString();
+                                                                player1TopicsString=b.toString();
                                                             }
-                                                            if (!player1ID.equals("0")) {
+                                                            if (!player1TopicsString.equals("0")) {
 
-                                                                //TODO Do player 2 calculation before timer quit
+                                                                currentGame.setPlayer1Topics(player1TopicsString);
                                                                 myTimerReQuery.cancel();
                                                                 myTimerReQuery.purge();
                                                                 //TODO Add getActivity.b1_close_debate()
@@ -358,15 +352,16 @@ public class topic_vote extends AppCompatActivity {
                                                     //Check if first player
 
 
-                                                    String player2ID="";
+                                                    String player2TopicsString="";
 
                                                     Object b= dataSnapshot.child("player2Topics").getValue();
 
-                                                    if (b!=null) {
-                                                        player2ID=b.toString();
-                                                    }
-                                                    if (!player2ID.equals("0")) {
 
+                                                    if (b!=null) {
+                                                        player2TopicsString=b.toString();
+                                                    }
+                                                    if (!player2TopicsString.equals("0")) {
+                                                        currentGame.setPlayer2Topics(player2TopicsString);
                                                         myTimerReQuery.cancel();
                                                         myTimerReQuery.purge();
                                                         //TODO Add getActivity.a1_lead_debate()

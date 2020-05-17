@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 //import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
@@ -71,7 +72,6 @@ public class searching_completed_matches extends AppCompatActivity {
                                     }
                                 }
 
-//
                                 String player1ID = "";
                                 String player2ID = "";
 
@@ -138,7 +138,6 @@ public class searching_completed_matches extends AppCompatActivity {
                                 stage3.setArg(a3_Arg);
 
                                 retrievedDebateStages.setTopicTitle(TopicTitle);
-
                                 retrievedDebateStages.setStage1(stage1);
                                 retrievedDebateStages.setStage2(stage2);
                                 retrievedDebateStages.setStage3(stage3);
@@ -149,6 +148,7 @@ public class searching_completed_matches extends AppCompatActivity {
                                 myTimerReQuery.cancel();
                                 myTimerReQuery.purge();
                                 openC1_rate_debate();
+
                             }
 
                         }
@@ -177,11 +177,11 @@ public class searching_completed_matches extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void onPause() {
-        super.onPause();
-        Intent intent = new Intent(this, choice_home.class);
-        startActivity(intent);
-    }
+//    public void onPause() {
+//        super.onPause();
+//        Intent intent = new Intent(this, choice_home.class);
+//        startActivity(intent);
+//    }
     public void openC1_rate_debate(){
         Intent intent = new Intent(this, c1_rate_judge.class);
         Bundle bundle = new Bundle();

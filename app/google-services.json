@@ -60,6 +60,30 @@
       },
       "oauth_client": [
         {
+          "client_id": "92664854926-hup1e1hlg99tfve9ju98ncbt4661rhff.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.game.thedebateapp",
+            "certificate_hash": "818ced23a7448de6e5d8a53938efe68c6d216c6c"
+          }
+        },
+        {
+          "client_id": "92664854926-fgtt28ftb3b81l764ajs1h2oousk9rda.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.game.thedebateapp",
+            "certificate_hash": "89094980a6b64cf07ab1fc880eb52d38cde36509"
+          }
+        },
+        {
+          "client_id": "92664854926-36eabe3e393djuek5b2pv7hjtb35paf8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.game.thedebateapp",
+            "certificate_hash": "f54b562608c417758b2b711442fdcd3d1be8f123"
+          }
+        },
+        {
           "client_id": "92664854926-f0vmoqc86kd1b3b2rvbv2mbvmarknd0o.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

@@ -102,7 +102,7 @@ public class match_finding extends AppCompatActivity {
                                 for (DataSnapshot value : dataSnapshot.getChildren()) {
                                     final Long unfulfilledPositionCollected = (Long) value.getValue();
 
-                                    Log.d("AAAAAAAAAAAABFoundValue", unfulfilledPositionCollected.toString());
+
                                     //**********************************************************************************
                                     //TODO Add all code to here than continue above plan
                                     //**********************************************************************************
@@ -365,7 +365,6 @@ public class match_finding extends AppCompatActivity {
     //TODO: If back button is pressed more management is needed
     @Override
     public void onBackPressed() {
-        Log.d("IIIIIIIIIIIIIIIIIIII", "It stinkin better not be here");
         iterations=6;
         //String String_playerCurrentPosition=String.valueOf(playerCurrentPosition);
         databaseUnfulfilled.child("Value"+playerCurrentPosition).setValue(playerCurrentPosition);
@@ -386,7 +385,7 @@ public class match_finding extends AppCompatActivity {
     public void onPause() {
         super.onPause();
         if (StartingActivityIf_1!=1) {
-            Log.d("HHHHHHHHHHHHHHHHHHHHH", "Better not be here");
+
             iterations = 6;
             //String String_playerCurrentPosition = String.valueOf(playerCurrentPosition);
             databaseUnfulfilled.child("Value" + playerCurrentPosition).setValue(playerCurrentPosition);
@@ -405,7 +404,7 @@ public class match_finding extends AppCompatActivity {
 
     public void opentopic_vote(){
         StartingActivityIf_1=1;
-        Log.d("JJJJJJJJJJJJJJJJJJJJJ", "Can Probably Work With this");
+
         Intent intent = new Intent(this, topic_vote.class);
         //Should send completed object of newGame
         //TODO only responds to 1st player
